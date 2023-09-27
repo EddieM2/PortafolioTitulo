@@ -1,0 +1,41 @@
+.background-container {
+    background-image: url('../img/recurso_1.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    bottom: 60px;
+    left: 0;
+    z-index: -1; 
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.image-container {
+    max-width: 50%; 
+    margin-right: 20px; 
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.text-container {
+    flex: 1; 
+}
+
+.text {
+    font-size: 24px;
+    text-align: center;
+    color: #000; 
+}

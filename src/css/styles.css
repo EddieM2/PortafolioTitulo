@@ -1,0 +1,128 @@
+.background-container {
+  background-image: url('../img/recurso_1.png'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 60px;
+  left: 0;
+  z-index: -1; 
+}
+.login-card {
+  max-width: 600px; 
+  margin: 0 auto;
+  padding: 50px; 
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: #fff; 
+  font-family: 'Asap', sans-serif; 
+  text-align: center; 
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0f0; 
+}
+
+.login-card .form-group {
+  margin-bottom: 15px;
+}
+
+.login-card label {
+  display: block;
+  font-weight: bold;
+  color: #0f0; 
+  text-align: center; 
+}
+
+.login-card input[type="text"],
+.login-card input[type="password"] {
+  width: 100%;
+  padding: 8px; 
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.1); 
+  text-align: center; 
+  margin: 0 auto; 
+  font-size: 14px; 
+}
+
+.login-card input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #0f0;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.35em;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-card input[type="submit"]:hover {
+  background-color: #090;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.login-container {
+  background: transparent; 
+  position: relative; 
+  z-index: -1; 
+}
+
+
+html, body, div, ul, li {
+  margin: 0;
+  padding: 0;
+}
+/* Centro de pagina */
+
+
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.slogan-box {
+  background-color: #007BFF; 
+  color: #fff; 
+  padding: 20px; 
+  border-radius: 5px; 
+  flex: 1; 
+}
+
+
+.slogan-box h2 {
+  font-size: 24px; 
+}
+
+
+.school-image {
+  flex: 1; 
+  margin-left: 20px; 
+}
+
+
+.school-image img {
+  width: 100%; 
+  border-radius: 5px; 
+}
