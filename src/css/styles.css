@@ -1,5 +1,5 @@
 .background-container {
-  background-image: url('../img/recurso_1.png'); 
+  background-image: url('../img/recurso_1.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -90,39 +90,4 @@
 html, body, div, ul, li {
   margin: 0;
   padding: 0;
-}
-/* Centro de pagina */
-
-
-
-.content-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-
-.slogan-box {
-  background-color: #007BFF; 
-  color: #fff; 
-  padding: 20px; 
-  border-radius: 5px; 
-  flex: 1; 
-}
-
-
-.slogan-box h2 {
-  font-size: 24px; 
-}
-
-
-.school-image {
-  flex: 1; 
-  margin-left: 20px; 
-}
-
-
-.school-image img {
-  width: 100%; 
-  border-radius: 5px; 
 }

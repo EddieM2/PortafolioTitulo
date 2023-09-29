@@ -1,41 +1,86 @@
-.background-container {
-    background-image: url('../img/recurso_1.png'); 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    bottom: 60px;
-    left: 0;
-    z-index: -1; 
-}
-
-.container {
+.content-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    
-}
-
-.image-container {
-    max-width: 50%; 
-    margin-right: 20px; 
-}
-
-.image-container img {
-    max-width: 100%;
+    justify-content: center;
     height: auto;
-    display: block;
-    margin: 0 auto;
 }
 
-.text-container {
-    flex: 1; 
+
+.school-image {
+    width: 50%;
+    height:auto;
 }
 
-.text {
-    font-size: 24px;
+.latest-news {
+    border: 1px solid #220ed1;
+    background-color: #125E5E;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
     text-align: center;
-    color: #000; 
 }
+.news-card {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #1A877B;
+}
+
+.news-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.news-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 24px;
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 16px;
+    color: #333;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card li {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
