@@ -1,3 +1,5 @@
+<?php include("db.php") ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,12 +7,7 @@
 </head>
 <body>
     <?php
-    $conn = mysqli_connect(
-     'localhost',
-     'root',
-     '',
-     'probando2'
- );
+    
  //session_start();
     // Verifica si se ha proporcionado el parámetro de asignatura_id en la URL
     if (isset($_GET['asignatura_id'])) {
@@ -24,7 +21,7 @@
                           WHERE inscripcion.idCurso IN (
                               SELECT idCurso FROM asignatura WHERE idAsignatura = $asignatura_id
                           )";
-        $result_alumnos = mysqli_query($conn, $query_alumnos);
+        $result_alumnos = mysqli_query($conexion, $query_alumnos);
 
         if ($result_alumnos) {
             echo "<h1>Lista de Alumnos para la Asignatura</h1>";

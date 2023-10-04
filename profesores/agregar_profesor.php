@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +9,6 @@
     <h1>Agregar Profesor</h1>
 
     <?php
-    // Incluir el archivo de conexión a la base de datos
-    include("../models/db.php");
 
     // Verificar si se ha enviado el formulario
     if (isset($_POST['agregar_profesor'])) {
@@ -24,7 +24,7 @@
 
         // Insertar el nuevo profesor en la tabla profesor
         $query = "INSERT INTO profesor (rut, nombre, apellidoP, apellidoM, correo, fechaNacimiento, telefono, genero, idCargo) VALUES ('$rut', '$nombre', '$apellidoP', '$apellidoM', '$correo', '$fechaNacimiento', '$telefono', '$genero', '$idCargo')";
-        $result = mysqli_query($conn, $query);
+        $result = mysqli_query($conexion, $query);
 
         if ($result) {
             // Éxito: el profesor se ha agregado correctamente
@@ -35,7 +35,7 @@
             exit; // Asegurarse de que el script se detenga después de la redirección
         } else {
             // Error: no se pudo agregar el profesor
-            echo "<p>Error al agregar el profesor: " . mysqli_error($conn) . "</p>";
+            echo "<p>Error al agregar el profesor: " . mysqli_error($conexion) . "</p>";
         }
     }
     ?>

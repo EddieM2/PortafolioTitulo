@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +23,6 @@
         $telefono = $_POST["telefono"];
         $genero = $_POST["genero"];
         $estadoAcademico = $_POST["estadoAcademico"];
-        
-        // Realizar la conexión a la base de datos (ajusta las credenciales según tu configuración)
-        $conexion = mysqli_connect("localhost", "root", "123456", "probando2");
         
         if (!$conexion) {
             die("Error de conexión: " . mysqli_connect_error());

@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <?php
 // Recoge los valores del formulario
 $rut = $_POST['rut'];
@@ -10,10 +12,8 @@ $direccion = $_POST['direccion'];
 $fechaNacimiento = $_POST['fechaNacimiento'];
 $telefono = $_POST['telefono'];
 
-// Conexión a la base de datos
-$conn = mysqli_connect('localhost', 'root', '', 'probando2');
 
-if (!$conn) {
+if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
@@ -22,14 +22,14 @@ $query = "INSERT INTO apoderado (rut, nombre, apellidoP, apellidoM, correo, idCa
           VALUES ('$rut', '$nombre', '$apellidoP', '$apellidoM', '$correo', $idCargo, '$direccion', '$fechaNacimiento', $telefono)";
 
 // Ejecuta la consulta
-$result = mysqli_query($conn, $query);
+$result = mysqli_query($conexion, $query);
 
 if ($result) {
     echo "Apoderado agregado exitosamente.";
 } else {
-    echo "Error al agregar apoderado: " . mysqli_error($conn);
+    echo "Error al agregar apoderado: " . mysqli_error($conexion);
 }
 
 // Cierra la conexión
-mysqli_close($conn);
+mysqli_close($conexion);
 ?>

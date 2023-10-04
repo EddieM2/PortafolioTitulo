@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos enviados por el formulario
@@ -12,9 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = $_POST["telefono"];
     $genero = $_POST["genero"];
     $estadoAcademico = $_POST["estadoAcademico"];
-
-    // Conexión a la base de datos
-    $conexion = mysqli_connect("localhost", "root", "123456", "probando2");
 
     if (!$conexion) {
         die("Error de conexión: " . mysqli_connect_error());

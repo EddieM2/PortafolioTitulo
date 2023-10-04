@@ -1,11 +1,10 @@
+<?php include("../models/db.php") ?>
+
 <?php
 // Verificar si se proporcionó un parámetro "rut" en la URL
 if (isset($_GET["rut"])) {
     // Obtener el RUT del alumno desde la URL
     $rut = $_GET["rut"];
-
-    // Realizar la conexión a la base de datos
-    $conexion = mysqli_connect("localhost", "root", "123456", "probando2");
 
     if (!$conexion) {
         die("Error de conexión: " . mysqli_connect_error());

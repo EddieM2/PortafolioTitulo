@@ -1,8 +1,8 @@
-<?php
-// Conexión a la base de datos (ajusta los datos de conexión según tu configuración)
-$conn = mysqli_connect('localhost', 'root', '123456', 'probando2');
+<?php include("../models/db.php") ?>
 
-if (!$conn) {
+<?php
+
+if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
@@ -18,12 +18,12 @@ if (isset($_GET['rut'])) {
     $result = mysqli_query($conn, $query);
 
     if (!$result) {
-        echo "Error al eliminar al profesor: " . mysqli_error($conn);
+        echo "Error al eliminar al profesor: " . mysqli_error($conexion);
     }
 }
 
 // Cierra la conexión
-mysqli_close($conn);
+mysqli_close($conexion);
 
 // Redirige de vuelta a la página de lista de profesores
 header("Location: inicioProf.php");

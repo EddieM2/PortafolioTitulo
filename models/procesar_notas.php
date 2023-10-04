@@ -1,5 +1,7 @@
+<?php include("db.php") ?>
+
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'probando2');
+
 session_start(); // Asegúrate de iniciar la sesión
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

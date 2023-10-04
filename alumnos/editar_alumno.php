@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +13,7 @@
     if (isset($_GET["rut"])) {
         $rut = $_GET["rut"];
 
-        // Conexión a la base de datos
-        $conexion = mysqli_connect("localhost", "root", "123456", "probando2");
+        
 
         if (!$conexion) {
             die("Error de conexión: " . mysqli_connect_error());

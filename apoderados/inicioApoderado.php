@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <?php
 session_start();
 
@@ -5,17 +7,10 @@ session_start();
 if (isset($_SESSION['rut'])) {
     $apoderado_rut = $_SESSION['rut'];
 
-    // Conectar a la base de datos
-    $conn = mysqli_connect(
-        'localhost',
-        'root',
-        '',
-        'probando2'
-    );
 
     // Consulta para obtener el nombre y apellido paterno del apoderado
     $consultaApoderado = "SELECT nombre, apellidoP FROM apoderado WHERE rut = '$apoderado_rut'";
-    $resultadoApoderado = mysqli_query($conn, $consultaApoderado);
+    $resultadoApoderado = mysqli_query($conexion, $consultaApoderado);
 
     if ($resultadoApoderado) {
         $filaApoderado = mysqli_fetch_assoc($resultadoApoderado);
@@ -29,7 +24,7 @@ if (isset($_SESSION['rut'])) {
 
             // Consulta para obtener los pupilos del apoderado
             $consultaPupilos = "SELECT rut, nombre, apellidoP, apellidoM FROM alumno WHERE rutApoderado = '$apoderado_rut'";
-            $resultadoPupilos = mysqli_query($conn, $consultaPupilos);
+            $resultadoPupilos = mysqli_query($conexion, $consultaPupilos);
 
             if ($resultadoPupilos) {
                 // Mostrar la lista de pupilos en un formulario POST
@@ -48,17 +43,17 @@ if (isset($_SESSION['rut'])) {
                 echo "<input type='submit' value='Seleccionar'>";
                 echo "</form>";
             } else {
-                echo "Error en la consulta de pupilos: " . mysqli_error($conn);
+                echo "Error en la consulta de pupilos: " . mysqli_error($conexion);
             }
         } else {
             echo "Error: Apoderado no encontrado";
         }
     } else {
-        echo "Error en la consulta de apoderado: " . mysqli_error($conn);
+        echo "Error en la consulta de apoderado: " . mysqli_error($conexion);
     }
 
     // Cerrar la conexión a la base de datos
-    mysqli_close($conn);
+    mysqli_close($conexion);
 } else {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
     header("Location: inicioSesionApoderado.php");

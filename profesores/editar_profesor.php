@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +8,8 @@
 <body>
     <h1>Editar Profesor</h1>
     <?php
-    // Conexión a la base de datos (ajusta los datos de conexión según tu configuración)
-    $conn = mysqli_connect('localhost', 'root', '123456', 'probando2');
 
-    if (!$conn) {
+    if (!$conexion) {
         die("Error de conexión: " . mysqli_connect_error());
     }
 
@@ -19,7 +19,7 @@
 
         // Realiza una consulta SQL para obtener los datos del profesor con el RUT proporcionado
         $query = "SELECT * FROM profesor WHERE rut = '$rut'";
-        $result = mysqli_query($conn, $query);
+        $result = mysqli_query($conexion, $query);
 
         if (mysqli_num_rows($result) === 1) {
             $row = mysqli_fetch_assoc($result);
@@ -52,7 +52,7 @@
     }
 
     // Cierre de la conexión
-    mysqli_close($conn);
+    mysqli_close($conexion);
     ?>
 </body>
 </html>

@@ -1,12 +1,11 @@
+<?php include("../models/db.php") ?>
+
 <?php
 session_start();
 
 // Verifica si el usuario ha iniciado sesión como alumno
 if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     $alumno_rut = $_SESSION['rut'];
-
-    // Conexión a la base de datos
-    $conn = mysqli_connect('localhost', 'root', '123456', 'probando2');
 
     if (!$conn) {
         die("Error de conexión: " . mysqli_connect_error());

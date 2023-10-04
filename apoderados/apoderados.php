@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,16 +60,14 @@
             <th>Acciones</th>
         </tr>
         <?php
-        // Conexión a la base de datos
-        $conn = mysqli_connect('localhost', 'root', '123456', 'probando2');
 
-        if (!$conn) {
+        if (!$conexion) {
             die("Error de conexión: " . mysqli_connect_error());
         }
 
         // Consulta para obtener la lista de apoderados
         $query = "SELECT * FROM apoderado";
-        $result = mysqli_query($conn, $query);
+        $result = mysqli_query($conexion, $query);
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -91,7 +91,7 @@
         }
 
         // Cerrar la conexión
-        mysqli_close($conn);
+        mysqli_close($conexion);
         ?>
     </table>
 

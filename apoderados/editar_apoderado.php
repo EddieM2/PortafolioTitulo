@@ -1,35 +1,34 @@
+<?php include("../models/db.php") ?>
+
 <?php
 // Verificar si se proporcionó un RUT de apoderado válido en la URL
 if (isset($_GET['rut'])) {
     $rut = $_GET['rut'];
 
     // Validar el formato del RUT (opcional)
-    
+ 
 
-    // Conexión a la base de datos (ajusta los datos de conexión según tu configuración)
-    $conn = mysqli_connect('localhost', 'root', '123456', 'probando2');
-
-    if (!$conn) {
+    if (!$conexion) {
         die("Error de conexión: " . mysqli_connect_error());
     }
 
     // Consulta para obtener los datos del apoderado
     $query = "SELECT * FROM apoderado WHERE rut = '$rut'";
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conexion, $query);
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
 
         // Procesar el formulario de edición cuando se envíe
         if (isset($_POST['editar_apoderado'])) {
-            $nombre = mysqli_real_escape_string($conn, $_POST['nombre']);
-            $apellidoP = mysqli_real_escape_string($conn, $_POST['apellidoP']);
-            $apellidoM = mysqli_real_escape_string($conn, $_POST['apellidoM']);
-            $correo = mysqli_real_escape_string($conn, $_POST['correo']);
+            $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
+            $apellidoP = mysqli_real_escape_string($conexion, $_POST['apellidoP']);
+            $apellidoM = mysqli_real_escape_string($conexion, $_POST['apellidoM']);
+            $correo = mysqli_real_escape_string($conexion, $_POST['correo']);
             $fechaNacimiento = $_POST['fechaNacimiento'];
             $telefono = $_POST['telefono'];
             $idCargo = $_POST['idCargo'];
-            $direccion = mysqli_real_escape_string($conn, $_POST['direccion']);
+            $direccion = mysqli_real_escape_string($conexion, $_POST['direccion']);
 
             // Actualizar la información del apoderado en la base de datos
             $updateQuery = "UPDATE apoderado SET
@@ -43,12 +42,12 @@ if (isset($_GET['rut'])) {
                 direccion = '$direccion'
                 WHERE rut = '$rut'";
 
-            if (mysqli_query($conn, $updateQuery)) {
+            if (mysqli_query($conexion, $updateQuery)) {
                 // Redirigir de vuelta a la lista de apoderados después de la edición
                 header("Location: apoderados.php");
                 exit();
             } else {
-                echo "Error al actualizar el apoderado: " . mysqli_error($conn);
+                echo "Error al actualizar el apoderado: " . mysqli_error($conexion);
             }
         }
     } else {
@@ -56,7 +55,7 @@ if (isset($_GET['rut'])) {
     }
 
     // Cerrar la conexión
-    mysqli_close($conn);
+    mysqli_close($conexion);
 } else {
     echo "RUT de apoderado no válido.";
 }

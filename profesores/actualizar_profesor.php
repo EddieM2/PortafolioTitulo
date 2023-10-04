@@ -1,8 +1,8 @@
-<?php
-// Conexión a la base de datos (ajusta los datos de conexión según tu configuración)
-$conn = mysqli_connect('localhost', 'root', '123456', 'probando2');
+<?php include("../models/db.php") ?>
 
-if (!$conn) {
+<?php
+
+if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
@@ -26,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   WHERE rut = '$rut'";
 
         // Ejecuta la consulta
-        $result = mysqli_query($conn, $query);
+        $result = mysqli_query($conexion, $query);
 
         if ($result) {
             echo "Los datos del profesor se actualizaron correctamente.";
         } else {
-            echo "Error al actualizar los datos del profesor: " . mysqli_error($conn);
+            echo "Error al actualizar los datos del profesor: " . mysqli_error($conexion);
         }
 
         // Redirige al usuario a la página de inicioProf
@@ -45,5 +45,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Cierre de la conexión
-mysqli_close($conn);
+mysqli_close($conexion);
 ?>

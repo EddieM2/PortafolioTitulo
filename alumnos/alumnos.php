@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,7 @@
     <table border="1">
         <?php
         // Conexión a la base de datos
-        $conexion = mysqli_connect("localhost", "root", "123456", "probando2");
+        
 
         if (!$conexion) {
             die("Error de conexión: " . mysqli_connect_error());

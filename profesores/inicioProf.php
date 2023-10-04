@@ -1,3 +1,5 @@
+<?php include("../models/db.php") ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,19 +49,18 @@
             <th>Acciones</th>
         </tr>
         <?php
-        // Conexión a la base de datos (ajusta los datos de conexión según tu configuración)
-        $conn = mysqli_connect('localhost', 'root', '123456', 'probando2');
 
-        if (!$conn) {
+
+        if (!$conexion) {
             die("Error de conexión: " . mysqli_connect_error());
         }
 
         // Consulta para obtener la lista de profesores con sus asignaturas relacionadas
         $query = "SELECT p.rut, p.nombre, p.apellidoP, p.apellidoM, p.correo, p.fechaNacimiento, p.telefono, p.genero, GROUP_CONCAT(a.nombre SEPARATOR ', ') as asignaturas
-                  FROM profesor p
-                  LEFT JOIN asignatura a ON p.rut = a.rut
+                  FROM profesor p LEFT JOIN asignatura a 
+                  ON p.rut = a.rutProfesor
                   GROUP BY p.rut";
-        $result = mysqli_query($conn, $query);
+        $result = mysqli_query($conexion, $query);
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -84,7 +85,7 @@
         }
 
         // Cerrar la conexión
-        mysqli_close($conn);
+        mysqli_close($conexion);
         ?>
     </table>
 
