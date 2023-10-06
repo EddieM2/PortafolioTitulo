@@ -37,7 +37,7 @@
 <body>
     <div class="container">
         <h2>Agregar Apoderado</h2>
-        <form action="guardar_apoderado.php" method="POST">
+        <form action="../models/apoderadosModels/insertApoderado.php" method="POST">
             <label for="rutApoderado">RUT:</label>
             <input type="text" name="rut" required>
 
@@ -65,9 +65,7 @@
             <label for="direccion">Dirección:</label>
             <input type="text" name="direccion" required>
 
-            <label for="telefono">Teléfono:</label>
-            <input type="number" name="telefono" required>
-            <button type="submit">Guardar Apoderado</button>
+            <button type="submit" value="insertApoderado">Guardar Apoderado</button>
         </form>
     </div>
 </body>

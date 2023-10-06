@@ -38,7 +38,7 @@
             $estadoAcademico = $row["estadoAcademico"];
 
             // Mostrar el formulario de edición
-            echo "<form method='POST' action='guardar_edicion.php'>";
+            echo "<form method='POST' action='../models/alumnosModels/editarAlumno.php'>";
             echo "<input type='hidden' name='rut' value='$rut'>";
             echo "Nombre: <input type='text' name='nombre' value='$nombre' required><br>";
             echo "Apellido Paterno: <input type='text' name='apellidoP' value='$apellidoP' required><br>";

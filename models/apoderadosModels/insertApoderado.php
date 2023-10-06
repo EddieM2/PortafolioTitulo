@@ -1,16 +1,17 @@
-<?php include("../models/db.php") ?>
+<?php include("../db.php") ?>
 
 <?php
 // Recoge los valores del formulario
-$rut = $_POST['rut'];
-$nombre = $_POST['nombre'];
-$apellidoP = $_POST['apellidoP'];
-$apellidoM = $_POST['apellidoM'];
-$correo = $_POST['correo'];
-$idCargo = $_POST['idCargo'];
-$direccion = $_POST['direccion'];
-$fechaNacimiento = $_POST['fechaNacimiento'];
-$telefono = $_POST['telefono'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $rut = $_POST['rut'];
+    $nombre = $_POST['nombre'];
+    $apellidoP = $_POST['apellidoP'];
+    $apellidoM = $_POST['apellidoM'];
+    $correo = $_POST['correo'];
+    $idCargo = $_POST['idCargo'];
+    $direccion = $_POST['direccion'];
+    $fechaNacimiento = $_POST['fechaNacimiento'];
+    $telefono = $_POST['telefono'];
 
 
 if (!$conexion) {
@@ -32,4 +33,5 @@ if ($result) {
 
 // Cierra la conexión
 mysqli_close($conexion);
+}
 ?>

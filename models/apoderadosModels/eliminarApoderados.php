@@ -1,4 +1,4 @@
-<?php include("../models/db.php") ?>
+<?php include("../db.php") ?>
 
 <?php
 // Verificar si se proporcionó un RUT de apoderado válido en la URL

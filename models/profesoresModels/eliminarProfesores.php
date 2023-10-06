@@ -1,4 +1,4 @@
-<?php include("../models/db.php") ?>
+<?php include("../db.php") ?>
 
 <?php
 
@@ -15,7 +15,7 @@ if (isset($_GET['rut'])) {
     $query = "DELETE FROM profesor WHERE rut = '$rut'";
 
     // Ejecuta la consulta
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conexion, $query);
 
     if (!$result) {
         echo "Error al eliminar al profesor: " . mysqli_error($conexion);
@@ -26,6 +26,6 @@ if (isset($_GET['rut'])) {
 mysqli_close($conexion);
 
 // Redirige de vuelta a la página de lista de profesores
-header("Location: inicioProf.php");
+header("Location: vistaProfesores.php");
 exit();
 ?>

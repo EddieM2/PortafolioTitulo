@@ -71,6 +71,13 @@ if (isset($_POST['validate_user'])) {
             header("Location: ../alumnos/inicioAlum.php");
             exit();
         } else if ($filas['cargo_id'] == 4) { // Apoderado
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_row = mysqli_fetch_array($rut_result);
+            $apoderado_rut = $rut_row['rut'];
+ 
+             // Guarda el RUT del apoderado en la sesión
+             $_SESSION['rut'] = $apoderado_rut;
             header("Location: ../apoderados/inicioApoderado.php");
             exit();
         } else {

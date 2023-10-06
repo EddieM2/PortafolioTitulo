@@ -1,13 +1,6 @@
+<?php include("../models/db.php") ?>
+
 <?php
-
-$conn = mysqli_connect(
-    'localhost',
-    'root',
-    '',
-    'probando2'
-);
-
-session_start();
 
 // Verifica si el usuario ha iniciado sesión como administrador
 if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
@@ -18,7 +11,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     // Asumiendo que tienes una tabla llamada "usuarios" con campos "rut," "nombre," y "apellido_paterno"
     // Ejemplo de consulta SQL (sustituye esto con tu consulta real):
     $query = "SELECT nombre, apellidoP FROM admin WHERE rut = '$admin_rut'";
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conexion, $query);
 
     if ($result) {
         $user_info = mysqli_fetch_assoc($result);
@@ -30,9 +23,9 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
 
         // Agrega los botones para administrar Alumnos, Apoderados y Asignaturas
         echo '<br><br>';
-        echo '<a href="../alumnos/alumnos.php"><button>Administrar Alumnos</button></a>';
-        echo '<a href="../apoderados/apoderados.php"><button>Administrar Apoderados</button></a>';
-        echo '<a href="../profesores/inicioProf.php"><button>Administrar Profesores</button></a>';
+        echo '<a href="../models/alumnosModels/vistaAlumnos.php"><button>Administrar Alumnos</button></a>';
+        echo '<a href="../models/apoderadosModels/vistaApoderados.php"><button>Administrar Apoderados</button></a>';
+        echo '<a href="../models/profesoresModels/vistaProfesores.php"><button>Administrar Profesores</button></a>';
     } else {
         // Manejo de errores si la consulta falla
         echo "Error al obtener la información del usuario.";

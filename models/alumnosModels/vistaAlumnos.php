@@ -1,4 +1,4 @@
-<?php include("../models/db.php") ?>
+<?php include("../db.php") ?>
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@
     <h1>Lista de Alumnos</h1>
     
     <!-- Agregar botón "Agregar Alumno" aquí -->
-    <a href="agregar_alumno.php">Agregar Alumno</a>
+    <a href="../../alumnos/formAgregarAlumno.php">Agregar Alumno</a>
     
     <table border="1">
         <?php
@@ -63,8 +63,8 @@
                 echo "<td>" . $row["genero"] . "</td>";
                 echo "<td>" . $row["estadoAcademico"] . "</td>";
                 echo "<td>" . $row["rutApoderado"] . "</td>";
-                echo "<td><a href='editar_alumno.php?rut=" . $row["rut"] . "'>Editar</a></td>"; // Enlazar a la página de edición con el rut como parámetro
-                echo "<td><a href='eliminar_alumno.php?rut=" . $row["rut"] . "'>Eliminar</a></td>"; // Enlazar a la página de eliminación con el rut como parámetro
+                echo "<td><a href='../../alumnos/formEditarAlumno.php?rut=" . $row["rut"] . "'>Editar</a></td>"; // Enlazar a la página de edición con el rut como parámetro
+                echo "<td><a href='eliminarAlumno.php?rut=" . $row["rut"] . "'>Eliminar</a></td>"; // Enlazar a la página de eliminación con el rut como parámetro
                 echo "</tr>";
             }
         } else {

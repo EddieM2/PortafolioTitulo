@@ -24,7 +24,7 @@
         if (mysqli_num_rows($result) === 1) {
             $row = mysqli_fetch_assoc($result);
             ?>
-            <form method="post" action="actualizar_profesor.php">
+            <form method="post" action="../models/profesoresModels/editarProfesores.php">
                 <input type="hidden" name="rut" value="<?php echo $row['rut']; ?>">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" value="<?php echo $row['nombre']; ?>"><br>

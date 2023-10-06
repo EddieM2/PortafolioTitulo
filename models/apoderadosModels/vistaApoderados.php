@@ -1,4 +1,4 @@
-<?php include("../models/db.php") ?>
+<?php include("../db.php") ?>
 
 <!DOCTYPE html>
 <html>
@@ -81,8 +81,8 @@
                 echo "<td>" . $row['telefono'] . "</td>";
                 echo "<td>" . $row['direccion'] . "</td>";
                 echo "<td>";
-                echo "<a href='editar_apoderado.php?rut=" . $row['rut'] . "' class='action-button'>Editar</a>";
-                echo "<a href='eliminar_apoderado.php?rut=" . $row['rut'] . "' class='action-button delete'>Eliminar</a>";
+                echo "<a href='../../apoderados/formEditarApoderado.php?rut=" . $row['rut'] . "' class='action-button'>Editar</a>";
+                echo "<a href='eliminarApoderados.php?rut=" . $row['rut'] . "' class='action-button delete'>Eliminar</a>";
                 echo "</td>";
                 echo "</tr>";
             }
@@ -95,6 +95,6 @@
         ?>
     </table>
 
-    <a class="add-button" href="agregar_apoderado.php">Agregar Apoderado</a>
+    <a class="add-button" href="../../apoderados/formAgregarApoderado.php">Agregar Apoderado</a>
 </body>
 </html>

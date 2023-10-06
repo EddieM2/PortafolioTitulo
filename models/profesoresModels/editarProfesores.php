@@ -1,4 +1,4 @@
-<?php include("../models/db.php") ?>
+<?php include("../db.php") ?>
 
 <?php
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Redirige al usuario a la página de inicioProf
-        header("Location: inicioProf.php");
+        header("Location: vistaProfesores.php");
         exit();
     } else {
         echo "Faltan datos del formulario.";

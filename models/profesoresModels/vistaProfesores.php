@@ -1,4 +1,4 @@
-<?php include("../models/db.php") ?>
+<?php include("../db.php") ?>
 
 <!DOCTYPE html>
 <html>
@@ -75,8 +75,8 @@
                 echo "<td>" . $row['genero'] . "</td>";
                 echo "<td>" . $row['asignaturas'] . "</td>"; // Mostrar las asignaturas relacionadas
                 echo "<td>";
-                echo "<a href='editar_profesor.php?rut=" . $row['rut'] . "'>Editar</a> | ";
-                echo "<a href='eliminar_profesor.php?rut=" . $row['rut'] . "'>Eliminar</a>";
+                echo "<a href='../../profesores/formEditarProfesores.php?rut=" . $row['rut'] . "'>Editar</a> | ";
+                echo "<a href='eliminarProfesores.php?rut=" . $row['rut'] . "'>Eliminar</a>";
                 echo "</td>";
                 echo "</tr>";
             }

@@ -1,4 +1,4 @@
-<?php include("../models/db.php") ?>
+<?php include("../db.php") ?>
 
 <?php
 // Verificar si se proporcionó un RUT de apoderado válido en la URL
@@ -61,39 +61,4 @@ if (isset($_GET['rut'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Editar Apoderado</title>
-</head>
-<body>
-    <h1>Editar Apoderado</h1>
-    <form method="POST" action="">
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" value="<?php echo htmlspecialchars($row['nombre']); ?>" required><br>
 
-        <label for="apellidoP">Apellido Paterno:</label>
-        <input type="text" name="apellidoP" value="<?php echo htmlspecialchars($row['apellidoP']); ?>" required><br>
-
-        <label for="apellidoM">Apellido Materno:</label>
-        <input type="text" name="apellidoM" value="<?php echo htmlspecialchars($row['apellidoM']); ?>" required><br>
-
-        <label for="correo">Correo Electrónico:</label>
-        <input type="email" name="correo" value="<?php echo htmlspecialchars($row['correo']); ?>" required><br>
-
-        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-        <input type="date" name="fechaNacimiento" value="<?php echo $row['fechaNacimiento']; ?>" required><br>
-
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" name="telefono" value="<?php echo htmlspecialchars($row['telefono']); ?>"><br>
-
-        <label for="idCargo">Cargo:</label>
-        <input type="number" name="idCargo" value="<?php echo $row['idCargo']; ?>" required><br>
-
-        <label for="direccion">Dirección:</label>
-        <input type="text" name="direccion" value="<?php echo htmlspecialchars($row['direccion']); ?>" required><br>
-
-        <input type="submit" name="editar_apoderado" value="Guardar Cambios">
-    </form>
-</body>
-</html>
