@@ -14,7 +14,7 @@ if (isset($_GET['rut'])) {
 
     if (mysqli_query($conexion, $deleteQuery)) {
         // Redirigir de vuelta a la lista de apoderados después de la eliminación
-        header("Location: apoderados.php");
+        header("Location: vistaApoderados.php");
         exit();
     } else {
         echo "Error al eliminar el apoderado: " . mysqli_error($conexion);

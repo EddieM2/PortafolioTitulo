@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <link rel="stylesheet" href="src/css/footer.css">
+    <link rel="stylesheet" href="../src/css/footer.css">
 </head>
 <body>
 

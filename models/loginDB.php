@@ -51,7 +51,7 @@ if (isset($_POST['validate_user'])) {
             $_SESSION['rut'] = $user_rut;
 
             // Redirige a la siguiente página
-            header("Location: ../profesores/inicioProf.php");
+            header("Location: ../profesores/inicioProfesores.php");
             exit();
         } else if ($filas['cargo_id'] == 3) { // Alumno
             // Guarda la información del alumno en la sesión

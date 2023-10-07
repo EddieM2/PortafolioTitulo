@@ -1,4 +1,7 @@
+<?php include("../includes/header.php") ?>
 <?php include("../models/db.php") ?>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <?php
 
@@ -18,14 +21,28 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         $nombre = $user_info['nombre'];
         $apellido_paterno = $user_info['apellidoP'];
 
-        // Ahora tienes el nombre y apellido paterno del usuario
-        echo "Bienvenido, $nombre $apellido_paterno";
+        $saludo = "Bienvenido, $nombre $apellido_paterno";
+?>
+    <link rel="stylesheet" href="../src/css/ventanas/presentacion.css">
 
-        // Agrega los botones para administrar Alumnos, Apoderados y Asignaturas
-        echo '<br><br>';
-        echo '<a href="../models/alumnosModels/vistaAlumnos.php"><button>Administrar Alumnos</button></a>';
-        echo '<a href="../models/apoderadosModels/vistaApoderados.php"><button>Administrar Apoderados</button></a>';
-        echo '<a href="../models/profesoresModels/vistaProfesores.php"><button>Administrar Profesores</button></a>';
+        <div class="tarjeta-bienvenida">
+            <div class="imagen-usuario">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="contenido">
+                <h2>Tarjeta de información</h2>
+                <p><?php echo $saludo ?></p>
+            </div>
+        </div>
+        
+        <div class="botones-admin">
+            <a href="../models/alumnosModels/vistaAlumnos.php"><button>Administrar Alumnos</button></a>
+            <a href="../models/apoderadosModels/vistaApoderados.php"><button>Administrar Apoderados</button></a>
+            <a href="../models/profesoresModels/vistaProfesores.php"><button>Administrar Profesores</button></a>
+        </div>
+        
+
+<?php 
     } else {
         // Manejo de errores si la consulta falla
         echo "Error al obtener la información del usuario.";
@@ -38,3 +55,5 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     exit();
 }
 ?>
+
+<?php include('../includes/footer.php') ?>

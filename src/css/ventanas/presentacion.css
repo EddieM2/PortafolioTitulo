@@ -1,0 +1,17 @@
+.tarjeta-bienvenida {
+    display: flex;
+    margin-top: 1rem;
+    border: 0.5rem solid;
+}
+
+.botones-admin {
+    padding-top: 1rem;
+}
+
+.tarjeta-bienvenida .imagen-usuario {
+    font-size: 5rem; /* Cambia el tamaño del ícono */
+    width: 10rem; /* Cambia el ancho */
+    height: 10rem; /* Cambia la altura */
+    text-align: center; /* Alinea el ícono en el centro vertical y horizontalmente */
+    line-height: 10rem; /* Alinea verticalmente el contenido del ícono */
+}

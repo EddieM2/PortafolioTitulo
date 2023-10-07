@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tu Título</title>
     <!-- Vincula el archivo de estilo header.css -->
-    <link rel="stylesheet" href="src/css/header.css">
+    <link rel="stylesheet" href="../src/css/header.css">
 </head>
 <body>
     <header class="header">
