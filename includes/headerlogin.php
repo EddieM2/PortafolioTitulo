@@ -9,12 +9,12 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <ul class="nav-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Acerca de</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
+        <div class="container">
+              <ul class="nav-links">
+                  <li><a href="nosotros.php">Nosotros</a></li>
+                  <li><a href="reglamentos.php">Reglamentos</a></li>
+                  <li><a href="src/pdf/cuenta_publica.pdf">Cuenta publica</a></li>
+              </ul>
             <button class="header-button"><a href="./index.php" class="logo">Inicio</a></button>
         </div>
     </nav>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tu Título</title>
     <!-- Vincula el archivo de estilo header.css -->
-    <link rel="stylesheet" href="../src/css/header.css">
+    <link rel="stylesheet" href="src/css/header.css">
 </head>
 <body>
     <header class="header">
@@ -13,13 +13,12 @@
             <div class="container">
               
                 <ul class="nav-links">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="nosotros.php">Nosotros</a></li>
+                    <li><a href="reglamentos.php">Reglamentos</a></li>
+                    <li><a href="src/pdf/cuenta_publica.pdf">Cuenta publica</a></li>
                 </ul>
                 <div class="buttons">
-                    <button class="btn"> <a href="./login.php" class="logo">Login</a></button>
+                    <button class="boton-inicio"> <a href="./login.php" class="logo">Login</a></button>
                     
                 </div>
             </div>
