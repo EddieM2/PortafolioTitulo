@@ -1,0 +1,100 @@
+.nosotros-accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    text-align: center;
+  }
+  
+  .active, .nosotros-accordion:hover {
+    background-color: #ccc; 
+  }
+  
+  .panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+  }
+.panel-content {
+  background-color: #d8dbdb; 
+  text-align: center; 
+  padding: 20px; 
+  border-radius: 5px; 
+  margin: 10px; 
+}
+.panel-content p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Estilos para las tarjetas de colaboradores */
+.team-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.team-card2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #d8dbdb;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.person {
+  flex: 0 0 calc(25% - 20px);
+  text-align: center;
+  margin: 10px;
+}
+
+.person img {
+  border-radius: 50%;
+  max-width: 250px; /* Ajusta el tamaño de la imagen según tus necesidades */
+}
+
+/* Estilos para los acordeones (inicialmente ocultos) */
+.panel {
+  display: none;
+}
+.container h3 {
+  text-align: center;
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cecdcd;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #070101;
+}
+
+::-webkit-scrollbar-track {
+  background: #125E5E;
+}
+.container {
+  max-width: 80%;
+}
+.container2 {
+  max-width: 80%;
+  background-color: #d8dbdb;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
