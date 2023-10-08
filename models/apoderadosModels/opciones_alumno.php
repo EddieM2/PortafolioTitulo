@@ -63,15 +63,21 @@ if (isset($_SESSION['rut'])) {
                             $nombreAsignatura = $filaAsignatura['nombre_asignatura'];
                             $rutProfesor = $filaAsignatura['rutProfesor'];
                             $idCurso = $filaAsignatura['idCurso'];
-
+                    
                             // Consulta para obtener el nombre del profesor
                             $consultaProfesor = "SELECT nombre FROM profesor WHERE rut = '$rutProfesor'";
                             $resultadoProfesor = mysqli_query($conn, $consultaProfesor);
                             $filaProfesor = mysqli_fetch_assoc($resultadoProfesor);
                             $nombreProfesor = $filaProfesor['nombre'];
-
-                            echo "- $nombreAsignatura (Profesor: $nombreProfesor)<br>";
-
+                    
+                            // Consulta para obtener la cantidad de mensajes no leídos en esta asignatura
+                            $consultaMensajesNoLeidos = "SELECT COUNT(*) AS cantidad FROM mensajes WHERE idCurso = '$idCurso' AND idAsignatura = '$idAsignatura' AND leido = 0";
+                            $resultadoMensajesNoLeidos = mysqli_query($conn, $consultaMensajesNoLeidos);
+                            $filaMensajesNoLeidos = mysqli_fetch_assoc($resultadoMensajesNoLeidos);
+                            $cantidadMensajesNoLeidos = $filaMensajesNoLeidos['cantidad'];
+                    
+                            echo "- $nombreAsignatura (Profesor: $nombreProfesor) - Mensajes no leídos: $cantidadMensajesNoLeidos<br>";
+                    
                             // Redirigir al apoderado a verificar la conversación con el profesor
                             echo "<form method='post' action='verificar_conversacion.php'>";
                             echo "<input type='hidden' name='rut_pupilo' value='$rut_pupilo'>";
