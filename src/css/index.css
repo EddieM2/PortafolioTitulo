@@ -12,7 +12,7 @@
 }
 
 .latest-news {
-    border: 1px solid #220ed1;
+    border: 1px solid #ffffff;
     background-color: #125E5E;
     border-radius: 10px;
     padding: 20px;
@@ -45,7 +45,7 @@
     display: inline-block;
     padding: 5px 10px;
     background-color: #007BFF;
-    color: #fff;
+    color: #000000;
     text-decoration: none;
     border-radius: 5px;
 }
@@ -82,5 +82,22 @@
 .card li {
     margin: 5px 0;
     font-size: 14px;
+}
+/* BARRA DE DESPLAZAMIENTO EN TODAS LAS PAGINAS*/
+::-webkit-scrollbar {
+    width: 12px; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cecdcd; 
+    border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #070101; 
+}
+
+::-webkit-scrollbar-track {
+    background: #125E5E; 
 }
 
