@@ -1,6 +1,8 @@
-<?php
-session_start();
 
+
+<?php
+
+session_start();
 // Verificar si el usuario ha iniciado sesión como profesor
 //if (!isset($_SESSION['rut']) || $_SESSION['cargo_id'] != 2) {
     // Si no ha iniciado sesión como profesor, redirigir a la página de inicio de sesión

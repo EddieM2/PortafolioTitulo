@@ -1,5 +1,5 @@
 
-<?php include("../db.php") ?>
+<?php include("../models/db.php") ?>
 
 
 
@@ -91,3 +91,4 @@ if (!$cursos_result) {
 
 ?>
 
+/html>

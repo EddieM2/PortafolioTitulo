@@ -1,63 +1,59 @@
-<?php include("db.php") ?>
-
 <?php
-
-session_start(); // Asegúrate de iniciar la sesión
+include("../db.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Verifica si se ha proporcionado el parámetro 'asignatura_id' en el formulario
-    if (isset($_POST['asignatura_id'])) {
+    // Verifica si se han proporcionado los parámetros necesarios
+    if (isset($_POST['asignatura_id']) && isset($_POST['idCurso']) && isset($_POST['calificaciones'])) {
         $asignatura_id = $_POST['asignatura_id'];
+        $idCurso = $_POST['idCurso'];
+        $calificaciones = $_POST['calificaciones'];
 
         // Obtiene el RUT del profesor de la sesión (asumiendo que está almacenado en la sesión)
         $profesor_rut = $_SESSION['rut'];
 
-// Obtén el arreglo de calificaciones desde el formulario
-// Obtén el arreglo de calificaciones desde el formulario
-// Obtén el arreglo de calificaciones desde el formulario
-$calificaciones = $_POST['calificaciones'];
+        // Itera a través de las calificaciones y las guarda en la base de datos
+        foreach ($calificaciones as $rut_alumno => $notas) {
+            // Asegúrate de validar y sanitizar los datos antes de ejecutar la consulta en un entorno de producción
+            $nota1 = isset($notas['calificacion1']) ? floatval($notas['calificacion1']) : 0.0;
+            $nota2 = isset($notas['calificacion2']) ? floatval($notas['calificacion2']) : 0.0;
+            $nota3 = isset($notas['calificacion3']) ? floatval($notas['calificacion3']) : 0.0;
+            $nota4 = isset($notas['calificacion4']) ? floatval($notas['calificacion4']) : 0.0;
 
-// Itera a través de las calificaciones y guárdalas en la base de datos
-foreach ($calificaciones as $rut_alumno => $notas) {
-    $nota1 = isset($notas['nota1']) ? $notas['nota1'] : 0.0;
-    $nota2 = isset($notas['nota2']) ? $notas['nota2'] : 0.0;
-    $nota3 = isset($notas['nota3']) ? $notas['nota3'] : 0.0;
-    $nota4 = isset($notas['nota4']) ? $notas['nota4'] : 0.0;
+            // Verifica si ya existen calificaciones para este alumno y esta asignatura
+            $query_verificar_calificaciones = "SELECT * FROM calificaciones WHERE idAlumno = '$rut_alumno' AND idAsignatura = '$asignatura_id' AND idCurso = '$idCurso'";
+            $result_verificar_calificaciones = mysqli_query($conexion, $query_verificar_calificaciones);
 
-    // Realiza una consulta SQL para insertar las cuatro notas en la tabla "calificaciones"
-    // Asegúrate de sanitizar y validar los datos antes de ejecutar la consulta en un entorno de producción
-    $query_insertar_calificaciones = "INSERT INTO calificaciones (idAlumno, idProfesor, idAsignatura, nota1, nota2, nota3, nota4, fecha, idInscripcion) 
-                                    VALUES ('$rut_alumno', '$profesor_rut', '$asignatura_id', '$nota1', '$nota2', '$nota3', '$nota4', NOW(), 1)";
+            if (mysqli_num_rows($result_verificar_calificaciones) > 0) {
+                // Si ya existen calificaciones, realiza una actualización en lugar de una inserción
+                $query_actualizar_calificaciones = "UPDATE calificaciones SET calificacion1 = '$nota1', calificacion2 = '$nota2', calificacion3 = '$nota3', calificacion4 = '$nota4', fecha = NOW() WHERE idAlumno = '$rut_alumno' AND idAsignatura = '$asignatura_id' AND idCurso = '$idCurso'";
+                $result_actualizar_calificaciones = mysqli_query($conexion, $query_actualizar_calificaciones);
 
-    // Ejecuta la consulta
-    $result_insertar_calificaciones = mysqli_query($conn, $query_insertar_calificaciones);
+                if (!$result_actualizar_calificaciones) {
+                    echo "Error al actualizar las calificaciones para el alumno con RUT $rut_alumno.";
+                }
+            } else {
+                // Si no existen calificaciones, realiza una inserción
+                $query_insertar_calificaciones = "INSERT INTO calificaciones (idAlumno, idProfesor, idAsignatura, calificacion1, calificacion2, calificacion3, calificacion4, fecha, idCurso) 
+                                                VALUES ('$rut_alumno', '$profesor_rut', '$asignatura_id', '$nota1', '$nota2', '$nota3', '$nota4', NOW(), '$idCurso')";
 
-    // Verifica si la consulta se ejecutó con éxito
-    if (!$result_insertar_calificaciones) {
-        echo "Error al insertar las calificaciones para el alumno con RUT $rut_alumno.";
-    }
-}
+                $result_insertar_calificaciones = mysqli_query($conexion, $query_insertar_calificaciones);
 
-
-
-
-
-
-
-
-// ...
-
+                if (!$result_insertar_calificaciones) {
+                    echo "Error al insertar las calificaciones para el alumno con RUT $rut_alumno.";
+                }
+            }
+        }
 
         // Redirige de vuelta a la página de ingreso de notas con un mensaje de éxito
-        header("Location: ingresar_notas.php?asignatura_id=$asignatura_id&success=true");
+        header("Location: ingresar_notas.php?asignatura=$asignatura_id&idCurso=$idCurso&success=true");
         exit();
     } else {
-        // Falta el parámetro 'asignatura_id'
-        echo "Falta el parámetro 'asignatura_id'.";
+        // Falta uno o más parámetros necesarios
+        echo "Faltan parámetros necesarios para procesar las notas.";
     }
 } else {
     // Redirige si no se recibió una solicitud POST
-    header("Location: ingresar_nots.php");
+    header("Location: ingresar_notas.php");
     exit();
 }
 ?>
