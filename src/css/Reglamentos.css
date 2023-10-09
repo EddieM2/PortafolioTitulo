@@ -1,0 +1,41 @@
+.card-reglamento {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: auto;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between; /* Coloca el contenido en extremos opuestos */
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    height: auto;
+    overflow: hidden;
+    font-size: 10px;
+}
+
+.pdf-link {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 13px; /* Ajusta el tamaño de fuente del botón */
+}
+
+.pdf-link:hover {
+    background-color: #0056b3;
+}
+
+.card-reglamento h3 {
+    font-size: 13px;
+    margin: 0; /* Elimina el margen inferior para alinear el botón */
+}
+
+
+.card-reglamento .pdf-link {
+    margin-top: 8px; 
+}

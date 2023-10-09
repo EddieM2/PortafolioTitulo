@@ -38,6 +38,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         <div class="botones-admin">
             <a href=""><button>Administrar Notas</button></a>
             <a href=""><button>Administrar Asistencia</button></a>
+            <a href="../models/profesoresModels/asignaturas_curso.php"><button>Mensajes</button></a>
             
         </div>
 
