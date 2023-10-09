@@ -39,6 +39,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
             <a href="../models/alumnosModels/vistaAlumnos.php"><button>Administrar Alumnos</button></a>
             <a href="../models/apoderadosModels/vistaApoderados.php"><button>Administrar Apoderados</button></a>
             <a href="../models/profesoresModels/vistaProfesores.php"><button>Administrar Profesores</button></a>
+            <a href="../segPsicologico/segPsico.php"><button>Seguimiento psicológico</button></a>
         </div>
         
 
