@@ -81,8 +81,7 @@ $nombreAsignatura = $asignatura['nombre'];
             echo "<strong>RUT:</strong> " . htmlspecialchars($alumno['rut']);
 
             // Agregar enlace para enviar mensaje a este alumno
-            echo " <a href='verificar_conversacion_apoderado.php?rutAlumno=" . $alumno['rut'] . "&idCurso=" . $idCurso . "&idAsignatura=" . $idAsignatura . "'>Enviar Mensaje</a>";
-
+            echo " <a href='../models/profesoresModels/verificar_conversacion_apoderado.php?rutAlumno=" . $alumno['rut'] . "&idCurso=" . $idCurso . "&idAsignatura=" . $idAsignatura . "'>Enviar Mensaje</a>";
             echo "</li>";
         }
         ?>

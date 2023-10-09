@@ -27,27 +27,29 @@
             echo "<h1>Lista de Alumnos para la Asignatura</h1>";
             echo "<form method='post' action='procesar_notas.php'>";
             echo "<input type='hidden' name='asignatura_id' value='$asignatura_id'>";
+            
 // ...
 
 echo "<table>";
-echo "<tr><th>RUT</th><th>Nombre del Alumno</th><th>Nota</th></tr>";
+echo "<tr><th>RUT</th><th>Nombre del Alumno</th><th>Nota 1</th><th>Nota 2</th><th>Nota 3</th><th>Nota 4</th></tr>";
 
 while ($row_alumno = mysqli_fetch_assoc($result_alumnos)) {
     $rut_alumno = $row_alumno['rut'];
     $nombre_alumno = $row_alumno['nombre_alumno'];
 
-    // Aquí puedes mostrar una fila de la tabla con campos para ingresar notas
+    // Mostrar una fila de la tabla con campos para ingresar cuatro notas por alumno
     echo "<tr>";
     echo "<td>$rut_alumno</td>";
     echo "<td>$nombre_alumno</td>";
-    echo "<td><input type='number' name='calificaciones[$rut_alumno]' step='0.01'></td>"; // Corrección aquí
+    echo "<td><input type='number' name='calificaciones[$rut_alumno][calificacion1]' step='0.01'></td>";
+    echo "<td><input type='number' name='calificaciones[$rut_alumno][calificacion2]' step='0.01'></td>";
+    echo "<td><input type='number' name='calificaciones[$rut_alumno][calificacion3]' step='0.01'></td>";
+    echo "<td><input type='number' name='calificaciones[$rut_alumno][calificacion4]' step='0.01'></td>";
     echo "</tr>";
 }
+echo "</table>";
 
-// ...
 
-
-            echo "</table>";
             echo "<input type='submit' value='Guardar Notas'>";
             echo "</form>";
         } else {
