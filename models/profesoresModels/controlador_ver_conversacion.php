@@ -37,6 +37,8 @@ if (!$resultado_insertar_mensaje) {
 // Redirigir de vuelta a la página de ver_conversacion.php después de enviar el mensaje
 
 // Redirigir de vuelta a la página de ver_conversacion.php después de enviar el mensaje
-header("../profesores/ver_conversacion_profesor.php?idConversacion=$idConversacion&idCurso=$idCurso&idAsignatura=$idAsignatura&idEmisor=$idEmisor");
+// Redirigir de vuelta a la página de ver_conversacion.php después de enviar el mensaje
+header("Location: ../../profesores/ver_conversacion_profesor.php?idConversacion=$idConversacion&idCurso=$idCurso&idAsignatura=$idAsignatura&idEmisor=$idEmisor");
 exit();
+
 ?>

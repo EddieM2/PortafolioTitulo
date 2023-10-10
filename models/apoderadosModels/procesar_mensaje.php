@@ -40,8 +40,11 @@ if (isset($_SESSION['rut'])) {
 
         if ($resultadoInsertarMensaje) {
             // Mensaje enviado con éxito, redirigir a la página de visualización de mensajes
-            header("Location: ver_conversacion.php?idConversacion=$idConversacion&rut_pupilo=$rut_pupilo&nombre_asignatura=$nombre_asignatura&nombre_curso=$nombre_curso&rut_profesor=$rut_profesor&nombre_apoderado=$nombre_apoderado&idCurso=$idCurso&idAsignatura=$idAsignatura&mensaje=$mensaje");
+            header("Location: ../../apoderados/ver_conversacion.php?idConversacion=$idConversacion&rut_pupilo=$rut_pupilo&nombre_asignatura=$nombre_asignatura&nombre_curso=$nombre_curso&rut_profesor=$rut_profesor&nombre_apoderado=$nombre_apoderado&idCurso=$idCurso&idAsignatura=$idAsignatura&mensaje=$mensaje");
+exit();
+
             exit();
+            
             
         } else {
             echo "Error al enviar el mensaje: " . mysqli_error($conn);

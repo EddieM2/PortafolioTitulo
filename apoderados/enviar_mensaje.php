@@ -20,7 +20,7 @@ $idAsignatura = $_GET['idAsignatura'];
 <body>
     <h1>Enviar Mensaje al Profesor</h1>
     
-    <form method="post" action="procesar_mensaje.php">
+    <form method="post" action="../models/apoderadosModels/procesar_mensaje.php">
         <input type="hidden" name="rut_pupilo" value="<?php echo $rut_pupilo; ?>">
         <input type="hidden" name="nombre_asignatura" value="<?php echo $nombre_asignatura; ?>">
         <input type="hidden" name="nombre_curso" value="<?php echo $nombre_curso; ?>">

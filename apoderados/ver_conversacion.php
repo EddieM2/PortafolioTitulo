@@ -65,8 +65,11 @@ if (isset($_SESSION['rut'])) {
 
         // Formulario para enviar otro mensaje
         echo "<h2>Enviar otro mensaje:</h2>";
-        echo "<form method='post' action='enviar_mensaje_profesor.php'>";
-       // echo "<input type='hidden' name='rut_pupilo' value='$rut_pupilo'>";
+        echo "<form method='post' action='../models/apoderadosModels/enviar_mensaje_profesor.php'>";
+
+
+
+        //echo "<input type='hidden' name='rut_pupilo' value='$rut_pupilo'>";
         echo "<input type='hidden' name='nombre_asignatura' value='$nombre_asignatura'>";
         echo "<input type='hidden' name='nombre_curso' value='$nombre_curso'>";
         echo "<input type='hidden' name='rut_profesor' value='$rut_profesor'>";

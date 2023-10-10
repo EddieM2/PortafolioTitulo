@@ -38,11 +38,11 @@ if (isset($_SESSION['rut'])) {
             $idConversacion = $filaConversacion['idConversacion'];
 
             // Redirigir a la página de visualización de mensajes
-            header("Location: ver_conversacion.php?idConversacion=$idConversacion&nombre_asignatura=$nombre_asignatura&nombre_curso=$nombre_curso&rut_profesor=$rut_profesor&nombre_apoderado=$nombre_apoderado&idCurso=$idCurso&idAsignatura=$idAsignatura");
-            exit();
+            header("Location: ../../apoderados/ver_conversacion.php?idConversacion=$idConversacion&nombre_asignatura=$nombre_asignatura&nombre_curso=$nombre_curso&rut_profesor=$rut_profesor&nombre_apoderado=$nombre_apoderado&idCurso=$idCurso&idAsignatura=$idAsignatura");
+            exit()
         } else {
             // No existe una conversación previa, mostrar un formulario para enviar mensaje
-            header("Location: enviar_mensaje.php?rut_pupilo=$rut_pupilo&nombre_asignatura=$nombre_asignatura&nombre_curso=$nombre_curso&rut_profesor=$rut_profesor&nombre_apoderado=$nombre_apoderado&idCurso=$idCurso&idAsignatura=$idAsignatura");
+            header("Location: ../../enviar_mensaje.php?rut_pupilo=$rut_pupilo&nombre_asignatura=$nombre_asignatura&nombre_curso=$nombre_curso&rut_profesor=$rut_profesor&nombre_apoderado=$nombre_apoderado&idCurso=$idCurso&idAsignatura=$idAsignatura");
             exit();
         }
     } else {
