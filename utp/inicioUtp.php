@@ -7,13 +7,13 @@
 
 // Verifica si el usuario ha iniciado sesión como administrador
 if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
-    $profesor_rut = $_SESSION['rut'];
+    $utp_rut = $_SESSION['rut'];
 
     // Ahora puedes utilizar $admin_rut para obtener el nombre y apellido paterno del usuario desde la base de datos
     // Realiza una consulta SQL para obtener el nombre y apellido paterno del usuario según su rut
     // Asumiendo que tienes una tabla llamada "usuarios" con campos "rut," "nombre," y "apellido_paterno"
     // Ejemplo de consulta SQL (sustituye esto con tu consulta real):
-    $query = "SELECT nombre, apellidoP FROM profesor WHERE rut = '$profesor_rut'";
+    $query = "SELECT nombre, apellidoP FROM utp WHERE rut = '$utp_rut'";
     $result = mysqli_query($conexion, $query);
 
     if ($result) {
@@ -36,11 +36,12 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         </div>
         
         <div class="botones-admin">
-            <a href="../profesores/asignaturas_notas.php"><button>Administrar Notas</button></a>
-            <a href="asignaturas_asistencia.php"><button>Administrar Asistencia</button></a>
-            <a href="asignaturas_curso.php"><button>Mensajes</button></a>
-            
+            <a href="../models/alumnosModels/vistaAlumnos.php"><button>Administrar Alumnos</button></a>
+            <a href="../models/apoderadosModels/vistaApoderados.php"><button>Administrar Apoderados</button></a>
+            <a href="../models/profesoresModels/vistaProfesores.php"><button>Administrar Profesores</button></a>
+            <a href="../segPsicologico/segPsico.php"><button>Seguimiento psicológico</button></a>
         </div>
+        
 
 <?php 
     } else {

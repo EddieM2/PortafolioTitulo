@@ -38,7 +38,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         <div class="botones-admin">
             <a href=""><button>Notas</button></a>
             <a href=""><button>Asistencia</button></a>
-            
+            <a href="../segPsicologico/segPsico.php"><button>Seguimiento psicológico</button></a>
         </div>
 
 <?php 

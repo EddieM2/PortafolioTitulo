@@ -80,6 +80,26 @@ if (isset($_POST['validate_user'])) {
              $_SESSION['rut'] = $apoderado_rut;
             header("Location: ../apoderados/inicioApoderado.php");
             exit();
+        } else if ($filas['cargo_id'] == 5) { // salud mental
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_row = mysqli_fetch_array($rut_result);
+            $salud_rut = $rut_row['rut'];
+ 
+             // Guarda el RUT del apoderado en la sesión
+             $_SESSION['rut'] = $salud_rut;
+            header("Location: ../salud_mental/inicioSalud.php");
+            exit();
+        } else if ($filas['cargo_id'] == 6) { // salud mental
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_row = mysqli_fetch_array($rut_result);
+            $utp_rut = $rut_row['rut'];
+ 
+             // Guarda el RUT del apoderado en la sesión
+             $_SESSION['rut'] = $utp_rut;
+            header("Location: ../utp/inicioUtp.php");
+            exit();
         } else {
             // Cargo desconocido
             header("Location: ../index.php");
