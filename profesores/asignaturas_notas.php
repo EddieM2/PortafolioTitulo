@@ -69,7 +69,7 @@ if (!$cursos_result) {
                 echo "<li>";
                 echo htmlspecialchars($asignatura['nombre']);
                 
-                // Agregar un botón "Ingresar Notas" para esta asignatura
+                
                 echo " <a href='ingresar_notas.php?asignatura={$asignatura['idAsignatura']}&idCurso={$curso['idCurso']}'>Ingresar Notas</a>";
 
               

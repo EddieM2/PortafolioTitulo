@@ -1,3 +1,4 @@
+<?php include("../models/db.php") ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,15 +22,13 @@
     }
 
 
-    // Conectar a la base de datos (ajusta la configuración de conexión según tu entorno)
-    $conn = mysqli_connect('localhost', 'root', '', 'probando2');
 
     // Consultar el nombre del curso
     $curso_query = "SELECT nombre FROM curso WHERE idCurso = $idCurso";
     $curso_result = mysqli_query($conn, $curso_query);
 
     if (!$curso_result) {
-        die("Error al obtener el nombre del curso: " . mysqli_error($conn));
+        die("Error al obtener el nombre del curso: " . mysqli_error($conexion));
     }
 
     $curso = mysqli_fetch_assoc($curso_result);
@@ -51,7 +50,7 @@
     $apoderado_result = mysqli_query($conn, $apoderado_query);
 
     if (!$apoderado_result) {
-        die("Error al obtener el nombre del apoderado: " . mysqli_error($conn));
+        die("Error al obtener el nombre del apoderado: " . mysqli_error($conexion));
     }
 
     $apoderado = mysqli_fetch_assoc($apoderado_result);

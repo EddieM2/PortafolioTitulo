@@ -19,7 +19,7 @@
             die("Error de conexión: " . mysqli_connect_error());
         }
 
-        // Consulta SQL para obtener los datos del alumno con el RUT proporcionado
+        // Consulta para obtener los datos del alumno con el RUT 
         $sql = "SELECT * FROM alumno WHERE rut = '$rut'";
         $result = mysqli_query($conexion, $sql);
 
@@ -72,7 +72,7 @@
             echo "No se encontró un alumno con el RUT proporcionado.";
         }
 
-        // Cierra la conexión a la base de datos
+        
         mysqli_close($conexion);
     } else {
         echo "RUT no proporcionado en la URL.";

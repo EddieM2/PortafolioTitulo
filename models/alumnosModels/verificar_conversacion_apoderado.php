@@ -1,6 +1,7 @@
+<?php include("../models/db.php") ?>
 <?php
 
-session_start();
+
 
 // Obtener el RUT del profesor desde la sesión
 $rut_profesor = $_SESSION['rut'];
@@ -16,10 +17,7 @@ if (isset($_GET['rutAlumno']) && isset($_GET['idCurso']) && isset($_GET['idAsign
     exit();
 }
 
-// Conectar a la base de datos (ajusta la configuración de conexión según tu entorno)
-$conn = mysqli_connect('localhost', 'root', '', 'probando2');
-
-if (!$conn) {
+if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 

@@ -1,5 +1,6 @@
+<?php include("../models/db.php"); ?>
 <?php
-session_start();
+
 
 // Verificar si el usuario ha iniciado sesión como profesor
 // if (!isset($_SESSION['rut']) || $_SESSION['cargo_id'] != 2) {
@@ -22,10 +23,8 @@ if (isset($_GET['idCurso']) && isset($_GET['idAsignatura'])) {
     exit();
 }
 
-// Conectar a la base de datos (ajusta la configuración de conexión según tu entorno)
-$conn = mysqli_connect('localhost', 'root', '', 'probando2');
 
-if (!$conn) {
+if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
@@ -38,10 +37,10 @@ $mensajes_query = "SELECT m1.mensaje, m1.fechaenvio, m1.idConversacion, m1.idEmi
                   AND m1.idCurso = $idCurso
                   AND m1.idAsignatura = $idAsignatura";
 
-$mensajes_result = mysqli_query($conn, $mensajes_query);
+$mensajes_result = mysqli_query($conexion, $mensajes_query);
 
 if (!$mensajes_result) {
-    die("Error en la consulta de mensajes: " . mysqli_error($conn));
+    die("Error en la consulta de mensajes: " . mysqli_error($conexion));
 }
 
 ?>
@@ -63,7 +62,7 @@ if (!$mensajes_result) {
             <?php
             // Consultar el nombre de la asignatura
             $asignatura_query = "SELECT nombre FROM asignatura WHERE idAsignatura = $idAsignatura";
-            $asignatura_result = mysqli_query($conn, $asignatura_query);
+            $asignatura_result = mysqli_query($conexion, $asignatura_query);
 
             if (!$asignatura_result) {
                 die("Error al obtener el nombre de la asignatura: " . mysqli_error($conn));
@@ -73,10 +72,10 @@ if (!$mensajes_result) {
 
             // Consultar el nombre del curso
             $curso_query = "SELECT nombre FROM curso WHERE idCurso = $idCurso";
-            $curso_result = mysqli_query($conn, $curso_query);
+            $curso_result = mysqli_query($conexion, $curso_query);
 
             if (!$curso_result) {
-                die("Error al obtener el nombre del curso: " . mysqli_error($conn));
+                die("Error al obtener el nombre del curso: " . mysqli_error($conexion));
             }
 
             $curso = mysqli_fetch_assoc($curso_result);
@@ -98,10 +97,10 @@ if (!$mensajes_result) {
                                     AND idAsignatura = $idAsignatura
                                     AND leido = 0"; // Contar mensajes no leídos
 
-            $mensajes_no_leidos_result = mysqli_query($conn, $mensajes_no_leidos_query);
+            $mensajes_no_leidos_result = mysqli_query($conexion, $mensajes_no_leidos_query);
 
             if (!$mensajes_no_leidos_result) {
-                die("Error al contar mensajes no leídos: " . mysqli_error($conn));
+                die("Error al contar mensajes no leídos: " . mysqli_error($conexion));
             }
 
             $mensajes_no_leídos = mysqli_fetch_assoc($mensajes_no_leidos_result);
@@ -137,5 +136,5 @@ if (!$mensajes_result) {
 
 <?php
 // Cerrar la conexión a la base de datos
-mysqli_close($conn);
+mysqli_close($conexion);
 ?>

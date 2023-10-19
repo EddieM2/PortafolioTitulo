@@ -44,8 +44,8 @@
             echo "<th>Género</th>";
             echo "<th>Estado Académico</th>";
             echo "<th>Rut apoderado</th>";
-            echo "<th>Editar</th>"; // Agregamos una columna para el botón Editar
-            echo "<th>Eliminar</th>"; // Agregamos una columna para el botón Eliminar
+            echo "<th>Editar</th>"; 
+            echo "<th>Eliminar</th>"; 
             echo "</tr>";
 
             // Imprimir datos
@@ -63,8 +63,8 @@
                 echo "<td>" . $row["genero"] . "</td>";
                 echo "<td>" . $row["estadoAcademico"] . "</td>";
                 echo "<td>" . $row["rutApoderado"] . "</td>";
-                echo "<td><a href='../../alumnos/formEditarAlumno.php?rut=" . $row["rut"] . "'>Editar</a></td>"; // Enlazar a la página de edición con el rut como parámetro
-                echo "<td><a href='eliminarAlumno.php?rut=" . $row["rut"] . "'>Eliminar</a></td>"; // Enlazar a la página de eliminación con el rut como parámetro
+                echo "<td><a href='../../alumnos/formEditarAlumno.php?rut=" . $row["rut"] . "'>Editar</a></td>"; 
+                echo "<td><a href='eliminarAlumno.php?rut=" . $row["rut"] . "'>Eliminar</a></td>"; 
                 echo "</tr>";
             }
         } else {

@@ -1,5 +1,6 @@
+<?php include("../models/db.php") ?>
 <?php
-session_start();
+
 
 // Obtener el RUT del profesor desde la sesión
 $rut_profesor = $_SESSION['rut'];
@@ -14,10 +15,9 @@ if (isset($_GET['idCurso']) && isset($_GET['idAsignatura'])) {
     exit();
 }
 
-// Conectar a la base de datos (ajusta la configuración de conexión según tu entorno)
-$conn = mysqli_connect('localhost', 'root', '', 'probando2');
 
-if (!$conn) {
+
+if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
@@ -29,10 +29,10 @@ WHERE inscripcion.idCurso IN (
     SELECT idCurso FROM asignatura WHERE idAsignatura = $idAsignatura
     )";
 
-$alumnos_result = mysqli_query($conn, $alumnos_query);
+$alumnos_result = mysqli_query($conexion, $alumnos_query);
 
 if (!$alumnos_result) {
-    die("Error en la consulta de alumnos: " . mysqli_error($conn));
+    die("Error en la consulta de alumnos: " . mysqli_error($conexion));
 }
 
 // Consultar el nombre de la asignatura
@@ -40,17 +40,17 @@ $asignatura_query = "SELECT nombre FROM asignatura WHERE idAsignatura = $idAsign
 $asignatura_result = mysqli_query($conn, $asignatura_query);
 
 if (!$asignatura_result) {
-    die("Error al obtener el nombre de la asignatura: " . mysqli_error($conn));
+    die("Error al obtener el nombre de la asignatura: " . mysqli_error($conexion));
 }
 
 $asignatura = mysqli_fetch_assoc($asignatura_result);
 
 // Consultar el nombre del curso
 $curso_query = "SELECT nombre FROM curso WHERE idCurso = $idCurso";
-$curso_result = mysqli_query($conn, $curso_query);
+$curso_result = mysqli_query($conexion, $curso_query);
 
 if (!$curso_result) {
-    die("Error al obtener el nombre del curso: " . mysqli_error($conn));
+    die("Error al obtener el nombre del curso: " . mysqli_error($conexion));
 }
 
 $curso = mysqli_fetch_assoc($curso_result);
@@ -82,7 +82,7 @@ $nombreAsignatura = $asignatura['nombre'];
             echo "<strong>RUT:</strong> " . htmlspecialchars($alumno['rut']);
 
             // Agregar enlace para enviar mensaje a este alumno
-            echo " <a href='verificar_conversacion_apoderado.php?rutAlumno=" . $alumno['rut'] . "&idCurso=" . $idCurso . "&idAsignatura=" . $idAsignatura . "'>Enviar Mensaje</a>";
+            echo " <a href='../models/profesoresModels/verificar_conversacion_apoderado.php?rutAlumno=" . $alumno['rut'] . "&idCurso=" . $idCurso . "&idAsignatura=" . $idAsignatura . "'>Enviar Mensaje</a>";
 
             echo "</li>";
         }

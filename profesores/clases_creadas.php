@@ -34,7 +34,7 @@ if ($result_clases_creadas) {
         echo "<td>" . $row_clase['fecha'] . "</td>";
         echo "<td>" . $row_clase['idAsignatura'] . "</td>";
         echo "<td>" . $row_clase['idCurso'] . "</td>";
-        echo "<td><a href='editar_asistencia.php?fecha=" . $row_clase['fecha'] . "&idAsignatura=" . $row_clase['idAsignatura'] . "&idCurso=" . $row_clase['idCurso'] . "'>Registrar Asistencia</a></td>";
+        echo "<td><a href='editar_asistencia.php?fecha=" . $row_clase['fecha'] . "&Asignatura=" . $row_clase['idAsignatura'] . "&idCurso=" . $row_clase['idCurso'] . "'>Registrar Asistencia</a></td>";
         echo "</tr>";
     }
 

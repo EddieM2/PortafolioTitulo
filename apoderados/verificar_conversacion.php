@@ -1,6 +1,7 @@
+<?php include("../models/db.php") ?>
 <?php
 
-session_start();
+
 
 if (isset($_SESSION['rut'])) {
     $apoderado_rut = $_SESSION['rut'];
@@ -15,13 +16,7 @@ if (isset($_SESSION['rut'])) {
     $idAsignatura = $_POST['idAsignatura'];
     $mensaje = $_POST['mensaje'];
 
-    // Conectar a la base de datos
-    $conn = mysqli_connect(
-        'localhost',
-        'root',
-        '',
-        'probando2'
-    );
+
 
     // Consulta para verificar si existe una conversación con el profesor
     $consultaConversacion = "SELECT idConversacion FROM mensajes 
@@ -46,11 +41,11 @@ if (isset($_SESSION['rut'])) {
             exit();
         }
     } else {
-        echo "Error en la consulta de conversación: " . mysqli_error($conn);
+        echo "Error en la consulta de conversación: " . mysqli_error($conexion);
     }
 
     // Cerrar la conexión a la base de datos
-    mysqli_close($conn);
+    mysqli_close($conexion);
 } else {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
     header("Location: inicioSesionApoderado.php");

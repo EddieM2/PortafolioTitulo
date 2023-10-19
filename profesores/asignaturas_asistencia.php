@@ -1,8 +1,8 @@
 
-
+<?php include("../models/db.php") ?>
 <?php
 
-session_start();
+
 // Verificar si el usuario ha iniciado sesión como profesor
 //if (!isset($_SESSION['rut']) || $_SESSION['cargo_id'] != 2) {
     // Si no ha iniciado sesión como profesor, redirigir a la página de inicio de sesión
@@ -14,10 +14,9 @@ session_start();
 $rut_profesor = $_SESSION['rut'];
 $nombre_profesor = $_SESSION['user']; // Nombre del profesor
 
-// Conectar a la base de datos (ajusta la configuración de conexión según tu entorno)
-$conn = mysqli_connect('localhost', 'root', '', 'probando2');
 
-if (!$conn) {
+
+if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
@@ -27,10 +26,10 @@ $cursos_query = "SELECT DISTINCT c.idCurso, c.nombre AS nombre_curso
                  INNER JOIN asignatura a ON c.idCurso = a.idCurso
                  WHERE a.rutProfesor = '$rut_profesor'";
 
-$cursos_result = mysqli_query($conn, $cursos_query);
+$cursos_result = mysqli_query($conexion, $cursos_query);
 
 if (!$cursos_result) {
-    die("Error en la consulta de cursos: " . mysqli_error($conn));
+    die("Error en la consulta de cursos: " . mysqli_error($conexion));
 }
 ?>
 
@@ -54,10 +53,10 @@ if (!$cursos_result) {
             // Consultar las asignaturas de este curso para el profesor
             $idCurso = $curso['idCurso'];
             $asignaturas_query = "SELECT idAsignatura, nombre FROM asignatura WHERE idCurso = $idCurso AND rutProfesor = '$rut_profesor'";
-            $asignaturas_result = mysqli_query($conn, $asignaturas_query);
+            $asignaturas_result = mysqli_query($conexion, $asignaturas_query);
 
             if (!$asignaturas_result) {
-                die("Error en la consulta de asignaturas: " . mysqli_error($conn));
+                die("Error en la consulta de asignaturas: " . mysqli_error($conexion));
             }
 
             echo "<strong>Asignaturas:</strong><br>";
@@ -77,7 +76,7 @@ if (!$cursos_result) {
 
 
                 // Boton para crear la clase de ese dia
-                echo " <a href='crear_clases.php?asignatura={$asignatura['idAsignatura']}&idCurso={$curso['idCurso']}'>Ingresar asistencia</a>";
+                echo " <a href='crear_clase.php?asignatura={$asignatura['idAsignatura']}&idCurso={$curso['idCurso']}'>Ingresar asistencia</a>";
                 echo " <a href='clases_creadas.php?asignatura={$asignatura['idAsignatura']}&idCurso={$curso['idCurso']}'>clases creadas</a>";
                 echo "</a>";
                 echo "</li>";
@@ -95,5 +94,5 @@ if (!$cursos_result) {
 
 <?php
 // Cerrar la conexión a la base de datos
-mysqli_close($conn);
+mysqli_close($conexion);
 ?>

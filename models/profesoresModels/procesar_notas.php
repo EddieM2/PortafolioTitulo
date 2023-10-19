@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Redirige de vuelta a la página de ingreso de notas con un mensaje de éxito
-        header("Location: ingresar_notas.php?asignatura=$asignatura_id&idCurso=$idCurso&success=true");
+        header("Location: ../../profesores/ingresar_notas.php?asignatura=$asignatura_id&idCurso=$idCurso&success=true");
         exit();
     } else {
         // Falta uno o más parámetros necesarios

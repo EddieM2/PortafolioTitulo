@@ -9,10 +9,6 @@
 if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     $alumno_rut = $_SESSION['rut'];
 
-    // Ahora puedes utilizar $admin_rut para obtener el nombre y apellido paterno del usuario desde la base de datos
-    // Realiza una consulta SQL para obtener el nombre y apellido paterno del usuario según su rut
-    // Asumiendo que tienes una tabla llamada "usuarios" con campos "rut," "nombre," y "apellido_paterno"
-    // Ejemplo de consulta SQL (sustituye esto con tu consulta real):
     $query = "SELECT nombre, apellidoP FROM alumno WHERE rut = '$alumno_rut'";
     $result = mysqli_query($conexion, $query);
 
@@ -44,7 +40,8 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     </div>
         
         <div class="barra-alumnos">
-        <button id="btnNotas">Notas</button>
+        <a href="notas_alumno.php" class="boton">Ver Calificaciones</a>
+
         <button id="btnAsistencias">Asistencias</button>
             <a href="../segPsicologico/segPsico.php"><button>Seguimiento psicológico</button></a>
         </div>
@@ -74,10 +71,10 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         echo "Error al obtener la información del usuario.";
     }
 
-    // Aquí puedes mostrar el contenido adicional de la página "inicioAdmin.php"
+   
 } else {
     // Si el usuario no ha iniciado sesión como administrador, redirige o muestra un mensaje de error
-    header("Location: ../login.php"); // Cambia "login.php" al archivo de inicio de sesión real o muestra un mensaje de error
+    header("Location: ../login.php");
     exit();
 }
 ?>

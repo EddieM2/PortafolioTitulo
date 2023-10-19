@@ -1,5 +1,6 @@
+<?php include("../models/db.php") ?>
 <?php
-session_start();
+
 
 // Verificar si el usuario ha iniciado sesión como apoderado
 if (isset($_SESSION['rut'])) {
@@ -8,14 +9,8 @@ if (isset($_SESSION['rut'])) {
     // Rut del alumno seleccionado (enviado desde la página anterior)
     $rut_pupilo = $_POST['rut_pupilo'];
 
-    // Conectar a la base de datos
-    $conn = mysqli_connect(
-        'localhost',
-        'root',
-        '',
-        'probando2'
-    );
 
+  
     // Consulta para obtener el nombre y apellido paterno del apoderado
     $consultaApoderado = "SELECT nombre, apellidoP FROM apoderado WHERE rut = '$apoderado_rut'";
     $resultadoApoderado = mysqli_query($conn, $consultaApoderado);
@@ -91,23 +86,23 @@ if (isset($_SESSION['rut'])) {
                             echo "</form>";
                         }
                     } else {
-                        echo "Error en la consulta de asignaturas: " . mysqli_error($conn);
+                        echo "Error en la consulta de asignaturas: " . mysqli_error($conexion);
                     }
                 } else {
                     echo "Error: Alumno no encontrado";
                 }
             } else {
-                echo "Error en la consulta de alumno: " . mysqli_error($conn);
+                echo "Error en la consulta de alumno: " . mysqli_error($conexion);
             }
         } else {
             echo "Error: Apoderado no encontrado";
         }
     } else {
-        echo "Error en la consulta de apoderado: " . mysqli_error($conn);
+        echo "Error en la consulta de apoderado: " . mysqli_error($conexion);
     }
 
     // Cerrar la conexión a la base de datos
-    mysqli_close($conn);
+    mysqli_close($conexion);
 } else {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
     header("Location: inicioSesionApoderado.php");

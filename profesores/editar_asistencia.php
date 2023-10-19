@@ -2,9 +2,9 @@
 include("../models/db.php");
 
 // Verifica si se han recibido los parámetros necesarios en la URL
-if (isset($_GET['fecha']) && isset($_GET['idAsignatura']) && isset($_GET['idCurso'])) {
+if (isset($_GET['fecha']) && isset($_GET['Asignatura']) && isset($_GET['idCurso'])) {
     $fecha = $_GET['fecha'];
-    $idAsignatura = $_GET['idAsignatura'];
+    $idAsignatura = $_GET['Asignatura'];
     $idCurso = $_GET['idCurso'];
 
     // Realiza una consulta SQL para obtener los registros de asistencia de esa fecha, asignatura y curso
@@ -39,6 +39,7 @@ if (isset($_GET['fecha']) && isset($_GET['idAsignatura']) && isset($_GET['idCurs
             echo "<td>$idAlumno - $nombre_alumno</td>";
             echo "<td>";
             echo "<label><input type='checkbox' name='asistencia[$idAlumno]' value='1' " . ($presente == 1 ? "checked" : "") . "> Presente</label>";
+            echo "<label><input type='checkbox' name='asistencia[$idAlumno]' value='0' " . ($presente == 0 ? "checked" : "") . "> Ausente</label>";
             echo "</td>";
             echo "</tr>";
         }
@@ -54,3 +55,4 @@ if (isset($_GET['fecha']) && isset($_GET['idAsignatura']) && isset($_GET['idCurs
     echo "Faltan parámetros en la URL.";
 }
 ?>
+

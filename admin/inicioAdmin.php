@@ -10,10 +10,7 @@
 if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     $admin_rut = $_SESSION['rut'];
 
-    // Ahora puedes utilizar $admin_rut para obtener el nombre y apellido paterno del usuario desde la base de datos
-    // Realiza una consulta SQL para obtener el nombre y apellido paterno del usuario según su rut
-    // Asumiendo que tienes una tabla llamada "usuarios" con campos "rut," "nombre," y "apellido_paterno"
-    // Ejemplo de consulta SQL (sustituye esto con tu consulta real):
+
     $query = "SELECT nombre, apellidoP FROM admin WHERE rut = '$admin_rut'";
     $result = mysqli_query($conexion, $query);
 
@@ -48,7 +45,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
             <a href="../models/alumnosModels/vistaAlumnos.php"><button id="btnNotas">Administrar Alumnos</button></a>
             <a href="../models/apoderadosModels/vistaApoderados.php"><button id="btnAsistencias">Administrar Apoderados</button></a>
             <a href="../models/profesoresModels/vistaProfesores.php"><button id="btnAnotaciones">Administrar Profesores</button></a>
-            <a href="../segPsicologico/segPsico.php"><button id="btnMensajes">Seguimiento psicológico</button></a>
+           
         </div>
         <div id="calendar">
     <div id="calendar-header">

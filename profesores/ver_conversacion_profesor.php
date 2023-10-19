@@ -1,15 +1,17 @@
+
+<?php include("../models/db.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Ver Conversación</title>
     <link rel="stylesheet" href="../src/css/mensajes.css">
-    <!-- Agrega el enlace al archivo CSS de Bootstrap (asegúrate de tenerlo descargado o enlazado correctamente) -->
+  
     <link rel="stylesheet" href="ruta/a/bootstrap.min.css">
 </head>
 <body>
     <?php
-    session_start();
+    
 
     // Obtener el RUT del profesor desde la sesión
     if (isset($_SESSION['rut'])) {
@@ -27,16 +29,13 @@
             exit();
         }
 
-        // Conectar a la base de datos (ajusta la configuración de conexión según tu entorno)
-        $conn = mysqli_connect('localhost', 'root', '', 'probando2');
-
-        if (!$conn) {
+        if (!$conexion) {
             die("Error de conexión: " . mysqli_connect_error());
         }
 
         // Consulta para obtener el nombre del profesor
         $profesor_query = "SELECT nombre FROM usuarios WHERE rut = '$rut_profesor'";
-        $profesor_result = mysqli_query($conn, $profesor_query);
+        $profesor_result = mysqli_query($conexion, $profesor_query);
 
         if ($profesor_result) {
             $profesor_nombre = mysqli_fetch_assoc($profesor_result)['nombre'];
@@ -46,32 +45,32 @@
 
         // Consulta para obtener el nombre del apoderado
         $apoderado_query = "SELECT nombre FROM usuarios WHERE rut = '$idEmisor'";
-        $apoderado_result = mysqli_query($conn, $apoderado_query);
+        $apoderado_result = mysqli_query($conexion, $apoderado_query);
 
         if ($apoderado_result) {
             $apoderado_nombre = mysqli_fetch_assoc($apoderado_result)['nombre'];
         } else {
-            die("Error al obtener el nombre del apoderado: " . mysqli_error($conn));
+            die("Error al obtener el nombre del apoderado: " . mysqli_error($conexion));
         }
 
         // Consulta para obtener el nombre del curso
         $curso_query = "SELECT nombre FROM curso WHERE idCurso = $idCurso";
-        $curso_result = mysqli_query($conn, $curso_query);
+        $curso_result = mysqli_query($conexion, $curso_query);
 
         if ($curso_result) {
             $curso_nombre = mysqli_fetch_assoc($curso_result)['nombre'];
         } else {
-            die("Error al obtener el nombre del curso: " . mysqli_error($conn));
+            die("Error al obtener el nombre del curso: " . mysqli_error($conexion));
         }
 
         // Consulta para obtener el nombre de la asignatura
         $asignatura_query = "SELECT nombre FROM asignatura WHERE idAsignatura = $idAsignatura";
-        $asignatura_result = mysqli_query($conn, $asignatura_query);
+        $asignatura_result = mysqli_query($conexion, $asignatura_query);
 
         if ($asignatura_result) {
             $asignatura_nombre = mysqli_fetch_assoc($asignatura_result)['nombre'];
         } else {
-            die("Error al obtener el nombre de la asignatura: " . mysqli_error($conn));
+            die("Error al obtener el nombre de la asignatura: " . mysqli_error($conexion));
         }
 
         // Variable para almacenar el mensaje a enviar
@@ -84,7 +83,7 @@
 
             // Actualizar el campo leído en la tabla mensajes para marcar los mensajes como leídos
             $actualizar_leidos_query = "UPDATE mensajes SET leido = 1 WHERE idConversacion = $idConversacion AND idReceptor = '$idEmisor'";
-            $resultado_actualizar_leidos = mysqli_query($conn, $actualizar_leidos_query);
+            $resultado_actualizar_leidos = mysqli_query($conexion, $actualizar_leidos_query);
 
             if (!$resultado_actualizar_leidos) {
                 die("Error al marcar mensajes como leídos: " . mysqli_error($conn));
@@ -94,10 +93,10 @@
             $insertar_mensaje_query = "INSERT INTO mensajes (idConversacion, idCurso, idAsignatura, idEmisor, idReceptor, mensaje, fechaenvio, leido)
                                       VALUES ('$idConversacion', '$idCurso', '$idAsignatura', '$rut_profesor','$idEmisor', '$mensaje_a_enviar', NOW(), 0)";
             
-            $resultado_insertar_mensaje = mysqli_query($conn, $insertar_mensaje_query);
+            $resultado_insertar_mensaje = mysqli_query($conexion, $insertar_mensaje_query);
             
             if (!$resultado_insertar_mensaje) {
-                die("Error al enviar el mensaje: " . mysqli_error($conn));
+                die("Error al enviar el mensaje: " . mysqli_error($conexion));
             }
         }
 
@@ -108,7 +107,7 @@
                       WHERE m.idConversacion = $idConversacion
                       ORDER BY m.fechaenvio ASC";
 
-        $mensajes_result = mysqli_query($conn, $mensajes_query);
+        $mensajes_result = mysqli_query($conexion, $mensajes_query);
 
         if (!$mensajes_result) {
             die("Error en la consulta de mensajes: " . mysqli_error($conn));
@@ -167,11 +166,11 @@
         </div>
     </div>
 
-    <a href="cursos_asignaturas.php">Volver a la Lista de Cursos y Asignaturas</a>
+    <a href="asignaturas_curso.php">Volver a la Lista de Cursos y Asignaturas</a>
     <a href="logout.php">Cerrar Sesión</a>
 </body>
 </html>
 <?php
 // Cerrar la conexión a la base de datos
-mysqli_close($conn);
+mysqli_close($conexion);
 ?>

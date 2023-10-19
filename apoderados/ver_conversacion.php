@@ -1,5 +1,6 @@
+<?php include("../models/db.php") ?>
 <?php
-session_start();
+
 
 if (isset($_SESSION['rut'])) {
     $apoderado_rut = $_SESSION['rut'];
@@ -15,20 +16,14 @@ if (isset($_SESSION['rut'])) {
     $idCurso = $_GET['idCurso'];
     $idAsignatura = $_GET['idAsignatura'];
 
-    // Conectar a la base de datos
-    $conn = mysqli_connect(
-        'localhost',
-        'root',
-        '',
-        'probando2'
-    );
+
 
     // Consulta para obtener el nombre del profesor
     $consultaNombreProfesor = "SELECT nombre FROM profesor WHERE rut = '$rut_profesor'";
-    $resultadoNombreProfesor = mysqli_query($conn, $consultaNombreProfesor);
+    $resultadoNombreProfesor = mysqli_query($conexion, $consultaNombreProfesor);
 
     if (!$resultadoNombreProfesor) {
-        die("Error en la consulta de nombre del profesor: " . mysqli_error($conn));
+        die("Error en la consulta de nombre del profesor: " . mysqli_error($conexion));
     }
 
     $nombreProfesor = mysqli_fetch_assoc($resultadoNombreProfesor)['nombre'];
@@ -40,7 +35,7 @@ if (isset($_SESSION['rut'])) {
                         WHERE m.idConversacion = $idConversacion
                         ORDER BY m.fechaEnvio ASC";
 
-    $resultadoMensajes = mysqli_query($conn, $consultaMensajes);
+    $resultadoMensajes = mysqli_query($conexion, $consultaMensajes);
 
     if ($resultadoMensajes) {
         echo "<h1>Conversación con $nombreProfesor</h1>";
@@ -60,14 +55,14 @@ if (isset($_SESSION['rut'])) {
 
             // Marcar el mensaje como leído
             $marcarLeidoQuery = "UPDATE mensajes SET leido = 1 WHERE idMensaje = $idMensaje AND idReceptor = '$apoderado_rut'";
-            mysqli_query($conn, $marcarLeidoQuery);
+            mysqli_query($conexion, $marcarLeidoQuery);
         }            
-
+        
         // Formulario para enviar otro mensaje
         echo "<h2>Enviar otro mensaje:</h2>";
         echo "<form method='post' action='../models/apoderadosModels/enviar_mensaje_profesor.php'>";
 
-
+        
 
         //echo "<input type='hidden' name='rut_pupilo' value='$rut_pupilo'>";
         echo "<input type='hidden' name='nombre_asignatura' value='$nombre_asignatura'>";

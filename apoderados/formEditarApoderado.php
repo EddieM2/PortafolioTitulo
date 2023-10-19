@@ -5,7 +5,7 @@
 if (isset($_GET['rut'])) {
     $rut = $_GET['rut'];
 
-    // Validar el formato del RUT (opcional)
+  
  
 
     if (!$conexion) {
@@ -44,7 +44,7 @@ if (isset($_GET['rut'])) {
 
             if (mysqli_query($conexion, $updateQuery)) {
                 // Redirigir de vuelta a la lista de apoderados después de la edición
-                header("Location: apoderados.php");
+                header("Location: ../models/apoderadosModels/vistaApoderados.php");
                 exit();
             } else {
                 echo "Error al actualizar el apoderado: " . mysqli_error($conexion);

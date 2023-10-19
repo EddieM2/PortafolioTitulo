@@ -19,9 +19,10 @@ if (isset($_GET['asignatura'])) {
 
     if ($clase_existente) {
         // La clase ya existe, muestra un mensaje
-        echo "La clase de asistencia para esta asignatura y curso en la fecha actual ya ha sido creada.";
+        //echo "La clase de asistencia para esta asignatura y curso en la fecha actual ya ha sido creada.";
+        header("Location: editar_asistencia.php?fecha=$fecha&Asignatura=$asignatura_id&idCurso=$idCurso");
     } else {
-        // La clase no existe, procede con la inserción
+        // La clase no existe, se realiza la inserción
         $query_insert_asistencia = "INSERT INTO asistencia (rutAlumno, idAsignatura, idCurso, fecha, presente) 
             SELECT alumno.rut, $asignatura_id, $idCurso, '$fecha', 0
             FROM alumno
@@ -54,7 +55,7 @@ if (isset($_GET['asignatura'])) {
             }
 
             // Redirige a la página de lista de alumnos en esa asignatura y curso
-            header("Location: asignaturas_asistencia.php?asignatura=$asignatura_id&idCurso=$idCurso");
+            header("Location: editar_asistencia.php?fecha=$fecha&Asignatura=$asignatura_id&idCurso=$idCurso");
             exit();
         } else {
             // Manejo de errores si la inserción falla
