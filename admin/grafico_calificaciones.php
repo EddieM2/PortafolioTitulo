@@ -1,101 +1,177 @@
-<?php include("../models/db.php");?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Gráfico de Promedio de Calificaciones</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+<?
+include("../models/db.php");
+include("grafico_model.php");
+?>
 
-<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generar Gráfico de Promedios</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Gráfico de Promedio de Calificaciones</h1>
-
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["obtenerPromedios"])) {
-        // Se han enviado datos, muestra el gráfico
-        // Crear un contenedor para el gráfico
-        echo '<div style="width: 800px; height: 400px;"><canvas id="graficoPromedioCalificaciones"></canvas></div>';
-    }
-    ?>
-
-    <form id="formularioCalificaciones" method="post">
-        <label for "curso">Selecciona un curso (ID):</label>
+    <h1>Selecciona un Curso y una Asignatura</h1>
+    <form id="formularioCursos">
+        <label for="curso">Curso:</label>
         <select name="curso" id="curso">
-            <?php
-            $queryCursos = "SELECT idCurso, nombre AS nombreCurso FROM curso";
-            $resultCursos = mysqli_query($conexion, $queryCursos);
-
-            while ($curso = mysqli_fetch_assoc($resultCursos)) {
-                echo "<option value='" . $curso['idCurso'] . "'>" . $curso['nombreCurso'] . "</option>";
-            }
-            ?>
+            <option value="">Seleccione un curso</option> <!-- Opción vacía por defecto -->
+            <!-- Opciones de cursos se cargarán dinámicamente -->
         </select>
 
-        <label for "asignatura">Selecciona una asignatura (ID):</label>
+        <label for="asignatura">Asignatura:</label>
         <select name="asignatura" id="asignatura">
-            <?php
-            $queryAsignaturas = "SELECT idAsignatura, nombre AS nombreAsignatura FROM asignatura";
-            $resultAsignaturas = mysqli_query($conexion, $queryAsignaturas);
-
-            while ($asignatura = mysqli_fetch_assoc($resultAsignaturas)) {
-                echo "<option value='" . $asignatura['idAsignatura'] . "'>" . $asignatura['nombreAsignatura'] . "</option>";
-            }
-            ?>
+            <!-- Opciones de asignaturas se cargarán dinámicamente -->
         </select>
 
-        <button type="submit" name="obtenerPromedios">Crear gráfico</button>
+        <input type="submit" value="Generar Gráfico">
     </form>
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["obtenerPromedios"])) {
-        // Se han enviado datos, muestra el nombre del curso y la asignatura
-        $nombreCurso = $_POST["curso"];
-        $nombreAsignatura = $_POST["asignatura"];
-        echo "<p>Curso: $nombreCurso</p>";
-        echo "<p>Asignatura: $nombreAsignatura</p>";
-    }
-    ?>
+    <h2>Promedios de Calificaciones</h2>
+    <p>Curso: <span id="nombreCurso"></span></p>
+    <p>Asignatura: <span id="nombreAsignatura"></span></p>
+    <canvas id="chart-container"></canvas>
+    <button id="descargar-grafico">Descargar Gráfico</button>
 
     <script>
-        // Datos y configuración del gráfico (debes completar con tus propios datos)
-        var data = {
-            labels: ["Calificación 1", "Calificación 2", "Calificación 3", "Calificación 4"],
-            datasets: [
-                {
-                    label: "Promedio de Calificaciones",
-                    data: [5, 6, 7, 8], // Ejemplo de datos
-                    backgroundColor: "rgba(75, 192, 192, 0.2)",
-                    borderColor: "rgba(75, 192, 192, 1)",
-                    borderWidth: 1
-                }
-            ]
-        };
+        var myChart; // Variable para almacenar el gráfico actual
 
-        var options = {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 10
-                }
+        // Crea el gráfico con los datos obtenidos
+        function crearGrafico(promedios) {
+            // Verificar si ya existe un gráfico y destruirlo
+            if (myChart) {
+                myChart.destroy();
             }
-        };
 
-        // Crear un objeto de gráfico
-        var ctx = document.getElementById("graficoPromedioCalificaciones").getContext("2d");
-        var myChart = new Chart(ctx, {
-            type: "line",
-            data: data,
-            options: options
+            var ctx = document.getElementById("chart-container").getContext("2d");
+            myChart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: ["Calificación 1", "Calificación 2", "Calificación 3", "Calificación 4"],
+                    datasets: [
+                        {
+                            label: "Promedios de Calificaciones",
+                            data: [
+                                promedios.promedio1,
+                                promedios.promedio2,
+                                promedios.promedio3,
+                                promedios.promedio4
+                            ],
+                            backgroundColor: "rgba(75, 192, 192, 0.2)",
+                            borderColor: "rgba(75, 192, 192, 1)",
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Agregar evento al botón de descarga
+            var descargarBoton = document.getElementById("descargar-grafico");
+            descargarBoton.addEventListener("click", function () {
+                // Crear un PDF con jsPDF
+                var pdf = new jsPDF();
+                pdf.text(10, 10, "Gráfico de Promedios de Calificaciones");
+
+                // Obtener el nombre del curso y la asignatura
+                var nombreCurso = $('#nombreCurso').text();
+                var nombreAsignatura = $('#nombreAsignatura').text();
+                var nombrePDF = "Promedios_" + nombreCurso + "_" + nombreAsignatura + ".pdf";
+
+                // Agregar el nombre del curso y la asignatura al título del PDF
+                pdf.text(10, 20, "Curso: " + nombreCurso);
+                pdf.text(10, 30, "Asignatura: " + nombreAsignatura);
+
+                // Obtener la imagen del gráfico como base64
+                var graficoBase64 = document.getElementById("chart-container").toDataURL("image/png");
+
+                // Agregar la imagen al PDF
+                pdf.addImage(graficoBase64, "PNG", 10, 40, 180, 100);
+
+                // Descargar el PDF con el nombre personalizado
+                pdf.save(nombrePDF);
+            });
+        }
+
+        // JavaScript para cargar cursos y asignaturas dinámicamente
+        $(document).ready(function() {
+            // Cargar cursos
+            $.ajax({
+                type: 'GET',
+                url: 'cargar_cursos.php',
+                dataType: 'json',
+                success: function(data) {
+                    var cursoSelect = $("#curso");
+                    cursoSelect.empty();
+                    cursoSelect.append($("<option>", {
+                        value: "",
+                        text: "Seleccione un curso"
+                    }));
+                    $.each(data, function(index, curso) {
+                        cursoSelect.append($("<option>", {
+                            value: curso.id,
+                            text: curso.nombre
+                        }));
+                    });
+
+                    // Cuando se selecciona un curso, cargar asignaturas
+                    cursoSelect.change(function() {
+                        var selectedCurso = $(this).val();
+                        var asignaturaSelect = $("#asignatura");
+
+                        // Limpia la lista de asignaturas
+                        asignaturaSelect.empty();
+
+                        // Cargar las asignaturas correspondientes al curso seleccionado
+                        $.ajax({
+                            type: 'GET',
+                            url: 'cargar_asignaturas.php',
+                            data: { curso: selectedCurso },
+                            dataType: 'json',
+                            success: function(data) {
+                                $.each(data, function(index, asignatura) {
+                                    asignaturaSelect.append($("<option>", {
+                                        value: asignatura.id,
+                                        text: asignatura.nombre
+                                    }));
+                                });
+                            }
+                        });
+                    });
+                }
+            });
+
+            // Manejar el envío del formulario
+            $("#formularioCursos").submit(function(event) {
+                event.preventDefault(); // Evitar el envío del formulario
+                var selectedCurso = $("#curso").val();
+                var selectedAsignatura = $("#asignatura").val();
+
+                // Realizar una solicitud AJAX para obtener los promedios
+                $.ajax({
+                    type: 'POST',
+                    url: 'obtener_promedios.php',
+                    data: { curso: selectedCurso, asignatura: selectedAsignatura },
+                    dataType: 'json',
+                    success: function(data) {
+                        crearGrafico(data);
+                        $('#nombreCurso').text(data.nombreCurso);
+                        $('#nombreAsignatura').text(data.nombreAsignatura);
+                    },
+                    error: function() {
+                        alert("Error al obtener los datos del gráfico.");
+                    }
+                });
+            });
         });
     </script>
-
-    <!-- Botón para descargar el gráfico en PDF -->
-    <button id="descargarGrafico" onclick="descargarGraficoPDF()">Descargar Gráfico</button>
-
-
-    <script src="../src/javas/descargar_grafico_calificaciones.js"></script>
 </body>
 </html>
-

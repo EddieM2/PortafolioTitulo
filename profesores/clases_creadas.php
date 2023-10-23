@@ -16,7 +16,7 @@
 include("../models/db.php");
 
 // Consulta SQL para obtener las clases creadas ordenadas por fecha
-$query_clases_creadas = "SELECT DISTINCT fecha, idAsignatura, idCurso FROM asistencia ORDER BY fecha DESC";
+$query_clases_creadas = "SELECT DISTINCT fecha, idCurso FROM asistencia ORDER BY fecha DESC";
 $result_clases_creadas = mysqli_query($conexion, $query_clases_creadas);
 
 if ($result_clases_creadas) {
@@ -24,7 +24,7 @@ if ($result_clases_creadas) {
     echo "<table border='1'>";
     echo "<tr>";
     echo "<th>Fecha</th>";
-    echo "<th>Asignatura</th>";
+  //  echo "<th>Asignatura</th>";
     echo "<th>Curso</th>";
     echo "<th>Acción</th>";
     echo "</tr>";
@@ -32,9 +32,9 @@ if ($result_clases_creadas) {
     while ($row_clase = mysqli_fetch_assoc($result_clases_creadas)) {
         echo "<tr>";
         echo "<td>" . $row_clase['fecha'] . "</td>";
-        echo "<td>" . $row_clase['idAsignatura'] . "</td>";
+     //   echo "<td>" . $row_clase['idAsignatura'] . "</td>";
         echo "<td>" . $row_clase['idCurso'] . "</td>";
-        echo "<td><a href='editar_asistencia.php?fecha=" . $row_clase['fecha'] . "&Asignatura=" . $row_clase['idAsignatura'] . "&idCurso=" . $row_clase['idCurso'] . "'>Registrar Asistencia</a></td>";
+      echo "<td><a href='editar_asistencia.php?fecha=" . $row_clase['fecha'] ."&idCurso=" . $row_clase['idCurso'] . "'>Registrar Asistencia</a></td>";
         echo "</tr>";
     }
 

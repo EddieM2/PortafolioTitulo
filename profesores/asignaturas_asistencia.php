@@ -76,8 +76,8 @@ if (!$cursos_result) {
 
 
                 // Boton para crear la clase de ese dia
-                echo " <a href='crear_clase.php?asignatura={$asignatura['idAsignatura']}&idCurso={$curso['idCurso']}'>Ingresar asistencia</a>";
-                echo " <a href='clases_creadas.php?asignatura={$asignatura['idAsignatura']}&idCurso={$curso['idCurso']}'>clases creadas</a>";
+                echo " <a href='crear_clase.php?idCurso={$curso['idCurso']}'>Crear clase</a>";
+                echo " <a href='clases_creadas.php?idCurso={$curso['idCurso']}'>clases creadas</a>";
                 echo "</a>";
                 echo "</li>";
             }

@@ -37,7 +37,7 @@ if (!$alumnos_result) {
 
 // Consultar el nombre de la asignatura
 $asignatura_query = "SELECT nombre FROM asignatura WHERE idAsignatura = $idAsignatura";
-$asignatura_result = mysqli_query($conn, $asignatura_query);
+$asignatura_result = mysqli_query($conexion, $asignatura_query);
 
 if (!$asignatura_result) {
     die("Error al obtener el nombre de la asignatura: " . mysqli_error($conexion));

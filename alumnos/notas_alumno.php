@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 //if (!isset($_SESSION['rut'])) {
   //  header("Location: ../login.php"); // Redirige si no ha iniciado sesión
     //exit();
@@ -28,33 +28,55 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <title>Calificaciones del Alumno</title>
-
+    <style>
+        /* Estilos para el contenedor de asignaturas */
+        .asignatura {
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        /* Estilos para ocultar las calificaciones al principio */
+        .calificaciones {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Calificaciones del Alumno</h1>
 
     <?php
     if (mysqli_num_rows($result) > 0) {
-        echo "<table>";
-        echo "<tr><th>Asignatura</th><th>Fecha</th><th>Calificación 1</th><th>Calificación 2</th><th>Calificación 3</th><th>Calificación 4</th></tr>";
-
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>" . $row['nombre_asignatura'] . "</td>";
-            echo "<td>" . $row['fecha'] . "</td>";
-            echo "<td>" . $row['calificacion1'] . "</td>";
-            echo "<td>" . $row['calificacion2'] . "</td>";
-            echo "<td>" . $row['calificacion3'] . "</td>";
-            echo "<td>" . $row['calificacion4'] . "</td>";
-            echo "</tr>";
+            echo '<div class="asignatura">';
+            echo '<p>Asignatura: ' . $row['nombre_asignatura'] . '</p>';
+            echo '<div class="calificaciones">';
+          //  echo '<p>Fecha: ' . $row['fecha'] . '</p>';
+            echo '<p>Calificación 1: ' . $row['calificacion1'] . '</p>';
+            echo '<p>Calificación 2: ' . $row['calificacion2'] . '</p>';
+            echo '<p>Calificación 3: ' . $row['calificacion3'] . '</p>';
+            echo '<p>Calificación 4: ' . $row['calificacion4'] . '</p>';
+            echo '</div>';
+            echo '</div>';
         }
-
-        echo "</table>";
     } else {
         echo "No hay calificaciones registradas.";
     }
     ?>
 
     <a href="inicioAlum.php">Volver a la página de inicio del alumno</a>
+
+    <script>
+        // JavaScript para manejar el despliegue de las calificaciones al hacer clic
+        const asignaturas = document.querySelectorAll('.asignatura');
+
+        asignaturas.forEach(asignatura => {
+            asignatura.addEventListener('click', () => {
+                const calificaciones = asignatura.querySelector('.calificaciones');
+                calificaciones.style.display = (calificaciones.style.display === 'block') ? 'none' : 'block';
+            });
+        });
+    </script>
 </body>
 </html>

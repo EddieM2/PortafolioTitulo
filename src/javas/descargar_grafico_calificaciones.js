@@ -1,21 +1,23 @@
+// descargar_grafico_pdf.js
+
+// Función para descargar el gráfico en formato PDF
 function descargarGraficoPDF() {
-     // Crea una nueva instancia de jsPDF
-     var pdf = new jsPDF();
- 
-     // Captura el contenido del gráfico utilizando el método `toDataUrl`
-     var canvas = document.getElementById('graficoPromedioCalificaciones');
-     var imageData = canvas.toDataURL('image/jpeg', 1.0);
- 
-     // Agrega la imagen del gráfico al PDF
-     pdf.addImage(imageData, 'JPEG', 10, 10, 190, 100);  // Ajusta el tamaño y posición según tus necesidades
- 
-     // Agrega el nombre del curso y la asignatura al PDF
-     var nombreCurso = document.getElementById('curso').value;
-     var nombreAsignatura = document.getElementById('asignatura').value;
-     pdf.text(10, 120, 'Curso: ' + nombreCurso);
-     pdf.text(10, 130, 'Asignatura: ' + nombreAsignatura);
- 
-     // Guarda el PDF o muéstralo al usuario
-     pdf.save('grafico_calificaciones.pdf');
- }
- 
+    // Obtiene el contenedor del gráfico
+    var graficoContainer = document.getElementById("graficosContainer");
+
+    // Usa la biblioteca html2canvas para convertir el contenedor en una imagen
+    html2canvas(graficoContainer).then(function(canvas) {
+        var imgData = canvas.toDataURL('image/jpeg');
+
+        // Configura un nuevo documento PDF
+        var doc = new jsPDF();
+        doc.addImage(imgData, 'JPEG', 10, 10, 190, 100);
+
+        // Descarga el PDF
+        doc.save('grafico_asistencia.pdf');
+    });
+}
+
+// Agrega un evento al botón de descarga
+var descargarGraficoButton = document.getElementById("descargarGrafico");
+descargarGraficoButton.addEventListener("click", descargarGraficoPDF);

@@ -1,31 +1,30 @@
 <?php
-include("../models/db.php");
 include("modelo_grafico_calificaciones.php");
+
+// Obtener cursos desde la base de datos
+$queryCursos = "SELECT idCurso, nombre AS nombreCurso FROM curso";
+$resultCursos = mysqli_query($conexion, $queryCursos);
+
+// Obtener asignaturas desde la base de datos
+$queryAsignaturas = "SELECT idAsignatura, nombre AS nombreAsignatura FROM asignatura";
+$resultAsignaturas = mysqli_query($conexion, $queryAsignaturas);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["obtenerPromedios"])) {
     $idCurso = $_POST["curso"];
     $idAsignatura = $_POST["asignatura"];
 
-    // Llama a la función del modelo para obtener los promedios
     $promedios = obtenerPromediosCalificaciones($conexion, $idCurso, $idAsignatura);
 
     if ($promedios) {
-        // Prepara los datos para el gráfico
-        $labels = ["Calificación 1", "Calificación 2", "Calificación 3", "Calificación 4"];
-        $datos = [
-            $promedios['promedioCalificacion1'],
-            $promedios['promedioCalificacion2'],
-            $promedios['promedioCalificacion3'],
-            $promedios['promedioCalificacion4']
-        ];
-
-        // Convierte los datos a formato JSON para que Chart.js los pueda usar
-        $datosJSON = json_encode($datos);
-
-        // No incluyas la vista, ya que el gráfico se generará en la misma página
+        $datosJSON = json_encode($promedios);
+        echo "<script>var datosJSON = $datosJSON;</script>";
+        echo "<script>var curso = '$idCurso';</script>";
+        echo "<script>var asignatura = '$idAsignatura';</script>";
     } else {
-        // Maneja el caso en el que no se obtuvieron promedios
         echo "No se pudieron obtener los promedios.";
     }
 }
+
+// Incluye la vista después de definir las variables
+include("grafico_calificaciones.php");
 ?>

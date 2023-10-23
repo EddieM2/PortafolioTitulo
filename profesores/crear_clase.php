@@ -1,30 +1,32 @@
 <?php
 include("../models/db.php");
 
-if (isset($_GET['asignatura'])) {
-    $asignatura_id = $_GET['asignatura'];
+if (isset($_GET['idCurso'])) {
+   // $asignatura_id = $_GET['asignatura'];
     $idCurso = $_GET['idCurso'];
     
     // Obtiene la fecha actual
     $fecha = date('Y-m-d'); // Formato: AAAA-MM-DD
 
-    // Verifica si ya existe una clase para la asignatura y curso en la fecha actual
+    // Verifica si ya existe una clase para el curso en la fecha actual
     $query_existencia_clase = "SELECT COUNT(*) AS existe
         FROM asistencia
-        WHERE idAsignatura = $asignatura_id AND idCurso = $idCurso AND fecha = '$fecha'";
+        WHERE idCurso = $idCurso AND fecha = '$fecha'";
 
     $result_existencia_clase = mysqli_query($conexion, $query_existencia_clase);
     $row_existencia_clase = mysqli_fetch_assoc($result_existencia_clase);
     $clase_existente = (int)$row_existencia_clase['existe'];
 
     if ($clase_existente) {
-        // La clase ya existe, muestra un mensaje
-        //echo "La clase de asistencia para esta asignatura y curso en la fecha actual ya ha sido creada.";
-        header("Location: editar_asistencia.php?fecha=$fecha&Asignatura=$asignatura_id&idCurso=$idCurso");
+        // La clase ya existe, muestra un mensaje o redirige a la página de edición de asistencia
+        // Puedes redirigir a la página de edición con los parámetros necesarios
+        header("Location: editar_asistencia.php?fecha=$fecha&idCurso=$idCurso");
+     //  echo ' holas';
+        exit();
     } else {
         // La clase no existe, se realiza la inserción
-        $query_insert_asistencia = "INSERT INTO asistencia (rutAlumno, idAsignatura, idCurso, fecha, presente) 
-            SELECT alumno.rut, $asignatura_id, $idCurso, '$fecha', 0
+        $query_insert_asistencia = "INSERT INTO asistencia (rutAlumno, idCurso, fecha, presente) 
+            SELECT alumno.rut, $idCurso, '$fecha', 0
             FROM alumno
             INNER JOIN inscripcion ON alumno.rut = inscripcion.rutAlumno
             WHERE inscripcion.idCurso = $idCurso";
@@ -38,9 +40,7 @@ if (isset($_GET['asignatura'])) {
             $query_lista_alumnos = "SELECT alumno.rut, alumno.nombre AS nombre_alumno
             FROM alumno
             INNER JOIN inscripcion ON alumno.rut = inscripcion.rutAlumno
-            WHERE inscripcion.idCurso IN (
-                SELECT idCurso FROM asignatura WHERE idAsignatura = $asignatura_id
-            )";
+            WHERE inscripcion.idCurso = $idCurso";
             $result_lista_alumnos = mysqli_query($conexion, $query_lista_alumnos);
 
             if ($result_lista_alumnos) {
@@ -54,8 +54,8 @@ if (isset($_GET['asignatura'])) {
                 echo "Error al obtener la lista de alumnos.";
             }
 
-            // Redirige a la página de lista de alumnos en esa asignatura y curso
-            header("Location: editar_asistencia.php?fecha=$fecha&Asignatura=$asignatura_id&idCurso=$idCurso");
+            // Redirige a la página de lista de alumnos en ese curso
+       //     header("Location: editar_asistencia.php?fecha=$fecha&idCurso=$idCurso");
             exit();
         } else {
             // Manejo de errores si la inserción falla

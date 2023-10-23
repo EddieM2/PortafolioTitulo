@@ -1,25 +1,23 @@
-var anchoPersonalizado = 700;  // Establece el ancho personalizado en píxeles
-var altoPersonalizado = 700;  // Establece el alto personalizado en píxeles
+// descargar_grafico_pdf.js
 
-document.getElementById('descargarGrafico').addEventListener('click', function() {
-    // Ocultar los botones antes de la captura
-    document.getElementById('descargarGrafico').style.display = 'none';
-    document.getElementById('formularioAsistencia').style.display = 'none';
+// Función para descargar el gráfico en formato PDF
+function descargarGraficoPDF() {
+    // Obtiene el contenedor del gráfico
+    var graficoContainer = document.getElementById("graficosContainer");
 
-    // Captura el contenido del gráfico con un tamaño personalizado
-    html2canvas(graficoAsistencia, { width: anchoPersonalizado, height: altoPersonalizado }).then(function(canvas) {
-        var pdf = new jsPDF();
-        // Agrega el gráfico al PDF con margen
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 10, 10);  // Añade un margen de 10 unidades
+    // Usa la biblioteca html2canvas para convertir el contenedor en una imagen
+    html2canvas(graficoContainer).then(function(canvas) {
+        var imgData = canvas.toDataURL('image/jpeg');
 
-        // Agrega el nombre del curso seleccionado al PDF
-        var nombreCurso = document.getElementById('curso').value;
-        pdf.text(10, 10, 'Curso: ' + nombreCurso);
+        // Configura un nuevo documento PDF
+        var doc = new jsPDF();
+        doc.addImage(imgData, 'PNG', 10, 10, 190, 100);
+
         // Descarga el PDF
-        pdf.save('grafico_asistencia.pdf');
-
-        // Mostrar los botones nuevamente después de la captura
-        document.getElementById('descargarGrafico').style.display = 'block';
-        document.getElementById('formularioAsistencia').style.display = 'block';
+        doc.save('grafico_asistencia.pdf');
     });
-});
+}
+
+// Agrega un evento al botón de descarga
+var descargarGraficoButton = document.getElementById("descargarGrafico");
+descargarGraficoButton.addEventListener("click", descargarGraficoPDF);
