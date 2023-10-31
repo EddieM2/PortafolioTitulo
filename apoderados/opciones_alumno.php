@@ -13,7 +13,7 @@ if (isset($_SESSION['rut'])) {
   
     // Consulta para obtener el nombre y apellido paterno del apoderado
     $consultaApoderado = "SELECT nombre, apellidoP FROM apoderado WHERE rut = '$apoderado_rut'";
-    $resultadoApoderado = mysqli_query($conn, $consultaApoderado);
+    $resultadoApoderado = mysqli_query($conexion, $consultaApoderado);
 
     if ($resultadoApoderado) {
         $filaApoderado = mysqli_fetch_assoc($resultadoApoderado);
@@ -28,7 +28,7 @@ if (isset($_SESSION['rut'])) {
                                INNER JOIN inscripcion AS i ON a.rut = i.rutAlumno
                                INNER JOIN curso AS c ON i.idCurso = c.idCurso
                                WHERE a.rut = '$rut_pupilo'";
-            $resultadoAlumno = mysqli_query($conn, $consultaAlumno);
+            $resultadoAlumno = mysqli_query($conexion, $consultaAlumno);
 
             if ($resultadoAlumno) {
                 $filaAlumno = mysqli_fetch_assoc($resultadoAlumno);
@@ -49,7 +49,7 @@ if (isset($_SESSION['rut'])) {
                                             FROM asignatura AS asig
                                             INNER JOIN inscripcion AS i ON asig.idCurso = i.idCurso
                                             WHERE i.rutAlumno = '$rut_pupilo'";
-                    $resultadoAsignaturas = mysqli_query($conn, $consultaAsignaturas);
+                    $resultadoAsignaturas = mysqli_query($conexion, $consultaAsignaturas);
 
                     if ($resultadoAsignaturas) {
                         echo "Asignaturas inscritas:<br>";
@@ -61,13 +61,13 @@ if (isset($_SESSION['rut'])) {
                     
                             // Consulta para obtener el nombre del profesor
                             $consultaProfesor = "SELECT nombre FROM profesor WHERE rut = '$rutProfesor'";
-                            $resultadoProfesor = mysqli_query($conn, $consultaProfesor);
+                            $resultadoProfesor = mysqli_query($conexion, $consultaProfesor);
                             $filaProfesor = mysqli_fetch_assoc($resultadoProfesor);
                             $nombreProfesor = $filaProfesor['nombre'];
                     
                             // Consulta para obtener la cantidad de mensajes no leídos en esta asignatura
                             $consultaMensajesNoLeidos = "SELECT COUNT(*) AS cantidad FROM mensajes WHERE idCurso = '$idCurso' AND idAsignatura = '$idAsignatura' AND leido = 0";
-                            $resultadoMensajesNoLeidos = mysqli_query($conn, $consultaMensajesNoLeidos);
+                            $resultadoMensajesNoLeidos = mysqli_query($conexion, $consultaMensajesNoLeidos);
                             $filaMensajesNoLeidos = mysqli_fetch_assoc($resultadoMensajesNoLeidos);
                             $cantidadMensajesNoLeidos = $filaMensajesNoLeidos['cantidad'];
                     

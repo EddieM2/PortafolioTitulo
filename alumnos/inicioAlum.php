@@ -42,7 +42,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         <div class="barra-alumnos">
         <a href="notas_alumno.php" class="boton">Ver Calificaciones</a>
         <a href="asistenciaAlumno.php" class="boton">Asistencia</a>
-        //<button id="btnAsistencias">Asistencias</button>
+        <a href="CanalDenun.php" class="boton">Denuncias</a>
             <a href="../segPsicologico/segPsico.php"><button>Seguimiento psicológico</button></a>
         </div>
         <div id="calendar">

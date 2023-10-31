@@ -7,18 +7,25 @@ if (!isset($_SESSION['rut'])) {
 
 include("../models/db.php");
 
-// Obtén el rut del alumno desde la sesión
-$alumno_rut = $_SESSION['rut'];
+if (isset($_SESSION['rut'])) {
+    $apoderado_rut = $_SESSION['rut'];
+    
+    // Rut del alumno seleccionado (enviado desde la página anterior)
+    $rut_pupilo = $_POST['rut_pupilo'];
 
-// Realiza una consulta para obtener la asistencia del alumno en función de su rut
-$query = "SELECT fecha, presente
-          FROM asistencia
-          WHERE rutAlumno = '$alumno_rut'";
+    // Realiza una consulta para obtener la asistencia del alumno en función de su rut
+    $query = "SELECT fecha, presente
+              FROM asistencia
+              WHERE rutAlumno = '$rut_pupilo'";
 
-$result = mysqli_query($conexion, $query);
+    $result = mysqli_query($conexion, $query);
 
-if (!$result) {
-    die("Error en la consulta: " . mysqli_error($conexion));
+    if (!$result) {
+        die("Error en la consulta: " . mysqli_error($conexion));
+    }
+} else {
+    echo "No se proporcionó un Rut de alumno válido.";
+    exit();
 }
 ?>
 
@@ -132,4 +139,5 @@ if (!$result) {
     </script>
 </body>
 </html>
+
 

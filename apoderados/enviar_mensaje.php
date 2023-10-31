@@ -7,7 +7,7 @@ $nombre_apoderado = $_GET['nombre_apoderado'];
 $idCurso = $_GET['idCurso'];
 $idAsignatura = $_GET['idAsignatura'];
 
-// Resto del código de la página "enviar_mensaje.php"
+
 ?>
 
 

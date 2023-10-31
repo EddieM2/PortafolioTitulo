@@ -96,5 +96,5 @@ $nombreAsignatura = $asignatura['nombre'];
 
 <?php
 // Cerrar la conexión a la base de datos
-mysqli_close($conn);
+mysqli_close($conexion);
 ?>

@@ -3,7 +3,7 @@
 include("../models/db.php");
 
 // Realiza la consulta SQL para recuperar los formularios y respuestas
-$sql = "SELECT * FROM respuestas_salud_mental";
+$sql = "SELECT * FROM respuestas_salud";
 $result = mysqli_query($conexion, $sql);
 
 if (!$result) {
@@ -22,7 +22,7 @@ if (!$result) {
     <h2>Formularios Enviados</h2>
     <table border="1">
         <tr>
-            <th>ID</th>
+          
             <th>Rut del Alumno</th>
             <th>Tristeza</th>
             <th>Autolesiones</th>
@@ -32,23 +32,25 @@ if (!$result) {
             <th>Conflictos</th>
             <th>Consumo de Sustancias</th>
             <th>Autoestima</th>
-            <th>Responder</th>
+            <th>explicacion</th>
+        
         </tr>
 
         <?php
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+      //      echo "<td>" . htmlspecialchars($row['id']) . "</td>";
             echo "<td>" . htmlspecialchars($row['rut_alumno']) . "</td>";
             echo "<td>" . htmlspecialchars($row['tristeza']) . "</td>";
             echo "<td>" . htmlspecialchars($row['autolesiones']) . "</td>";
             echo "<td>" . htmlspecialchars($row['cambios_sueño']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['concentración']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['concentracion']) . "</td>";
             echo "<td>" . htmlspecialchars($row['apoyo_amigos']) . "</td>";
             echo "<td>" . htmlspecialchars($row['conflictos']) . "</td>";
             echo "<td>" . htmlspecialchars($row['consumo_sustancias']) . "</td>";
             echo "<td>" . htmlspecialchars($row['autoestima']) . "</td>";
-            echo '<td><a href="responder_formulario_salud.php?id=' . $row['id'] . '">Responder</a></td>';
+            echo "<td>" . htmlspecialchars($row['explicacion']) . "</td>";
+           // echo '<td><a href="responder_formulario_salud.php?id=' . $row['id'] . '">Responder</a></td>';
             echo "</tr>";
         }
         ?>

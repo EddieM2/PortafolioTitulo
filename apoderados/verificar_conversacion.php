@@ -23,7 +23,7 @@ if (isset($_SESSION['rut'])) {
                              WHERE idCurso = $idCurso AND idAsignatura = $idAsignatura
                              AND idEmisor = '$apoderado_rut' AND idReceptor = '$rut_profesor'";
 
-    $resultadoConversacion = mysqli_query($conn, $consultaConversacion);
+    $resultadoConversacion = mysqli_query($conexion, $consultaConversacion);
 
     if ($resultadoConversacion) {
         $filaConversacion = mysqli_fetch_assoc($resultadoConversacion);

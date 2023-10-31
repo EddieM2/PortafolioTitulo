@@ -25,7 +25,7 @@
 
     // Consultar el nombre del curso
     $curso_query = "SELECT nombre FROM curso WHERE idCurso = $idCurso";
-    $curso_result = mysqli_query($conn, $curso_query);
+    $curso_result = mysqli_query($conexion, $curso_query);
 
     if (!$curso_result) {
         die("Error al obtener el nombre del curso: " . mysqli_error($conexion));
@@ -36,7 +36,7 @@
 
     // Consultar el nombre de la asignatura
     $asignatura_query = "SELECT nombre FROM asignatura WHERE idAsignatura = $idAsignatura";
-    $asignatura_result = mysqli_query($conn, $asignatura_query);
+    $asignatura_result = mysqli_query($conexion, $asignatura_query);
 
     if (!$asignatura_result) {
         die("Error al obtener el nombre de la asignatura: " . mysqli_error($conn));
@@ -47,7 +47,7 @@
 
     // Consultar el nombre del apoderado
     $apoderado_query = "SELECT nombre FROM apoderado WHERE rut = '$rut_Apoderado'";
-    $apoderado_result = mysqli_query($conn, $apoderado_query);
+    $apoderado_result = mysqli_query($conexion, $apoderado_query);
 
     if (!$apoderado_result) {
         die("Error al obtener el nombre del apoderado: " . mysqli_error($conexion));

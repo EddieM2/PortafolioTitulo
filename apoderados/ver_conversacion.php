@@ -80,7 +80,7 @@ if (isset($_SESSION['rut'])) {
     }
 
     // Cerrar la conexión a la base de datos
-    mysqli_close($conn);
+    mysqli_close($conexion);
 } else {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
     header("Location: inicioSesionApoderado.php");
