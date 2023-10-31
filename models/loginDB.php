@@ -100,6 +100,16 @@ if (isset($_POST['validate_user'])) {
              $_SESSION['rut'] = $utp_rut;
             header("Location: ../utp/inicioUtp.php");
             exit();
+        } else if ($filas['cargo_id'] == 7) { // denuncia
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_row = mysqli_fetch_array($rut_result);
+            $denuncia_rut = $rut_row['rut'];
+ 
+             // Guarda el RUT del apoderado en la sesión
+             $_SESSION['rut'] = $denuncia_rut;
+            header("Location: ../seguimiento_denuncia/inicioDenuncia.php");
+            exit();
         } else {
             // Cargo desconocido
             header("Location: ../index.php");
