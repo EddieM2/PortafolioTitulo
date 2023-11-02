@@ -40,9 +40,11 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     </div>
         
         <div class="barra-alumnos">
-        <a href="notas_alumno.php" class="boton">Ver Calificaciones</a>
-        <a href="asistenciaAlumno.php" class="boton">Asistencia</a>
-        <a href="CanalDenun.php" class="boton">Denuncias</a>
+        <a href="notas_alumno.php"><button>Ver Calificaciones</button></a>
+        <a href="asistenciaAlumno.php">
+    <button id="btnAsistencia">Asistencia</button>
+    </a>
+        <a href="CanalDenun.php" class="boton"><button>Denuncias</button></a>
             <a href="../segPsicologico/segPsico.php"><button>Seguimiento psicológico</button></a>
         </div>
         <div id="calendar">
