@@ -9,4 +9,10 @@ $conexion = mysqli_connect(
     'probando2'
 );
 
+$conexion2 = mysqli_connect(
+    'localhost',
+    'root',
+    '',
+    'login_user'
+);
 ?>

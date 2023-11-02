@@ -1,19 +1,25 @@
 <?php include("db.php") ?>
 
 <?php
-session_start();
+//session_start();
+$login_user = $conexion2->query("SELECT DATABASE()")->fetch_row()[0];  // Obtiene el nombre de la base de datos de la conexión $conexion2
+$probando2 = $conexion->query("SELECT DATABASE()")->fetch_row()[0];  // Obtiene el nombre de la base de datos de la conexión $conexion2
+
+
 
 if (isset($_POST['validate_user'])) {
     $user = $_POST['user'];
     $pass = $_POST['pass'];
 
-    $query = "SELECT l.*, p.nombre AS nombre_profesor FROM login l
-              LEFT JOIN profesor p ON l.user = p.rut
-              WHERE user='$user' and pass='$pass'";
-    $result = mysqli_query($conexion, $query);
+    $query = "SELECT l.*, p.nombre AS nombre_profesor FROM $login_user.login AS l
+    LEFT JOIN $probando2.profesor AS p ON l.user = p.rut
+    WHERE user='$user' and pass='$pass'";
+
+
+    $result = mysqli_query($conexion2, $query);
 
     if (!$result) {
-        die("Query failed: " . mysqli_error($conexion));
+        die("Query failed: " . mysqli_error($conexion2, $conexion));
     }
 
     $filas = mysqli_fetch_array($result);
@@ -26,7 +32,7 @@ if (isset($_POST['validate_user'])) {
 
             // Consulta adicional para obtener el RUT del administrador
             $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
-            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $admin_rut = $rut_row['rut'];
 
@@ -43,7 +49,7 @@ if (isset($_POST['validate_user'])) {
 
             // Consulta adicional para obtener el RUT del profesor
             $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
-            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $user_rut = $rut_row['rut'];
 
@@ -60,7 +66,7 @@ if (isset($_POST['validate_user'])) {
     
             // Consulta adicional para obtener el RUT del alumno
             $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
-            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $alumno_rut = $rut_row['rut'];
     
@@ -72,7 +78,7 @@ if (isset($_POST['validate_user'])) {
             exit();
         } else if ($filas['cargo_id'] == 4) { // Apoderado
             $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
-            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $apoderado_rut = $rut_row['rut'];
  
@@ -82,7 +88,7 @@ if (isset($_POST['validate_user'])) {
             exit();
         } else if ($filas['cargo_id'] == 5) { // salud mental
             $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
-            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $salud_rut = $rut_row['rut'];
  
@@ -92,7 +98,7 @@ if (isset($_POST['validate_user'])) {
             exit();
         } else if ($filas['cargo_id'] == 6) { // salud mental
             $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
-            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $utp_rut = $rut_row['rut'];
  
@@ -102,7 +108,7 @@ if (isset($_POST['validate_user'])) {
             exit();
         } else if ($filas['cargo_id'] == 7) { // denuncia
             $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
-            $rut_result = mysqli_query($conexion, $rut_query);
+            $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $denuncia_rut = $rut_row['rut'];
  

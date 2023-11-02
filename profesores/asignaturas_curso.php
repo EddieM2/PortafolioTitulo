@@ -102,6 +102,7 @@ if (!$cursos_result) {
     </div>
 
     <a href="logout.php">Cerrar Sesión</a>
+    <a href="inicioprofesores.php">Inicio</a>
 </body>
 </html>
 

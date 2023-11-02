@@ -98,6 +98,9 @@
             if (!$resultado_insertar_mensaje) {
                 die("Error al enviar el mensaje: " . mysqli_error($conexion));
             }
+              // Redirigir a la misma página después de enviar el mensaje
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
         }
 
         // Consultar los mensajes de la conversación

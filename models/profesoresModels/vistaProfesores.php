@@ -89,6 +89,6 @@
         ?>
     </table>
 
-    <a class="add-button" href="agregar_profesor.php">Agregar Profesor</a>
+    <a class="add-button" href="insertProfesor.php">Agregar Profesor</a>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<?php include("../models/db.php") ?>
+<?php include("../db.php") ?>
 
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@
             echo "<p>Profesor agregado con éxito.</p>";
 
             // Redirigir al usuario a la página "inicioProf"
-            header("Location: inicioProf.php");
+            header("Location: vistaProfesores.php");
             exit; // Asegurarse de que el script se detenga después de la redirección
         } else {
             // Error: no se pudo agregar el profesor
