@@ -1,0 +1,195 @@
+/* Estilos para el fondo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #125E5E; /* Color del colegio */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.card {
+    background-color: #ffffff;
+    color: #125E5E; 
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+
+.course-card {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #333; 
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+
+.subject-list {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #333; 
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+.subject-card {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    border-top: 1px solid #cccccc;
+    padding-top: 10px;
+}
+
+.btn {
+    text-decoration: none;
+    color: #fff;
+    background-color: #125E5E; 
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+    min-width: 150px;
+    text-align: center;
+    margin: 0 5px;
+    height: 40px;
+}
+
+.btn:hover {
+    background-color: #0faf0f;
+    transform: scale(1.05);
+}
+/* Estilo para el botón de cerrar sesión */
+.btn-logout {
+    text-decoration: none;
+    color: #fff;
+    background-color: #FF0000; /* Rojo */
+    padding: 5px 10px;
+    border: none; /* Eliminamos el borde para un aspecto más limpio */
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.1s; /* Reducimos la duración de la transformación para una animación más sutil */
+    display: inline-block;
+    min-width: 150px;
+    text-align: center;
+    margin: 0 5px;
+    height: 40px;
+    cursor: pointer; /* Cambiamos el cursor al pasar sobre el botón */
+}
+
+.btn-logout:hover {
+    background-color: #FF3333; /* Un tono más claro de rojo al pasar el mouse */
+    transform: scale(1.05); /* Hacemos que el botón se agrande ligeramente */
+}
+/* Estilo para el botón de volver atrás */
+.btn-back {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff; /* Azul, puedes cambiar el color si lo deseas */
+    padding: 5px 10px;
+    border: none; /* Eliminamos el borde para un aspecto más limpio */
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.1s; /* Reducimos la duración de la transformación para una animación más sutil */
+    display: inline-block;
+    min-width: 150px;
+    text-align: center;
+    margin: 0 5px;
+    height: 40px;
+    cursor: pointer; /* Cambiamos el cursor al pasar sobre el botón */
+}
+
+.btn-back:hover {
+    background-color: #0056b3; /* Un tono más claro de azul al pasar el mouse */
+    transform: scale(1.05); /* Hacemos que el botón se agrande ligeramente */
+}
+
+/* Estilo para la tarjeta "card2" */
+.card2 {
+    background-color: #ffffff;
+    color: #125E5E; 
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 90%; /* Establece el ancho al 90% del contenedor principal */
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Añadir estilos adicionales según sea necesario para "card2" */
+
+/* Estilo para la tarjeta personalizada */
+/* Estilo para la tarjeta personalizada */
+.custom-card {
+    background-color: #ffffff;
+    color: #125E5E; 
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 90%; /* Ocupa el 90% del ancho del contenedor principal */
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+
+    /* Hacer que la tarjeta sea más receptiva */
+    width: 100%; /* Establecer el ancho al 100% del contenedor principal */
+}
+
+/* Estilo para el cuerpo de la tarjeta personalizada */
+.custom-card-body {
+    /* Agrega estilos según tus necesidades para el cuerpo de la tarjeta */
+    padding: 1rem; /* Añadir espaciado alrededor del contenido */
+    text-align: center; /* Centrar el contenido en la tarjeta */
+    max-width: 100%; /* Ocupa el 90% del ancho de la tarjeta */
+    margin: 0 auto; /* Centrar el cuerpo en la tarjeta */
+}
+
+/* Estilo para la tabla dentro de la tarjeta */
+.custom-card table {
+    /* Estilos de tabla personalizados si es necesario */
+    max-width: 100%; /* Hacer que la tabla ocupe todo el ancho del cuerpo */
+}
+
+.custom-card input[type="number"] {
+    width: 45%; /* Establece el ancho al 45% del contenedor */
+    min-width: 50px; /* Ancho mínimo de 50px para evitar que sean muy pequeños */
+}
+
+
+/* Ajusta el tamaño de la fuente dentro de los input si es necesario */
+.custom-card input[type="number"] {
+    font-size: 14px; /* Tamaño de fuente personalizado */
+}
+
+.custom-card .custom-card-apellido-materno {
+    display: none; /* Oculta el campo de "Apellido Materno" en pantallas más pequeñas */
+}
+
+/* Estilos CSS para tamaños de pantalla de 768px o menos */
+@media (max-width: 768px) {
+    .custom-card-apellido-materno {
+        display: none; /* Oculta el Apellido Materno en pantallas más pequeñas */
+    }
+}
+/* Estilo para hacer que las columnas de notas sean más estrechas en pantallas pequeñas */
+@media (max-width: 768px) {
+    .custom-card table td:nth-child(5),
+    .custom-card table td:nth-child(6),
+    .custom-card table td:nth-child(7),
+    .custom-card table td:nth-child(8) {
+        width: 10%; /* Ajusta el ancho de las columnas de notas según tus necesidades */
+    }
+}
+

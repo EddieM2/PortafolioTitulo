@@ -2,7 +2,6 @@
 include("../models/db.php");
 
 // Verifica si se han recibido los parámetros necesarios en la URL
-// Verifica si se han recibido los parámetros necesarios en la URL
 if (isset($_GET['fecha']) && isset($_GET['idCurso'])) {
     $fecha = $_GET['fecha'];
     $idCurso = $_GET['idCurso'];
@@ -12,13 +11,30 @@ if (isset($_GET['fecha']) && isset($_GET['idCurso'])) {
     $result_asistencia = mysqli_query($conexion, $query_asistencia);
 
     if ($result_asistencia) {
+        echo "<!DOCTYPE html>";
+        echo "<html lang='es'>";
+        echo "<head>";
+        echo "<meta charset='UTF-8'>";
+        echo "<title>Editar Asistencia</title>";
+        echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css'>"; // Enlace a Bootstrap
+        echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>"; // Enlace a Font Awesome
+        echo "<link rel='stylesheet' href='../src/css/profes.css'>"; // Agrega el enlace a tu archivo CSS
+        echo "</head>";
+        echo "<body class='body'>";
+
+        echo "<div class='container'>";
+        echo "<div class='custom-card'>";
+        echo "<div class='custom-card-body'>";
         echo "<h1>Editar Asistencia</h1>";
         echo "<form method='post' action='procesar_asistencia.php'>";
         echo "<input type='hidden' name='fecha' value='$fecha'>";
         echo "<input type='hidden' name='idCurso' value='$idCurso'>";
 
-        echo "<table border='1'>";
+        echo "<table class='table table-striped'>";
+        echo "<thead>";
         echo "<tr><th>RUT del Alumno</th><th>Nombre</th><th>Apellido Paterno</th><th>Apellido Materno</th><th>Asistencia</th></tr>";
+        echo "</thead>";
+        echo "<tbody>";
 
         while ($row_asistencia = mysqli_fetch_assoc($result_asistencia)) {
             $idAlumno = $row_asistencia['rutAlumno'];
@@ -47,10 +63,18 @@ if (isset($_GET['fecha']) && isset($_GET['idCurso'])) {
             }
         }
 
+        echo "</tbody>";
         echo "</table>";
 
-        echo "<input type='submit' value='Guardar Asistencia'>";
+        echo "<button class='btn btn-primary' type='submit'><i class='fas fa-save'></i> Guardar Asistencia</button>";
         echo "</form>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+
+        echo "<button class='btn btn-secondary' onclick='window.history.back();'><i class='fas fa-arrow-left'></i> Volver Atrás</button>";
+        echo "</body>";
+        echo "</html>";
     } else {
         echo "Error al obtener la asistencia.";
     }
@@ -58,4 +82,3 @@ if (isset($_GET['fecha']) && isset($_GET['idCurso'])) {
     echo "Faltan parámetros en la URL.";
 }
 ?>
-
