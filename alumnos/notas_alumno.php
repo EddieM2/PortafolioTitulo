@@ -11,7 +11,7 @@ include("../models/db.php");
 $alumno_rut = $_SESSION['rut'];
 
 // Realiza una consulta para obtener las calificaciones del alumno junto con el nombre de la asignatura
-$query = "SELECT cal.idCalificacion, cal.fecha, asi.nombre AS nombre_asignatura, cal.calificacion1, cal.calificacion2, cal.calificacion3, cal.calificacion4
+$query = "SELECT cal.idCalificacion, cal.fecha, asi.nombre AS nombre_asignatura, cal.calificacion1, cal.calificacion2, cal.calificacion3, cal.calificacion4, cal.promedio
           FROM calificaciones AS cal
           INNER JOIN asignatura AS asi ON cal.idAsignatura = asi.idAsignatura
           WHERE cal.idAlumno = '$alumno_rut'";
@@ -48,6 +48,9 @@ if (!$result) {
                         echo '<p>Calificación 2: ' . $row['calificacion2'] . '</p>';
                         echo '<p>Calificación 3: ' . $row['calificacion3'] . '</p>';
                         echo '<p>Calificación 4: ' . $row['calificacion4'] . '</p>';
+                        if ($row['promedio'] >= 1.0) {
+                            echo '<p>Promedio: ' . $row['promedio'] . '</p>';
+                        }
                         echo '</div>';
                         echo '</div>';
                     }

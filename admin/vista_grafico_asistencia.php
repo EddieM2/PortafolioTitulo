@@ -47,7 +47,7 @@
                     // Borra el contenido del contenedor antes de agregar un nuevo gráfico
                     document.getElementById("graficosContainer").innerHTML = "";
 
-                    // Realizar una petición AJAX para obtener los datos del gráfico
+                    // Realiza una petición AJAX para obtener los datos del gráfico
                     $.ajax({
                         url: "../models/adminModels/controlador_grafico_asistencia.php",
                         method: "POST",

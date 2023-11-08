@@ -1,5 +1,4 @@
 <?php include("../db.php") ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +6,8 @@
 </head>
 <body>
     <h1>Agregar Profesor</h1>
-
     <?php
+    // Incluye el archivo de conexión a la base de datos
 
     // Verificar si se ha enviado el formulario
     if (isset($_POST['agregar_profesor'])) {
@@ -20,10 +19,13 @@
         $fechaNacimiento = $_POST['fechaNacimiento'];
         $telefono = $_POST['telefono'];
         $genero = $_POST['genero'];
-        $idCargo = $_POST['idCargo']; // Agregamos el campo idCargo
+        $idCargo = $_POST['idCargo'];
+        $idCurso = $_POST['curso']; // Agrega la selección del curso
+        $idAsignatura = $_POST['asignatura']; // Agrega la selección de la asignatura
 
         // Insertar el nuevo profesor en la tabla profesor
-        $query = "INSERT INTO profesor (rut, nombre, apellidoP, apellidoM, correo, fechaNacimiento, telefono, genero, idCargo) VALUES ('$rut', '$nombre', '$apellidoP', '$apellidoM', '$correo', '$fechaNacimiento', '$telefono', '$genero', '$idCargo')";
+        $query = "INSERT INTO profesor (rut, nombre, apellidoP, apellidoM, correo, fechaNacimiento, telefono, genero, idCargo, idCurso, idAsignatura) 
+                  VALUES ('$rut', '$nombre', '$apellidoP', '$apellidoM', '$correo', '$fechaNacimiento', '$telefono', '$genero', '$idCargo', '$idCurso', '$idAsignatura')";
         $result = mysqli_query($conexion, $query);
 
         if ($result) {
@@ -71,7 +73,38 @@
             <option value="2">Profesor</option>
             <option value="3">Alumno</option>
             <option value="4">Apoderado</option>
+        </select>
+        <br>
+        <!-- Lista de Cursos obtenidos de la base de datos -->
+        <label for="curso">Curso:</label>
+        <select name="curso" required>
+            <option value="">Seleccione un curso</option>
+            <?php
+            $queryCursos = "SELECT idCurso, nombre FROM curso";
+            $resultCursos = mysqli_query($conexion, $queryCursos);
+
+            if ($resultCursos) {
+                while ($rowCurso = mysqli_fetch_assoc($resultCursos)) {
+                    echo "<option value='" . $rowCurso['id'] . "'>" . $rowCurso['nombre'] . "</option>";
+                }
+            }
+            ?>
         </select><br>
+        <!-- Lista de Asignaturas obtenidas de la base de datos -->
+        <label for="asignatura">Asignatura:</label>
+<select name="asignatura" required>
+    <option value="">Seleccione una asignatura</option>
+    <?php
+    $queryAsignaturas = "SELECT idAsignatura, nombre FROM asignatura";
+    $resultAsignaturas = mysqli_query($conexion, $queryAsignaturas);
+
+    if ($resultAsignaturas) {
+        while ($rowAsignatura = mysqli_fetch_assoc($resultAsignaturas)) {
+            echo "<option value='" . $rowAsignatura['id'] . "'>" . $rowAsignatura['nombre'] . "</option>";
+        }
+    }
+    ?>
+</select><br>
 
         <input type="submit" name="agregar_profesor" value="Agregar Profesor">
     </form>

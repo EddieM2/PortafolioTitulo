@@ -1,5 +1,6 @@
+<?php include("../db.php") ?>
 <?php
-session_start();
+
 
 if (isset($_SESSION['rut'])) {
     $apoderado_rut = $_SESSION['rut'];
@@ -15,28 +16,23 @@ if (isset($_SESSION['rut'])) {
     $mensaje = $_POST['mensaje'];
 
     // Conectar a la base de datos
-    $conn = mysqli_connect(
-        'localhost',
-        'root',
-        '',
-        'probando2'
-    );
+
 
     // Insertar un nuevo registro en la tabla de conversaciones
     $consultaInsertarConversacion = "INSERT INTO conversaciones (IdUsuario1, IdUsuario2)
                                      VALUES ('$apoderado_rut', '$rut_profesor')";
 
-    $resultadoInsertarConversacion = mysqli_query($conn, $consultaInsertarConversacion);
+    $resultadoInsertarConversacion = mysqli_query($conexion, $consultaInsertarConversacion);
 
     if ($resultadoInsertarConversacion) {
         // Obtener el ID de la conversación recién creada
-        $idConversacion = mysqli_insert_id($conn);
+        $idConversacion = mysqli_insert_id($conexion);
 
         // Insertar el nuevo mensaje en la tabla de mensajes
         $consultaInsertarMensaje = "INSERT INTO mensajes (idEmisor, idReceptor, mensaje, fechaEnvio, idCurso, idAsignatura, idConversacion)
                                      VALUES ('$apoderado_rut', '$rut_profesor', '$mensaje', NOW(), $idCurso, $idAsignatura, $idConversacion)";
 
-        $resultadoInsertarMensaje = mysqli_query($conn, $consultaInsertarMensaje);
+        $resultadoInsertarMensaje = mysqli_query($conexion, $consultaInsertarMensaje);
 
         if ($resultadoInsertarMensaje) {
             // Mensaje enviado con éxito, redirigir a la página de visualización de mensajes
@@ -47,7 +43,7 @@ exit();
             
             
         } else {
-            echo "Error al enviar el mensaje: " . mysqli_error($conn);
+            echo "Error al enviar el mensaje: " . mysqli_error($conexion);
         }
     } else {
         echo "Error al iniciar la conversación: " . mysqli_error($conn);

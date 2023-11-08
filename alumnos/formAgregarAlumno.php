@@ -26,8 +26,7 @@
                     <label for="apellidoP">Apellido Paterno:</label>
                     <input type="text" name="apellidoP" class="form-control" required>
 
-                    <label for="idCargo">ID Cargo:</label>
-                    <input type="text" name="idCargo" class="form-control" required>
+                    <input type="hidden" name="idCargo" value="3">
 
                     <label for="fechaNacimiento">Fecha de Nacimiento:</label>
                     <input type="date" name="fechaNacimiento" class="form-control" required>

@@ -19,10 +19,10 @@ if (isset($_GET["rut"])) {
     $sql = "DELETE FROM alumno WHERE rut = '$rut'";
 
     if ($conexion->query($sql) === TRUE) {
-        // La eliminación fue exitosa
+        
         echo "Alumno eliminado correctamente.";
     } else {
-        // Ocurrió un error durante la eliminación
+        /
         echo "Error al eliminar el alumno: " . $conexion->error;
     }
 

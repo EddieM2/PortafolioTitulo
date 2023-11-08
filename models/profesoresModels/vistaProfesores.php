@@ -66,6 +66,12 @@
                     </table>
                 </div>
 
-    <a class="add-button" href="insert_profesor.php"><button>Agregar Profesor</button></a>
+                <a class="add-button" href="insertprofesor.php"><button>Agregar Profesor</button></a>
+                
+                <!-- Botón para administrar cursos y asignaturas -->
+                <a class="add-button" href="administrarCursosAsignaturas.php"><button>Administrar Cursos y Asignaturas</button></a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

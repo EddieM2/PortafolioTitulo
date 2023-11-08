@@ -7,6 +7,7 @@ include("grafico_model.php");
 <html>
 <head>
     <title>Generar Gráfico de Promedios</title>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
@@ -17,13 +18,13 @@ include("grafico_model.php");
     <form id="formularioCursos">
         <label for="curso">Curso:</label>
         <select name="curso" id="curso">
-            <option value="">Seleccione un curso</option> <!-- Opción vacía por defecto -->
-            <!-- Opciones de cursos se cargarán dinámicamente -->
+            <option value="">Seleccione un curso</option> 
+          
         </select>
 
         <label for="asignatura">Asignatura:</label>
         <select name="asignatura" id="asignatura">
-            <!-- Opciones de asignaturas se cargarán dinámicamente -->
+            
         </select>
 
         <input type="submit" value="Generar Gráfico">
@@ -34,9 +35,9 @@ include("grafico_model.php");
     <p>Asignatura: <span id="nombreAsignatura"></span></p>
     <canvas id="chart-container"></canvas>
     <button id="descargar-grafico">Descargar Gráfico</button>
-
+    <script src="../src/javas/descargar_grafico_calificaciones.js"></script>
     <script>
-        var myChart; // Variable para almacenar el gráfico actual
+        var myChart; 
 
         // Crea el gráfico con los datos obtenidos
         function crearGrafico(promedios) {
@@ -74,31 +75,7 @@ include("grafico_model.php");
                 }
             });
 
-            // Agregar evento al botón de descarga
-            var descargarBoton = document.getElementById("descargar-grafico");
-            descargarBoton.addEventListener("click", function () {
-                // Crear un PDF con jsPDF
-                var pdf = new jsPDF();
-                pdf.text(10, 10, "Gráfico de Promedios de Calificaciones");
-
-                // Obtener el nombre del curso y la asignatura
-                var nombreCurso = $('#nombreCurso').text();
-                var nombreAsignatura = $('#nombreAsignatura').text();
-                var nombrePDF = "Promedios_" + nombreCurso + "_" + nombreAsignatura + ".pdf";
-
-                // Agregar el nombre del curso y la asignatura al título del PDF
-                pdf.text(10, 20, "Curso: " + nombreCurso);
-                pdf.text(10, 30, "Asignatura: " + nombreAsignatura);
-
-                // Obtener la imagen del gráfico como base64
-                var graficoBase64 = document.getElementById("chart-container").toDataURL("image/png");
-
-                // Agregar la imagen al PDF
-                pdf.addImage(graficoBase64, "PNG", 10, 40, 180, 100);
-
-                // Descargar el PDF con el nombre personalizado
-                pdf.save(nombrePDF);
-            });
+  
         }
 
         // JavaScript para cargar cursos y asignaturas dinámicamente
