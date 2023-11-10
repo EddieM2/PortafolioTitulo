@@ -13,6 +13,7 @@ descargarBoton.addEventListener("click", function () {
     var nombreCurso = $('#nombreCurso').text();
     var nombreAsignatura = $('#nombreAsignatura').text();
     var nombrePDF = "Promedios_" + nombreCurso + "_" + nombreAsignatura + ".pdf";
+    
 
     // Agregar el nombre del curso y la asignatura al título del PDF
     pdf.text(10, 20, "Curso: " + nombreCurso);

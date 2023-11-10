@@ -5,36 +5,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Gráfico de Asistencia</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
     <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../node_modules/html2canvas/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="../src/css/graficos.css">
 </head>
 <body>
-    <h1>Gráfico de Asistencia</h1>
+    <main>
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Gráfico de Asistencia</h1>
+                </div>
+                <div class="card-body">
+                    <!-- Formulario para seleccionar el curso -->
+                    <form id="formularioAsistencia">
+                        <div class="form-group">
+                            <label for="curso">Selecciona un curso:</label>
+                            <select class="form-control" name="curso" id="curso">
+                                <?php
+                                // Obtiene los cursos desde la base de datos
+                                $queryCursos = "SELECT idCurso, nombre AS nombreCurso FROM curso";
+                                $resultCursos = mysqli_query($conexion, $queryCursos);
 
-    <!-- Formulario para seleccionar el curso -->
-    <form id="formularioAsistencia">
-        <label for="curso">Selecciona un curso:</label>
-        <select name="curso" id="curso">
-            <?php
-            // Obtiene los cursos desde la base de datos
-            $queryCursos = "SELECT idCurso, nombre AS nombreCurso FROM curso";
-            $resultCursos = mysqli_query($conexion, $queryCursos);
+                                while ($curso = mysqli_fetch_assoc($resultCursos)) {
+                                    echo "<option value='" . $curso['idCurso'] . "'>" . $curso['nombreCurso'] . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="generar-grafico" class="btn btn-primary">Generar Gráfico</button>
+                            <button type="button" id="descargarGrafico" class="btn btn-primary">Descargar Gráfico</button>
+                        </div>
+                    </form>
 
-            while ($curso = mysqli_fetch_assoc($resultCursos)) {
-                echo "<option value='" . $curso['idCurso'] . "'>" . $curso['nombreCurso'] . "</option>";
-            }
-            ?>
-        </select>
-        <button type="button" id="generar-grafico">Generar Gráfico</button>
-    </form>
-
-    <!-- Lugar para mostrar los gráficos -->
-    <div id="graficosContainer" style="width: 40%; max-width: 1000px; margin: 0 auto;"></div>
-
-    <button id="descargarGrafico">Descargar Gráfico</button>
+                    <!-- Lugar para mostrar los gráficos -->
+                    <div id="graficosContainer" >
+  <!-- Contenido de la tarjeta aquí -->
+</div>
+            </div>
+        </div>
+    </main>
 
     <script>
         $(document).ready(function() {

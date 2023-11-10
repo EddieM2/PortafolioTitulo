@@ -28,13 +28,18 @@ if (!$result) {
     <meta charset="UTF-8">
     <title>Asistencia del Alumno</title>
     <!-- Agrega aquí tus enlaces a CSS y otros recursos -->
+    <link rel="stylesheet" href="ruta_de_tu_estilo.css"> <!-- Agrega la ruta de tu hoja de estilo CSS -->
     <style>
-        /* Agrega estilos CSS personalizados aquí */
+        /* Estilos CSS */
+        body {
+            background-color: #125E5E; /* Reemplaza XXXXXX con el color del colegio */
+        }
         .month-box {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
             cursor: pointer;
+            background-color: #FFFFFF; /* Color de fondo para los acordeones */
         }
         .month-box table {
             display: none;
@@ -42,7 +47,31 @@ if (!$result) {
         .attendance-summary {
             margin-top: 20px;
             font-weight: bold;
+            color: #000000; /* Color de texto para el resumen de asistencia */
+            text-align: center;
+
+            
+            
+            
         }
+        h1 {
+            text-align: center; /* Para centrar el título horizontalmente */
+        }
+        .btn-back {
+    display: block;
+    margin: 0 auto; /* Esto centrará el botón horizontalmente */
+    padding: 10px 20px;
+    background-color: #007bff; /* Color de fondo */
+    color: #fff; /* Color de texto */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-back i {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
     </style>
 </head>
 <body>
@@ -114,7 +143,7 @@ if (!$result) {
         // Calcular el porcentaje de asistencia
         $attendancePercentage = ($presentDays / $totalDays) * 100;
 
-        echo "<div class='attendance-summary'>";
+        echo "<div class='attendance-summary style='text-align: center;'>";
         echo "Porcentaje de Asistencia Total: " . number_format($attendancePercentage, 2) . "%";
         echo "</div>";
     } else {
@@ -122,7 +151,7 @@ if (!$result) {
     }
     ?>
 
-    <a href="inicioAlum.php">Volver a la página de inicio del alumno</a>
+<button class="btn-back" onclick="window.history.back();"><i class="fas fa-arrow-left"></i> Volver Atrás</button>
 
     <script>
         function toggleMonth(monthBox) {
@@ -132,4 +161,3 @@ if (!$result) {
     </script>
 </body>
 </html>
-

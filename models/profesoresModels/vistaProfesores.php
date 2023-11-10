@@ -66,10 +66,10 @@
                     </table>
                 </div>
 
-                <a class="add-button" href="insertprofesor.php"><button>Agregar Profesor</button></a>
+                <a class="btn btn-primary" href="insertprofesor.php">Agregar Profesor</a>
                 
                 <!-- Botón para administrar cursos y asignaturas -->
-                <a class="add-button" href="administrarCursosAsignaturas.php"><button>Administrar Cursos y Asignaturas</button></a>
+                <a class="btn btn-primary" href="administrarCursosAsignaturas.php">Administrar Cursos y Asignaturas</a>
             </div>
         </div>
     </div>

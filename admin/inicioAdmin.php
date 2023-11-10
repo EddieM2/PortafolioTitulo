@@ -65,9 +65,16 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     <div id="calendar-grid"></div>
     </div>
     <div class="asistencia-card">
-    <h3>Asistencia</h3>
-    <div class="grafico">
-        <canvas id="asistencia-chart"></canvas>
+    <h3>Gráficos</h3>
+    <div class="btn btn-primary">
+        <a class="btn btn-primary" href="vista_grafico_asistencia.php">
+            <i class="fas fa-chart-line"></i> Gráfico de Asistencia
+        </a>
+    </div>
+    <div class="btn btn-primary">
+        <a class="btn btn-primary" href="grafico_calificaciones.php">
+            <i class="fas fa-chart-bar"></i> Gráfico de Calificaciones
+        </a>
     </div>
 </div>
 

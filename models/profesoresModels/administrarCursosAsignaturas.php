@@ -45,14 +45,14 @@
                                     }
                                     echo "</select>";
                                     echo "</td>";
-                                    echo "<td><a href='editar_asignatura.php?id=" . $row['idAsignatura'] . "'>Editar</a></td>";
+                                    echo "<td><a class='btn btn-primary' href='editar_asignatura.php?id=" . $row['idAsignatura'] . "'>Editar</a></td>";
                                     echo "</tr>";
                                 }
                             }
                             ?>
                         </table>
                     </div>
-                    <button type="submit" name="guardar_asignaturas">Guardar Cambios</button>
+                    <button class="btn btn-primary" type="submit" name="guardar_asignaturas">Guardar Cambios</button>
                 </form>
                 <h2>Agregar Nueva Asignatura</h2>
                 <form method="POST" action="agregar_asignatura.php">
@@ -71,7 +71,7 @@
                         }
                         ?>
                     </select>
-                    <button type="submit" name="agregar_asignatura">Agregar Asignatura</button>
+                    <button class="btn btn-primary" type="submit" name="agregar_asignatura">Agregar Asignatura</button>
                 </form>
             </div>
         </div>

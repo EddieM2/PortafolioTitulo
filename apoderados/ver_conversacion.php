@@ -1,89 +1,99 @@
-<?php include("../models/db.php") ?>
-<?php
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversación con el Profesor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../src/css/profes.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="custom-card">
+            <div class="custom-card-body">
+                <?php
+                include("../models/db.php");
+                if (isset($_SESSION['rut'])) {
+                    $apoderado_rut = $_SESSION['rut'];
 
+                    // Obtener el ID de la conversación de la URL
+                    $idConversacion = $_GET['idConversacion'];
 
-if (isset($_SESSION['rut'])) {
-    $apoderado_rut = $_SESSION['rut'];
+                    // Obtener otras variables de la URL
+                    $nombre_asignatura = $_GET['nombre_asignatura'];
+                    $nombre_curso = $_GET['nombre_curso'];
+                    $rut_profesor = $_GET['rut_profesor'];
+                    $nombre_apoderado = $_GET['nombre_apoderado'];
+                    $idCurso = $_GET['idCurso'];
+                    $idAsignatura = $_GET['idAsignatura'];
 
-    // Obtener el ID de la conversación de la URL
-    $idConversacion = $_GET['idConversacion'];
+                    // Consulta para obtener el nombre del profesor
+                    $consultaNombreProfesor = "SELECT nombre FROM profesor WHERE rut = '$rut_profesor'";
+                    $resultadoNombreProfesor = mysqli_query($conexion, $consultaNombreProfesor);
 
-    // Obtener otras variables de la URL
-    $nombre_asignatura = $_GET['nombre_asignatura'];
-    $nombre_curso = $_GET['nombre_curso'];
-    $rut_profesor = $_GET['rut_profesor'];
-    $nombre_apoderado = $_GET['nombre_apoderado'];
-    $idCurso = $_GET['idCurso'];
-    $idAsignatura = $_GET['idAsignatura'];
+                    if (!$resultadoNombreProfesor) {
+                        die("Error en la consulta de nombre del profesor: " . mysqli_error($conexion));
+                    }
 
+                    $nombreProfesor = mysqli_fetch_assoc($resultadoNombreProfesor)['nombre'];
 
+                    // Consulta para obtener los mensajes de la conversación con nombres de emisor
+                    $consultaMensajes = "SELECT m.idMensaje, m.idEmisor, m.mensaje, m.fechaEnvio, u.nombre AS nombreEmisor
+                                        FROM mensajes AS m
+                                        INNER JOIN usuarios AS u ON m.idEmisor = u.rut
+                                        WHERE m.idConversacion = $idConversacion
+                                        ORDER BY m.fechaEnvio ASC";
 
-    // Consulta para obtener el nombre del profesor
-    $consultaNombreProfesor = "SELECT nombre FROM profesor WHERE rut = '$rut_profesor'";
-    $resultadoNombreProfesor = mysqli_query($conexion, $consultaNombreProfesor);
+                    $resultadoMensajes = mysqli_query($conexion, $consultaMensajes);
 
-    if (!$resultadoNombreProfesor) {
-        die("Error en la consulta de nombre del profesor: " . mysqli_error($conexion));
-    }
+                    if ($resultadoMensajes) {
+                        echo "<h1>Conversación con $nombreProfesor</h1>";
+                        echo "<p>Apoderado: $nombre_apoderado</p>";
+                        echo "<p>Profesor: $nombreProfesor</p>";
 
-    $nombreProfesor = mysqli_fetch_assoc($resultadoNombreProfesor)['nombre'];
+                        while ($filaMensaje = mysqli_fetch_assoc($resultadoMensajes)) {
+                            $idMensaje = $filaMensaje['idMensaje'];
+                            $idEmisor = $filaMensaje['idEmisor'];
+                            $mensaje = $filaMensaje['mensaje'];
+                            $fechaEnvio = $filaMensaje['fechaEnvio'];
+                            $nombreEmisor = $filaMensaje['nombreEmisor'];
 
-    // Consulta para obtener los mensajes de la conversación con nombres de emisor
-    $consultaMensajes = "SELECT m.idMensaje, m.idEmisor, m.mensaje, m.fechaEnvio, u.nombre AS nombreEmisor
-                        FROM mensajes AS m
-                        INNER JOIN usuarios AS u ON m.idEmisor = u.rut
-                        WHERE m.idConversacion = $idConversacion
-                        ORDER BY m.fechaEnvio ASC";
+                            echo "<p><strong>$nombreEmisor</p>";
+                            echo "<p><em>Mensaje: $mensaje</em></p>";
+                            echo "<p><em>Fecha de Envío: $fechaEnvio</em></p>";
 
-    $resultadoMensajes = mysqli_query($conexion, $consultaMensajes);
+                            // Marcar el mensaje como leído
+                            $marcarLeidoQuery = "UPDATE mensajes SET leido = 1 WHERE idMensaje = $idMensaje AND idReceptor = '$apoderado_rut'";
+                            mysqli_query($conexion, $marcarLeidoQuery);
+                        }
 
-    if ($resultadoMensajes) {
-        echo "<h1>Conversación con $nombreProfesor</h1>";
-        echo "<p>Apoderado: $nombre_apoderado</p>";
-        echo "<p>Profesor: $nombreProfesor</p>";
+                        // Formulario para enviar otro mensaje
+                        echo "<h2>Enviar otro mensaje:</h2>";
+                        echo "<form method='post' action='../models/apoderadosModels/enviar_mensaje_profesor.php'>";
+                        echo "<input type='hidden' name='rut_pupilo' value='$apoderado_rut'>";
+                        echo "<input type='hidden' name='nombre_asignatura' value='$nombre_asignatura'>";
+                        echo "<input type='hidden' name='nombre_curso' value='$nombre_curso'>";
+                        echo "<input type='hidden' name='rut_profesor' value='$rut_profesor'>";
+                        echo "<input type='hidden' name='nombre_apoderado' value='$nombre_apoderado'>";
+                        echo "<input type='hidden' name='idConversacion' value='$idConversacion'>";
+                        echo "<input type='hidden' name='idCurso' value='$idCurso'>";
+                        echo "<input type='hidden' name='idAsignatura' value='$idAsignatura'>";
+                        echo "<textarea name='mensaje' placeholder='Escribe tu mensaje aquí' rows='4' cols='50'></textarea><br>";
+                        echo "<input type='submit' class='btn btn-primary' value='Enviar mensaje a $nombreProfesor'>";
+                        echo "</form>";
+                    } else {
+                        echo "Error en la consulta de mensajes: " . mysqli_error($conexion);
+                    }
 
-        while ($filaMensaje = mysqli_fetch_assoc($resultadoMensajes)) {
-            $idMensaje = $filaMensaje['idMensaje'];
-            $idEmisor = $filaMensaje['idEmisor'];
-            $mensaje = $filaMensaje['mensaje'];
-            $fechaEnvio = $filaMensaje['fechaEnvio'];
-            $nombreEmisor = $filaMensaje['nombreEmisor'];
-
-            echo "<p><strong>$nombreEmisor</p>";
-            echo "<p><em>Mensaje: $mensaje</em></p>";
-            echo "<p><em>Fecha de Envío: $fechaEnvio</em></p>";
-
-            // Marcar el mensaje como leído
-            $marcarLeidoQuery = "UPDATE mensajes SET leido = 1 WHERE idMensaje = $idMensaje AND idReceptor = '$apoderado_rut'";
-            mysqli_query($conexion, $marcarLeidoQuery);
-        }            
-        
-        // Formulario para enviar otro mensaje
-        echo "<h2>Enviar otro mensaje:</h2>";
-        echo "<form method='post' action='../models/apoderadosModels/enviar_mensaje_profesor.php'>";
-
-        
-
-        //echo "<input type='hidden' name='rut_pupilo' value='$rut_pupilo'>";
-        echo "<input type='hidden' name='nombre_asignatura' value='$nombre_asignatura'>";
-        echo "<input type='hidden' name='nombre_curso' value='$nombre_curso'>";
-        echo "<input type='hidden' name='rut_profesor' value='$rut_profesor'>";
-        echo "<input type='hidden' name='nombre_apoderado' value='$nombre_apoderado'>";
-        echo "<input type='hidden' name='idConversacion' value='$idConversacion'>";
-        echo "<input type='hidden' name='idCurso' value='$idCurso'>";
-        echo "<input type='hidden' name='idAsignatura' value='$idAsignatura'>";
-        echo "<textarea name='mensaje' placeholder='Escribe tu mensaje aquí' rows='4' cols='50'></textarea><br>";
-        echo "<input type='submit' value='Enviar mensaje a $nombreProfesor'>";
-        echo "</form>";
-    } else {
-        echo "Error en la consulta de mensajes: " . mysqli_error($conn);
-    }
-
-    // Cerrar la conexión a la base de datos
-    mysqli_close($conexion);
-} else {
-    // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
-    header("Location: inicioSesionApoderado.php");
-    exit();
-}
-?>
+                    // Cerrar la conexión a la base de datos
+                    mysqli_close($conexion);
+                } else {
+                    // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
+                    header("Location: inicioSesionApoderado.php");
+                    exit();
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+/* Estilo para el cuerpo de la página */
+body {
+    background-color: #125E5E;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el contenedor principal */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo para la tarjeta gigante */
+.card {
+    background-color: #fff; /* Color de fondo de la tarjeta */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Estilo para el formulario de selección de curso */
+#formularioAsistencia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#curso {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#generar-grafico, #descargarGrafico {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #125E5E; /* Color de fondo del botón */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#generar-grafico:hover, #descargarGrafico:hover {
+    background-color: #125E5E; /* Color de fondo del botón al pasar el mouse */
+}
+
+/* Estilo para el contenedor del gráfico */
+#graficosContainer {
+    width: 100%;
+}
+
+/* Estilo para el gráfico */
+canvas {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Estilo para la tarjeta gigante en dispositivos móviles */
+@media (max-width: 768px) {
+    .card {
+        max-width: 90%;
+    }
+}
+
+/* Estilo para el contenedor del gráfico y los botones */
+#graficosContainer {
+    width: 80%; /* Aumentar el ancho del gráfico al 80% del contenedor */
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center; /* Centrar el contenido horizontalmente */
+    margin-top: 20px; /* Agregar margen superior para separar del formulario */
+}
+
+/* Estilo para centrar el contenido verticalmente */
+.container.mt-5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo para los botones */
+button#generar-grafico, button#descargarGrafico {
+    margin: 10px;
+
+}
+/* Estilo para el botón "Generar Gráfico" */
+.btn-generar-grafico {
+    background-color: #125E5E;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 20px; /* Ajusta el espaciado interno según tus preferencias */
+    font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
+}
+
+/* Estilo para el botón "Descargar Gráfico" */
+.btn-descargar-grafico {
+    background-color: #125E5E;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 20px; /* Ajusta el espaciado interno según tus preferencias */
+    font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
+}
+

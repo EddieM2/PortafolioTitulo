@@ -6,27 +6,6 @@ if (!isset($_SESSION['rut'])) {
 }
 
 include("../models/db.php");
-
-if (isset($_SESSION['rut'])) {
-    $apoderado_rut = $_SESSION['rut'];
-    
-    // Rut del alumno seleccionado (enviado desde la página anterior)
-    $rut_pupilo = $_POST['rut_pupilo'];
-
-    // Realiza una consulta para obtener la asistencia del alumno en función de su rut
-    $query = "SELECT fecha, presente
-              FROM asistencia
-              WHERE rutAlumno = '$rut_pupilo'";
-
-    $result = mysqli_query($conexion, $query);
-
-    if (!$result) {
-        die("Error en la consulta: " . mysqli_error($conexion));
-    }
-} else {
-    echo "No se proporcionó un Rut de alumno válido.";
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -34,14 +13,17 @@ if (isset($_SESSION['rut'])) {
 <head>
     <meta charset="UTF-8">
     <title>Asistencia del Alumno</title>
-    <!-- Agrega aquí tus enlaces a CSS y otros recursos -->
     <style>
-        /* Agrega estilos CSS personalizados aquí */
+        /* Estilos CSS */
+        body {
+            background-color: #125E5E; /* Reemplaza XXXXXX con el color del colegio */
+        }
         .month-box {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
             cursor: pointer;
+            background-color: #FFFFFF; /* Color de fondo para los acordeones */
         }
         .month-box table {
             display: none;
@@ -49,13 +31,56 @@ if (isset($_SESSION['rut'])) {
         .attendance-summary {
             margin-top: 20px;
             font-weight: bold;
+            color: #000000; /* Color de texto para el resumen de asistencia */
+            
+            
+            
         }
+        h1 {
+            text-align: center; /* Para centrar el título horizontalmente */
+        }
+        .btn-back {
+    display: block;
+    margin: 0 auto; /* Esto centrará el botón horizontalmente */
+    padding: 10px 20px;
+    background-color: #007bff; /* Color de fondo */
+    color: #fff; /* Color de texto */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-back i {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
     </style>
 </head>
 <body>
     <h1>Asistencia del Alumno</h1>
 
     <?php
+    if (isset($_SESSION['rut'])) {
+        $apoderado_rut = $_SESSION['rut'];
+
+        // Rut del alumno seleccionado (enviado desde la página anterior)
+        $rut_pupilo = $_POST['rut_pupilo'];
+
+        // Realiza una consulta para obtener la asistencia del alumno en función de su rut
+        $query = "SELECT fecha, presente
+                  FROM asistencia
+                  WHERE rutAlumno = '$rut_pupilo'";
+
+        $result = mysqli_query($conexion, $query);
+
+        if (!$result) {
+            die("Error en la consulta: " . mysqli_error($conexion));
+        }
+    } else {
+        echo "No se proporcionó un Rut de alumno válido.";
+        exit();
+    }
+
     if (mysqli_num_rows($result) > 0) {
         $currentMonth = '';
         $monthData = array();
@@ -121,7 +146,7 @@ if (isset($_SESSION['rut'])) {
         // Calcular el porcentaje de asistencia
         $attendancePercentage = ($presentDays / $totalDays) * 100;
 
-        echo "<div class='attendance-summary'>";
+        echo "<div class='attendance-summary' style='text-align: center;'>";
         echo "Porcentaje de Asistencia Total: " . number_format($attendancePercentage, 2) . "%";
         echo "</div>";
     } else {
@@ -129,7 +154,8 @@ if (isset($_SESSION['rut'])) {
     }
     ?>
 
-    <a href="inicioAlum.php">Volver a la página de inicio del alumno</a>
+<button class="btn-back" onclick="window.history.back();"><i class="fas fa-arrow-left"></i> Volver Atrás</button>
+
 
     <script>
         function toggleMonth(monthBox) {
@@ -139,5 +165,3 @@ if (isset($_SESSION['rut'])) {
     </script>
 </body>
 </html>
-
-

@@ -16,33 +16,57 @@ if (isset($_SESSION['rut'])) {
             $nombreApoderado = $filaApoderado['nombre'];
             $apellidoPaterno = $filaApoderado['apellidoP'];
 
-            // Mostrar el nombre y apellido paterno del apoderado
-            echo "Bienvenido, $nombreApoderado $apellidoPaterno<br>";
+            // Cerrar la etiqueta PHP para comenzar la estructura HTML
+            ?>
 
-            // Consulta para obtener los pupilos del apoderado
-            $consultaPupilos = "SELECT rut, nombre, apellidoP, apellidoM FROM alumno WHERE rutApoderado = '$apoderado_rut'";
-            $resultadoPupilos = mysqli_query($conexion, $consultaPupilos);
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <title>Asistencia del Alumno</title>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
+                <link rel="stylesheet" href="../src/css/profes.css"> <!-- Asegúrate de que la ruta al archivo CSS sea correcta -->
+            </head>
+            <body>
+                <div class="container mt-5">
+                    <div class="custom-card">
+                        <div class="custom-card-body">
+                            <h1 class="card-title">Bienvenido, <?php echo $nombreApoderado . ' ' . $apellidoPaterno; ?></h1>
 
-            if ($resultadoPupilos) {
-                // Mostrar la lista de pupilos en un formulario POST
-                echo "<form method='post' action='asistencia_alumno_apoderado.php'>";
-                echo "Selecciona un pupilo:<br>";
-                while ($filaPupilo = mysqli_fetch_assoc($resultadoPupilos)) {
-                    $rutPupilo = $filaPupilo['rut'];
-                    $nombrePupilo = $filaPupilo['nombre'];
-                    $apellidoPaternoPupilo = $filaPupilo['apellidoP'];
-                    $apellidoMaternoPupilo = $filaPupilo['apellidoM'];
+                            <?php
+                            // Consulta para obtener los pupilos del apoderado
+                            $consultaPupilos = "SELECT rut, nombre, apellidoP, apellidoM FROM alumno WHERE rutApoderado = '$apoderado_rut'";
+                            $resultadoPupilos = mysqli_query($conexion, $consultaPupilos);
 
-                    // Agregar un radio button para cada pupilo y un campo oculto con el Rut del alumno
-                    echo "<input type='radio' name='rut_pupilo' value='$rutPupilo'> ";
-                    echo "Rut: $rutPupilo, Nombre: $nombrePupilo, Apellido Paterno: $apellidoPaternoPupilo, Apellido Materno: $apellidoMaternoPupilo<br>";
-                   // echo "<input type='hidden' name='rut_pupilo' value='$rutPupilo'>";
-                }
-                echo "<input type='submit' value='Seleccionar'>";
-                echo "</form>";
-            } else {
-                echo "Error en la consulta de pupilos: " . mysqli_error($conexion);
-            }
+                            if ($resultadoPupilos) {
+                                // Mostrar la lista de pupilos en un formulario POST
+                                echo "<form method='post' action='asistencia_alumno_apoderado.php'>";
+                                echo "Selecciona un pupilo:<br>";
+                                while ($filaPupilo = mysqli_fetch_assoc($resultadoPupilos)) {
+                                    $rutPupilo = $filaPupilo['rut'];
+                                    $nombrePupilo = $filaPupilo['nombre'];
+                                    $apellidoPaternoPupilo = $filaPupilo['apellidoP'];
+                                    $apellidoMaternoPupilo = $filaPupilo['apellidoM'];
+
+                                    // Agregar un radio button para cada pupilo y un campo oculto con el Rut del alumno
+                                    echo "<input type='radio' name='rut_pupilo' value='$rutPupilo'> ";
+                                    echo "Rut: $rutPupilo, Nombre: $nombrePupilo, Apellido Paterno: $apellidoPaternoPupilo, Apellido Materno: $apellidoMaternoPupilo<br>";
+                                    // echo "<input type='hidden' name='rut_pupilo' value='$rutPupilo'>";
+                                }
+                                echo "<input type='submit' value='Seleccionar'>";
+                                echo "</form>";
+                            } else {
+                                echo "Error en la consulta de pupilos: " . mysqli_error($conexion);
+                            }
+                            ?>
+
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+
+            <?php
         } else {
             echo "Error: Apoderado no encontrado";
         }

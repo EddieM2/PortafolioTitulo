@@ -6,7 +6,7 @@ $conexion = mysqli_connect(
     'localhost',
     'root',
     '',
-    'probando3'
+    'probando5'
 );
 
 $conexion2 = mysqli_connect(
