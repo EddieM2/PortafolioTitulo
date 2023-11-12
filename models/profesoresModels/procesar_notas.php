@@ -44,14 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } else {
                 // Si no existen calificaciones, realiza una inserción
-                $query_insertar_calificaciones = "INSERT INTO calificaciones (idAlumno, idProfesor, idAsignatura, calificacion1, calificacion2, calificacion3, calificacion4, fecha, idCurso)";
-                if ($promedio !== null) {
-                    $query_insertar_calificaciones .= ", promedio";
-                }
-                $query_insertar_calificaciones .= " VALUES ('$rut_alumno', '$profesor_rut', '$asignatura_id', '$nota1', '$nota2', '$nota3', '$nota4', NOW(), '$idCurso')";
-                if ($promedio !== null) {
-                    $query_insertar_calificaciones .= ", '$promedio'";
-                }
+                $query_insertar_calificaciones = "INSERT INTO calificaciones (idAlumno, idProfesor, idAsignatura, calificacion1, calificacion2, calificacion3, calificacion4, fecha, idCurso, promedio) ";
+                $query_insertar_calificaciones .= "VALUES ('$rut_alumno', '$profesor_rut', '$asignatura_id', '$nota1', '$nota2', '$nota3', '$nota4', NOW(), '$idCurso', '$promedio')";
         
                 $result_insertar_calificaciones = mysqli_query($conexion, $query_insertar_calificaciones);
         

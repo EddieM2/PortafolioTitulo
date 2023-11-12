@@ -1,3 +1,4 @@
+<?php include("../db.php") ?>
 <?php
 session_start();
 
@@ -15,17 +16,10 @@ if (isset($_SESSION['rut'])) {
     $idCurso = $_POST['idCurso'];
     $idAsignatura = $_POST['idAsignatura'];
 
-    // Conectar a la base de datos
-    $conn = mysqli_connect(
-        'localhost',
-        'root',
-        '',
-        'probando2'
-    );
-
+  
     // Consulta para obtener el nombre del apoderado
     $consultaApoderado = "SELECT nombre FROM usuarios WHERE rut = '$apoderado_rut'";
-    $resultadoApoderado = mysqli_query($conn, $consultaApoderado);
+    $resultadoApoderado = mysqli_query($conexion, $consultaApoderado);
 
     if ($resultadoApoderado) {
         $filaApoderado = mysqli_fetch_assoc($resultadoApoderado);
@@ -35,7 +29,7 @@ if (isset($_SESSION['rut'])) {
 
             // Consulta para obtener el ID del profesor de la conversación
             $consultaProfesor = "SELECT idReceptor FROM mensajes WHERE idConversacion = $idConversacion LIMIT 1";
-            $resultadoProfesor = mysqli_query($conn, $consultaProfesor);
+            $resultadoProfesor = mysqli_query($conexion, $consultaProfesor);
 
             if ($resultadoProfesor) {
                 $filaProfesor = mysqli_fetch_assoc($resultadoProfesor);
@@ -50,7 +44,7 @@ if (isset($_SESSION['rut'])) {
 
 
 
-                    $resultadoInsertarMensaje = mysqli_query($conn, $consultaInsertarMensaje);
+                    $resultadoInsertarMensaje = mysqli_query($conexion, $consultaInsertarMensaje);
 
                     if ($resultadoInsertarMensaje) {
                         // Mensaje enviado con éxito, redirigir a la conversación
@@ -59,23 +53,23 @@ if (isset($_SESSION['rut'])) {
 
                         exit();
                     } else {
-                        echo "Error al enviar el mensaje: " . mysqli_error($conn);
+                        echo "Error al enviar el mensaje: " . mysqli_error($conexion);
                     }
                 } else {
                     echo "Error: Profesor no encontrado";
                 }
             } else {
-                echo "Error en la consulta de profesor: " . mysqli_error($conn);
+                echo "Error en la consulta de profesor: " . mysqli_error($conexion);
             }
         } else {
             echo "Error: Apoderado no encontrado";
         }
     } else {
-        echo "Error en la consulta de apoderado: " . mysqli_error($conn);
+        echo "Error en la consulta de apoderado: " . mysqli_error($conexion);
     }
 
     // Cerrar la conexión a la base de datos
-    mysqli_close($conn);
+    mysqli_close($conexion);
 } else {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
     header("Location: inicioSesionApoderado.php");

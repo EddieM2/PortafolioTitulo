@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gráfico de Asistencia</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
@@ -44,75 +45,18 @@
                     </form>
 
                     <!-- Lugar para mostrar los gráficos -->
-                    <div id="graficosContainer" >
-  <!-- Contenido de la tarjeta aquí -->
-</div>
+                    <div id="graficosContainer">
+                        <!-- Contenido de la tarjeta aquí -->
+                    </div>
+
+                    <!-- Elemento para mostrar el curso seleccionado -->
+                    <div id="cursoSeleccionado"></div>
+                </div>
             </div>
         </div>
     </main>
 
-    <script>
-        $(document).ready(function() {
-            var graficoIndex = 1;
-
-            document.getElementById("generar-grafico").addEventListener("click", function () {
-                var selectedCurso = document.getElementById("curso").value;
-
-                if (selectedCurso) {
-                    // Borra el contenido del contenedor antes de agregar un nuevo gráfico
-                    document.getElementById("graficosContainer").innerHTML = "";
-
-                    // Realiza una petición AJAX para obtener los datos del gráfico
-                    $.ajax({
-                        url: "../models/adminModels/controlador_grafico_asistencia.php",
-                        method: "POST",
-                        data: { obtenerGrafico: true, curso: selectedCurso },
-                        dataType: "json",
-                        success: function (data) {
-                            var graficoCanvas = document.createElement("canvas");
-                            
-
-                            graficoCanvas.id = "graficoAsistencia" + graficoIndex;
-                            graficoCanvas.width = 1000;
-                            graficoCanvas.height = 400;
-
-                            document.getElementById("graficosContainer").appendChild(graficoCanvas);
-
-                            var ctx = graficoCanvas.getContext("2d");
-                            var myChart = new Chart(ctx, {
-                                type: "line", // Tipo de gráfico: línea
-                                data: {
-                                    labels: data.meses,
-                                    datasets: [{
-                                        label: "Porcentaje de Asistencias",
-                                        data: data.porcentajeAsistencias,
-                                        borderColor: "rgba(75, 192, 192, 1)", // Color de la línea
-                                        borderWidth: 2 // Ancho de la línea
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true,
-                                            max: 100
-                                        }
-                                    }
-                                }
-                            });
-
-                            graficoIndex++;
-                        },
-                        error: function () {
-                            alert("Error al obtener los datos del gráfico.");
-                        }
-                    });
-                } else {
-                    alert("Selecciona un curso primero.");
-                }
-            });
-        });
-    </script>
-
+    <!-- Tu script JavaScript -->
     <script src="../src/javas/descargar_grafico_asistencia.js"></script>
 </body>
 </html>
