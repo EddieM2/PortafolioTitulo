@@ -1,25 +1,17 @@
 <?php
 session_start();
-// if (!isset($_SESSION['rut'])) {
-//     header("Location: ../login.php"); // Redirige si no ha iniciado sesión
-//     exit();
-// }
-
 include("../models/db.php");
 
-// Obtén el rut del alumno desde la sesión
 $alumno_rut = $_SESSION['rut'];
 
-// Realiza una consulta para obtener las calificaciones del alumno junto con el nombre de la asignatura
-$query = "SELECT cal.idCalificacion, cal.fecha, asi.nombre AS nombre_asignatura, cal.calificacion1, cal.calificacion2, cal.calificacion3, cal.calificacion4, cal.promedio
-          FROM calificaciones AS cal
-          INNER JOIN asignatura AS asi ON cal.idAsignatura = asi.idAsignatura
-          WHERE cal.idAlumno = '$alumno_rut'";
+$query_asignaturas = "SELECT DISTINCT asi.idAsignatura, asi.nombre AS nombre_asignatura
+                      FROM calificaciones AS cal
+                      INNER JOIN asignatura AS asi ON cal.idAsignatura = asi.idAsignatura
+                      WHERE cal.idAlumno = '$alumno_rut'";
+$result_asignaturas = mysqli_query($conexion, $query_asignaturas);
 
-$result = mysqli_query($conexion, $query);
-
-if (!$result) {
-    die("Error en la consulta: " . mysqli_error($conexion));
+if (!$result_asignaturas) {
+    die("Error en la consulta de asignaturas: " . mysqli_error($conexion));
 }
 ?>
 
@@ -38,19 +30,44 @@ if (!$result) {
                 <h1 class="card-title">Calificaciones del Alumno</h1>
 
                 <?php
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<div class="asignatura">';
-                        echo '<p>Asignatura: ' . $row['nombre_asignatura'] . '</p>';
-                        echo '<div class="calificaciones">';
-                        echo '<p>Fecha: ' . $row['fecha'] . '</p>';
-                        echo '<p>Calificación 1: ' . $row['calificacion1'] . '</p>';
-                        echo '<p>Calificación 2: ' . $row['calificacion2'] . '</p>';
-                        echo '<p>Calificación 3: ' . $row['calificacion3'] . '</p>';
-                        echo '<p>Calificación 4: ' . $row['calificacion4'] . '</p>';
-                        if ($row['promedio'] >= 1.0) {
-                            echo '<p>Promedio: ' . $row['promedio'] . '</p>';
+                if (mysqli_num_rows($result_asignaturas) > 0) {
+                    while ($row_asignatura = mysqli_fetch_assoc($result_asignaturas)) {
+                        echo '<div class="accordion" id="accordionAsignatura' . $row_asignatura['idAsignatura'] . '">';
+                        echo '<div class="accordion-item">';
+                        echo '<h2 class="accordion-header" id="headingAsignatura' . $row_asignatura['idAsignatura'] . '">';
+                        echo '<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAsignatura' . $row_asignatura['idAsignatura'] . '" aria-expanded="true" aria-controls="collapseAsignatura' . $row_asignatura['idAsignatura'] . '">';
+                        echo $row_asignatura['nombre_asignatura'];
+                        echo '</button>';
+                        echo '</h2>';
+                        echo '<div id="collapseAsignatura' . $row_asignatura['idAsignatura'] . '" class="accordion-collapse collapse" aria-labelledby="headingAsignatura' . $row_asignatura['idAsignatura'] . '" data-bs-parent="#accordionAsignatura' . $row_asignatura['idAsignatura'] . '">';
+                        echo '<div class="accordion-body">';
+
+                        $idAsignatura = $row_asignatura['idAsignatura'];
+                        $query_calificaciones = "SELECT fecha, calificacion1, calificacion2, calificacion3, calificacion4, promedio
+                                                FROM calificaciones
+                                                WHERE idAlumno = '$alumno_rut' AND idAsignatura = '$idAsignatura'";
+                        $result_calificaciones = mysqli_query($conexion, $query_calificaciones);
+
+                        if (!$result_calificaciones) {
+                            die("Error en la consulta de calificaciones: " . mysqli_error($conexion));
                         }
+
+                        if (mysqli_num_rows($result_calificaciones) > 0) {
+                            $row_calificaciones = mysqli_fetch_assoc($result_calificaciones);
+                            echo '<p>Fecha: ' . $row_calificaciones['fecha'] . '</p>';
+                            echo '<p>Calificación 1: ' . $row_calificaciones['calificacion1'] . '</p>';
+                            echo '<p>Calificación 2: ' . $row_calificaciones['calificacion2'] . '</p>';
+                            echo '<p>Calificación 3: ' . $row_calificaciones['calificacion3'] . '</p>';
+                            echo '<p>Calificación 4: ' . $row_calificaciones['calificacion4'] . '</p>';
+                            if ($row_calificaciones['promedio'] >= 1.0) {
+                                echo '<p>Promedio: ' . $row_calificaciones['promedio'] . '</p>';
+                            }
+                        } else {
+                            echo "No hay calificaciones registradas para esta asignatura.";
+                        }
+
+                        echo '</div>';
+                        echo '</div>';
                         echo '</div>';
                         echo '</div>';
                     }
@@ -63,5 +80,7 @@ if (!$result) {
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
