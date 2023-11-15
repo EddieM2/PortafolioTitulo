@@ -25,6 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["obtenerPromedios"])) {
     }
 }
 
-// Incluye la vista después de definir las variables
+
 include("grafico_calificaciones.php");
 ?>

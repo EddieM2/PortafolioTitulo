@@ -1,11 +1,10 @@
-<?php include("../db.php") ?>
-
 <?php
 include("../db.php");
 
 if (isset($_POST['agregar_asignatura'])) {
     $nombreAsignatura = $_POST['nueva_asignatura'];
     $rutProfesor = $_POST['nuevo_profesor'];
+    $idCurso = $_POST['nuevo_curso']; // Nuevo campo para el curso
 
     // Recupera el valor máximo actual de idAsignatura
     $queryMaxId = "SELECT MAX(idAsignatura) AS max_id FROM asignatura";
@@ -22,8 +21,8 @@ if (isset($_POST['agregar_asignatura'])) {
     $nombreAsignatura = mysqli_real_escape_string($conexion, $nombreAsignatura);
     $rutProfesor = mysqli_real_escape_string($conexion, $rutProfesor);
 
-    // Inserta la nueva asignatura en la tabla
-    $query = "INSERT INTO asignatura (idAsignatura, nombre, rutProfesor) VALUES ('$nuevoIdAsignatura', '$nombreAsignatura', '$rutProfesor')";
+    // Inserta la nueva asignatura en la tabla, incluyendo el idCurso
+    $query = "INSERT INTO asignatura (idAsignatura, nombre, rutProfesor, idCurso) VALUES ('$nuevoIdAsignatura', '$nombreAsignatura', '$rutProfesor', '$idCurso')";
     $result = mysqli_query($conexion, $query);
 
     if ($result) {
