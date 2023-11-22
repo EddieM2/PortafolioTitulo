@@ -8,7 +8,7 @@ function haRecibidoNotificacion($conexion, $rutEstudiante, $idAsignatura, $calif
 }
 
 function enviarNotificacion($conexion, $rutEstudiante, $rutApoderado, $nombreEstudiante, $nombreAsignatura, $idAsignatura, $calificacionTipo) {
-    // $fechaActual
+    
     $fechaActual = date("Y-m-d");
 
     if (!haRecibidoNotificacion($conexion, $rutEstudiante, $idAsignatura, $calificacionTipo)) {

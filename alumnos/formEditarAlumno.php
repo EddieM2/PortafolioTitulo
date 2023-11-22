@@ -5,7 +5,7 @@
 <head>
     <title>Editar Alumno</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../src/css/profes.css"> <!-- Asegúrate de proporcionar la ruta correcta a tu archivo CSS profes.css -->
+    <link rel="stylesheet" href="../src/css/profes.css"> 
 </head>
 <body>
     <div class="container mt-5">

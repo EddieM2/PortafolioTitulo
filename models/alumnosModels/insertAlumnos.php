@@ -20,27 +20,46 @@ if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-// Consulta SQL para insertar un nuevo alumno
-$sqlInsertAlumno = "INSERT INTO alumno (rut, correo, nombre, apellidoM, apellidoP, idCargo, fechaNacimiento, direccion, telefono, genero, estadoAcademico, rutApoderado, idCurso) VALUES ('$rut', '$correo', '$nombre', '$apellidoM', '$apellidoP', '$idCargo', '$fechaNacimiento', '$direccion', '$telefono', '$genero', '$estadoAcademico', '$apoderado', '$idCurso')";
+// Verificar si el alumno ya existe en la tabla alumno
+$sqlVerificarAlumno = "SELECT * FROM alumno WHERE rut = '$rut'";
+$resultVerificarAlumno = mysqli_query($conexion, $sqlVerificarAlumno);
 
-// Realizar el INSERT del alumno
-if (mysqli_query($conexion, $sqlInsertAlumno)) {
-   echo "Alumno agregado con éxito.";
+// Verificar si el alumno ya está inscrito en el curso
+$sqlVerificarInscripcion = "SELECT * FROM inscripcion WHERE idCurso = '$idCurso' AND rutAlumno = '$rut'";
+$resultVerificarInscripcion = mysqli_query($conexion, $sqlVerificarInscripcion);
 
-    // Obtener el ID del último alumno insertado
-    $idAlumno = mysqli_insert_id($conexion);
+if (mysqli_num_rows($resultVerificarAlumno) == 0 && mysqli_num_rows($resultVerificarInscripcion) == 0) {
+    // Si el alumno no existe y no está inscrito, realizar el INSERT del alumno
+    $sqlInsertAlumno = "INSERT INTO alumno (rut, correo, nombre, apellidoM, apellidoP, idCargo, fechaNacimiento, direccion, telefono, genero, estadoAcademico, rutApoderado, idCurso) VALUES ('$rut', '$correo', '$nombre', '$apellidoM', '$apellidoP', '$idCargo', '$fechaNacimiento', '$direccion', '$telefono', '$genero', '$estadoAcademico', '$apoderado', '$idCurso')";
 
-    // Consulta SQL para insertar la inscripción
-    $sqlInsertInscripcion = "INSERT INTO inscripcion (idCurso, rutAlumno) VALUES ('$idCurso', '$rut')";
+    try {
+        if (mysqli_query($conexion, $sqlInsertAlumno)) {
+            echo "Alumno agregado con éxito.";
 
-    // Realizar el INSERT de la inscripción
-    if (mysqli_query($conexion, $sqlInsertInscripcion)) {
-        echo "Inscripción agregada con éxito.";
-    } else {
-        echo "Error al agregar la inscripción: " . mysqli_error($conexion);
+            // Obtener el ID del último alumno insertado
+            $idAlumno = mysqli_insert_id($conexion);
+
+            // Realizar el INSERT de la inscripción
+            $sqlInsertInscripcion = "INSERT INTO inscripcion (idCurso, rutAlumno) VALUES ('$idCurso', '$rut')";
+
+            if (mysqli_query($conexion, $sqlInsertInscripcion)) {
+                echo "Inscripción agregada con éxito.";
+
+                // Redirigir a la página deseada
+                header("Location: ../../alumnos/formAgregarAlumno.php");
+                exit();
+            } else {
+                echo "Error al agregar la inscripción: " . mysqli_error($conexion);
+            }
+        } else {
+            echo "Error al agregar el alumno.";
+        }
+    } catch (mysqli_sql_exception $e) {
+        
+        header("Location: vistaAlumnos.php");
     }
 } else {
-    echo "Error al agregar el alumno: " . mysqli_error($conexion);
+    echo "El alumno ya existe en la base de datos o está inscrito en este curso.";
 }
 
 // Cierra la conexión a la base de datos

@@ -37,25 +37,10 @@ if (isset($_GET['idCurso'])) {
             // La clase se ha creado y todos los alumnos se han marcado como ausentes
 
             // Recupera la lista de alumnos para mostrarla
-            $query_lista_alumnos = "SELECT alumno.rut, alumno.nombre AS nombre_alumno
-            FROM alumno
-            INNER JOIN inscripcion ON alumno.rut = inscripcion.rutAlumno
-            WHERE inscripcion.idCurso = $idCurso";
-            $result_lista_alumnos = mysqli_query($conexion, $query_lista_alumnos);
 
-            if ($result_lista_alumnos) {
-                echo "<h1>Lista de Alumnos en el Curso</h1>";
-                echo "<ul>";
-                while ($row_alumno = mysqli_fetch_assoc($result_lista_alumnos)) {
-                    echo "<li>" . $row_alumno['rut'] . " - " . $row_alumno['nombre_alumno'] . "</li>";
-                }
-                echo "</ul>";
-            } else {
-                echo "Error al obtener la lista de alumnos.";
-            }
 
             // Redirige a la página de lista de alumnos en ese curso
-       //     header("Location: editar_asistencia.php?fecha=$fecha&idCurso=$idCurso");
+            header("Location: editar_asistencia.php?fecha=$fecha&idCurso=$idCurso");
             exit();
         } else {
             // Manejo de errores si la inserción falla

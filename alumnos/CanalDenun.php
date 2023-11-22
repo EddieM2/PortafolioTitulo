@@ -19,7 +19,7 @@
                 <a class="btn btn-primary" href="reportar.php">Reportar una Denuncia</a>
                 <a class="btn btn-primary" href="mis_denuncias.php">Mis Denuncias</a>
                 <a class="btn btn-primary" href="contacto.php">Contacto</a>
-                <main style="margin-top: 80px;"> <!-- Añade un margen superior -->
+                <main style="margin-top: 80px;"> 
                     <h2>Bienvenido al Canal de Denuncias</h2>
                     <p>
                         En este canal, puedes reportar cualquier preocupación o incidente que necesite atención. Garantizamos la confidencialidad y la protección de tu identidad. Tu seguridad es nuestra prioridad.

@@ -6,7 +6,7 @@ include("../models/db.php");
 if (isset($_GET['curso'])) {
     $cursoId = $_GET['curso'];
 
-    // Realiza la consulta a la base de datos para obtener las asignaturas de este curso
+    // Realizar la consulta a la base de datos para obtener las asignaturas de este curso
     $consultaAsignaturas = "SELECT idAsignatura, nombre FROM asignatura WHERE idCurso = $cursoId";
     $resultadoAsignaturas = mysqli_query($conexion, $consultaAsignaturas);
 
@@ -20,7 +20,7 @@ if (isset($_GET['curso'])) {
             );
         }
 
-        // Devuelve las asignaturas como respuesta JSON
+        // Devuelve las asignaturas como JSON
         echo json_encode($asignaturas);
     } else {
         echo json_encode(array('error' => 'Error en la consulta SQL.'));

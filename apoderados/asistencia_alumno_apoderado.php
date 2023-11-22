@@ -14,16 +14,16 @@ include("../models/db.php");
     <meta charset="UTF-8">
     <title>Asistencia del Alumno</title>
     <style>
-        /* Estilos CSS */
+        
         body {
-            background-color: #125E5E; /* Reemplaza XXXXXX con el color del colegio */
+            background-color: #125E5E; 
         }
         .month-box {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
             cursor: pointer;
-            background-color: #FFFFFF; /* Color de fondo para los acordeones */
+            background-color: #FFFFFF; 
         }
         .month-box table {
             display: none;
@@ -31,20 +31,20 @@ include("../models/db.php");
         .attendance-summary {
             margin-top: 20px;
             font-weight: bold;
-            color: #000000; /* Color de texto para el resumen de asistencia */
+            color: #000000; 
             
             
             
         }
         h1 {
-            text-align: center; /* Para centrar el título horizontalmente */
+            text-align: center; 
         }
         .btn-back {
     display: block;
-    margin: 0 auto; /* Esto centrará el botón horizontalmente */
+    margin: 0 auto; 
     padding: 10px 20px;
-    background-color: #007bff; /* Color de fondo */
-    color: #fff; /* Color de texto */
+    background-color: #007bff; 
+    color: #fff; 
     border: none;
     border-radius: 5px;
     cursor: pointer;

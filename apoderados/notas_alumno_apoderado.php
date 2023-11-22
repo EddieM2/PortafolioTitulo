@@ -3,7 +3,7 @@ include("../models/db.php");
 
 // Asegúrate de que se haya iniciado la sesión del alumno
 //if (isset($_SESSION['rut'])) {
-// Rut del alumno seleccionado (enviado desde la página anterior)
+// Rut del alumno seleccionado 
 $rut_pupilo = $_POST['rut_pupilo'];
 
 // Realiza una consulta para obtener las calificaciones del alumno junto con el nombre de la asignatura
@@ -30,7 +30,7 @@ if (!$result) {
     <title>Calificaciones del Alumno</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-    <link rel="stylesheet" href="../src/css/profes.css"> <!-- Asegúrate de que la ruta al archivo CSS sea correcta -->
+    <link rel="stylesheet" href="../src/css/profes.css"> 
 </head>
 <body>
     <div class="container mt-5">

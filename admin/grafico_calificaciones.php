@@ -98,7 +98,7 @@ include("grafico_model.php");
             });
         }
 
-        // JavaScript para cargar cursos y asignaturas dinámicamente
+        // cargar cursos y asignaturas 
         $(document).ready(function() {
             // Cargar cursos
             $.ajax({
@@ -119,15 +119,15 @@ include("grafico_model.php");
                         }));
                     });
 
-                    // Cuando se selecciona un curso, cargar asignaturas
+                    // cargar asignaturas al seleccionar un curso, cargar asignaturas
                     cursoSelect.change(function() {
                         var selectedCurso = $(this).val();
                         var asignaturaSelect = $("#asignatura");
 
-                        // Limpia la lista de asignaturas
+                       
                         asignaturaSelect.empty();
 
-                        // Cargar las asignaturas correspondientes al curso seleccionado
+                        // Cargar las asignaturas al curso seleccionado
                         $.ajax({
                             type: 'GET',
                             url: 'cargar_asignaturas.php',

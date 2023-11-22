@@ -18,7 +18,7 @@
                 if (isset($_SESSION['rut'])) {
                     $apoderado_rut = $_SESSION['rut'];
                 
-                    // Rut del alumno seleccionado (enviado desde la página anterior)
+                    // Rut del alumno seleccionado 
                     $rut_pupilo = $_POST['rut_pupilo'];
                 
                 
@@ -90,10 +90,10 @@
                                             echo "<input type='hidden' name='rut_pupilo' value='$rut_pupilo'>";
                                             echo "<input type='hidden' name='nombre_asignatura' value='$nombreAsignatura'>";
                                             echo "<input type='hidden' name='nombre_curso' value='$nombreCurso'>";
-                                            echo "<input type='hidden' name='rut_profesor' value='$rutProfesor'>"; // RUT del profesor
-                                            echo "<input type='hidden' name='nombre_apoderado' value='$nombreApoderado'>"; // Nombre del apoderado
-                                            echo "<input type='hidden' name='idCurso' value='$idCurso'>"; // ID del curso
-                                            echo "<input type='hidden' name='idAsignatura' value='$idAsignatura'>"; // ID de la asignatura
+                                            echo "<input type='hidden' name='rut_profesor' value='$rutProfesor'>"; 
+                                            echo "<input type='hidden' name='nombre_apoderado' value='$nombreApoderado'>"; 
+                                            echo "<input type='hidden' name='idCurso' value='$idCurso'>"; 
+                                            echo "<input type='hidden' name='idAsignatura' value='$idAsignatura'>"; 
                                             echo '<button type="submit" class="btn btn-primary">Verificar conversación con el profesor</button>';
 
                                             echo "</form>";

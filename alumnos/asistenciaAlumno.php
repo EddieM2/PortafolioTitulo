@@ -27,19 +27,17 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <title>Asistencia del Alumno</title>
-    <!-- Agrega aquí tus enlaces a CSS y otros recursos -->
-    <link rel="stylesheet" href="ruta_de_tu_estilo.css"> <!-- Agrega la ruta de tu hoja de estilo CSS -->
+    <link rel="stylesheet" href="#"> 
     <style>
-        /* Estilos CSS */
         body {
-            background-color: #125E5E; /* Reemplaza XXXXXX con el color del colegio */
+            background-color: #125E5E; 
         }
         .month-box {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
             cursor: pointer;
-            background-color: #FFFFFF; /* Color de fondo para los acordeones */
+            background-color: #FFFFFF; 
         }
         .month-box table {
             display: none;
@@ -47,7 +45,7 @@ if (!$result) {
         .attendance-summary {
             margin-top: 20px;
             font-weight: bold;
-            color: #000000; /* Color de texto para el resumen de asistencia */
+            color: #000000; 
             text-align: center;
 
             
@@ -55,14 +53,14 @@ if (!$result) {
             
         }
         h1 {
-            text-align: center; /* Para centrar el título horizontalmente */
+            text-align: center; 
         }
         .btn-back {
     display: block;
-    margin: 0 auto; /* Esto centrará el botón horizontalmente */
+    margin: 0 auto; 
     padding: 10px 20px;
-    background-color: #007bff; /* Color de fondo */
-    color: #fff; /* Color de texto */
+    background-color: #007bff; 
+    color: #fff; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -70,7 +68,7 @@ if (!$result) {
 }
 
 .btn-back i {
-    margin-right: 5px; /* Espacio entre el icono y el texto */
+    margin-right: 5px; 
 }
     </style>
 </head>
@@ -86,7 +84,7 @@ if (!$result) {
 
         while ($row = mysqli_fetch_assoc($result)) {
             $date = date_create($row['fecha']);
-            $month = date_format($date, 'F Y'); // Obtiene el mes y el año
+            $month = date_format($date, 'F Y'); 
 
             if ($currentMonth !== $month) {
                 // Inicio de un nuevo mes, crea un cuadro para el mes anterior (si hubo asistencia)
