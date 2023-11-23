@@ -1,5 +1,22 @@
 <?php
 include("../models/db.php");
+
+// Verificar si se recibió el idCurso por GET
+if (isset($_GET['idCurso'])) {
+    $idCurso = $_GET['idCurso'];
+
+    // Consulta SQL para obtener las clases creadas filtradas por idCurso
+    $query_clases_creadas = "SELECT DISTINCT fecha, idCurso FROM asistencia WHERE idCurso = $idCurso ORDER BY fecha DESC";
+    $result_clases_creadas = mysqli_query($conexion, $query_clases_creadas);
+
+    if (!$result_clases_creadas) {
+        die("Error al obtener las clases creadas: " . mysqli_error($conexion));
+    }
+} else {
+    // Si no se recibió el idCurso, redirigir a la página anterior
+    header("Location: pagina_anterior.php"); // Reemplaza 'pagina_anterior.php' con el nombre de tu página anterior
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,14 +45,10 @@ include("../models/db.php");
                 <h1>Clases Creadas</h1>
                 <!-- Aquí se mostrarán las clases creadas -->
                 <?php
-                // Consulta SQL para obtener las clases creadas ordenadas por fecha
-                $query_clases_creadas = "SELECT DISTINCT fecha, idCurso FROM asistencia ORDER BY fecha DESC";
-                $result_clases_creadas = mysqli_query($conexion, $query_clases_creadas);
-
-                if ($result_clases_creadas) {
-                    echo "<div class='table-responsive'>"; // Agregar clase para hacer que la tabla sea responsive
-                    echo "<table class='table table-bordered'>"; // Utilizar clases de Bootstrap para una tabla ordenada
-                    echo "<thead class='thead-dark'>"; // Agregar un encabezado oscuro
+                if (isset($result_clases_creadas)) {
+                    echo "<div class='table-responsive'>"; 
+                    echo "<table class='table table-bordered'>"; 
+                    echo "<thead class='thead-dark'>"; 
                     echo "<tr>";
                     echo "<th>Fecha</th>";
                     echo "<th>Curso</th>";
@@ -56,7 +69,7 @@ include("../models/db.php");
                     echo "</table>";
                     echo "</div>";
                 } else {
-                    echo "Error al obtener las clases creadas.";
+                    echo "No hay clases creadas para el curso seleccionado.";
                 }
                 ?>
             </div>

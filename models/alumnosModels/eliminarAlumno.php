@@ -22,7 +22,7 @@ if (isset($_GET["rut"])) {
         
         echo "Alumno eliminado correctamente.";
     } else {
-        /
+        
         echo "Error al eliminar el alumno: " . $conexion->error;
     }
 

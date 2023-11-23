@@ -18,6 +18,6 @@ if (isset($_POST['curso'])) {
 
     echo json_encode($asignaturas);
 } else {
-    // En caso de que no se haya proporcionado un curso válido, devuelve un JSON vacío o un mensaje de error.
+    
     echo json_encode(array());
 }

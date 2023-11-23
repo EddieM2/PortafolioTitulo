@@ -56,7 +56,7 @@
         </div>
     </main>
 
-    <!-- Tu script JavaScript -->
+    
     <script src="../src/javas/descargar_grafico_asistencia.js"></script>
 </body>
 </html>

@@ -88,10 +88,10 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         echo "Error al obtener la información del usuario.";
     }
 
-    // Aquí puedes mostrar el contenido adicional de la página "inicioAdmin.php"
+   
 } else {
     // Si el usuario no ha iniciado sesión como administrador, redirige o muestra un mensaje de error
-    header("Location: ../login.php"); // Cambia "login.php" al archivo de inicio de sesión real o muestra un mensaje de error
+    header("Location: ../login.php"); 
     exit();
 }
 ?>

@@ -1,8 +1,7 @@
 <?php
 include("../models/db.php");
 
-// Consulta para obtener las calificaciones de los estudiantes con RUT
-// Consulta para obtener las calificaciones de los estudiantes con RUT
+
 $consulta = "SELECT a.rut AS estudiante_rut, a.nombre AS estudiante_nombre, a.rutApoderado, c.calificacion1, c.calificacion2
              FROM calificaciones c
              JOIN alumno a ON c.idAlumno = a.rut
@@ -36,7 +35,7 @@ if ($resultado->num_rows > 0) {
                 if ($resultado_apoderado->num_rows > 0) {
                     $fila_apoderado = $resultado_apoderado->fetch_assoc();
                     $correo_apoderado = $fila_apoderado['correo'];
-                    // Aquí puedes enviar un correo al apoderado
+                    
                     echo "Enviar correo al apoderado de $estudiante_nombre (RUT: $rutApoderado) al correo $correo_apoderado<br>";
                 }
             }

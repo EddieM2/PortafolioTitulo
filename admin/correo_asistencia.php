@@ -1,6 +1,4 @@
 <?php
-// Configuración de la conexión a la base de datos
-// Configuración de la conexión a la base de datos
 include("../models/db.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -46,12 +44,12 @@ while ($row = $result->fetch_assoc()) {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'marcelo26atenas@gmail.com'; // Reemplaza con tu correo
-            $mail->Password = 'phvo osum kwpj bknx'; // Reemplaza con tu contraseña
+            $mail->Username = 'marcelo26atenas@gmail.com'; 
+            $mail->Password = 'phvo osum kwpj bknx'; 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('marcelo26atenas@gmail.com', 'Escuela'); // Reemplaza con tu nombre y correo
+            $mail->setFrom('marcelo26atenas@gmail.com', 'Escuela'); 
             $mail->addAddress($apoderado_correo, 'Apoderado');
 
             $mail->isHTML(false);
@@ -69,7 +67,7 @@ while ($row = $result->fetch_assoc()) {
             echo 'Error al enviar el correo: ' . $e->getMessage();
         }
     } else {
-        // Ya se envió un correo en la misma fecha, omitir el envío
+        
         echo "Correo ya enviado en la misma fecha al apoderado $apoderado_nombre $apoderado_apellidoP.<br>";
     }
 }

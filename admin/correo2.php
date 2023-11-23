@@ -16,7 +16,7 @@ function haRecibidoNotificacion($conexion, $rutEstudiante, $idAsignatura, $calif
 }
 
 function enviarNotificacion($conexion, $rutEstudiante, $rutApoderado, $nombreEstudiante, $nombreAsignatura, $idAsignatura, $calificacionTipo) {
-    // Define la variable $fechaActual
+    
     $fechaActual = date("Y-m-d");
 
     if (!haRecibidoNotificacion($conexion, $rutEstudiante, $idAsignatura, $calificacionTipo)) {
@@ -27,13 +27,12 @@ function enviarNotificacion($conexion, $rutEstudiante, $rutApoderado, $nombreEst
             $fila_apoderado = $resultado_apoderado->fetch_assoc();
             $correoApoderado = $fila_apoderado['correo'];
 
-            // Ahora puedes usar $idAsignatura al insertar en notificaciones
+            
             $insertarNotificacion = "INSERT INTO notificaciones (rutEstudiante, calificacion_tipo, fechaUltimoCorreo, asignatura) 
                             VALUES ('$rutEstudiante', '$calificacionTipo', '$fechaActual', '$idAsignatura')";
             $conexion->query($insertarNotificacion);
 
-            // Ahora, el nombre de la asignatura se encuentra en $nombreAsignatura
-            // Utiliza $nombreAsignatura para enviar en el correo
+            
             $mensaje = "Estimado apoderado,\n\nEl estudiante $nombreEstudiante ha obtenido una calificación por debajo de 4.0 en la asignatura $nombreAsignatura (Calificación Tipo: $calificacionTipo). Por favor, póngase en contacto con la institución educativa para discutir el rendimiento académico de su hijo(a).";
 
 
@@ -42,8 +41,8 @@ function enviarNotificacion($conexion, $rutEstudiante, $rutApoderado, $nombreEst
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'marcelo26atenas@gmail.com'; // Reemplaza con tu correo
-                $mail->Password = 'phvo osum kwpj bknx'; // Reemplaza con tu contraseña
+                $mail->Username = 'marcelo26atenas@gmail.com'; 
+                $mail->Password = 'phvo osum kwpj bknx'; 
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
