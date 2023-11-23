@@ -84,7 +84,7 @@ if (!$resultApoderados || !$resultCursos) {
                         ?>
                     </select>
 
-                    <button type="submit" class="btn btn-primary">Insertar Alumno</button>
+                    <button type="submit" class="btn btn-primary">Agregar Alumno</button>
                 </form>
             </div>
         </div>
