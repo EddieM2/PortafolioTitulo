@@ -44,8 +44,8 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         
         <div class="barra-alumnos">
             <a href="seleccionar_curso.php"><button>Ver Notas</button></a>
-            <a href="asignaturas_asistencia.php"><button>Administrar Asistencia</button></a>
-            <a href="asignaturas_curso.php"><button>Mensajes</button></a>
+            <a href="asistencia.php"><button>Administrar Asistencia</button></a>
+            
             
         </div>
         <div id="calendar">

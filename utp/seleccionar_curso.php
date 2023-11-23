@@ -13,38 +13,94 @@ if (!$resultCursos) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <title>Seleccionar Curso y Asignatura</title>
+    <link rel="stylesheet" href="../src/css/graficos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-
-<h1>Seleccionar Curso y Asignatura</h1>
-
-<form action="#" method="post" id="seleccionarCursoForm">
-    <label for="curso">Selecciona un curso:</label>
-    <select name="curso" id="curso">
-        <?php
-        while ($rowCurso = mysqli_fetch_assoc($resultCursos)) {
-            $idCurso = $rowCurso['idCurso'];
-            $nombreCurso = $rowCurso['nombre'];
-            echo "<option value='$idCurso'>$nombreCurso</option>";
+    <style>
+        body {
+            background-color: #125E5E;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
-        ?>
-    </select>
 
-    <label for="asignatura">Selecciona una asignatura:</label>
-    <select name="asignatura" id="asignatura">
-        <!-- Las opciones de asignatura se cargarán dinámicamente aquí -->
-    </select>
+        .container {
+            margin-top: 5rem;
+        }
 
-    <button type="submit" id="verCalificacionesBtn">Ver Calificaciones</button>
-</form>
+        .card {
+            background-color: #fff;
+            color: #125E5E;
+            border: 2px solid #125E5E;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 120%;
+            max-width: 1050px;
+        }
 
-<div id="calificacionesTable">
-    <!-- Aquí se mostrará la tabla de calificaciones -->
-</div>
+        .btn-primary {
+            background-color: #125E5E;
+            border-color: #125E5E;
+        }
 
+        #calificacionesTable {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="custom-card-body">
+                        <h1 class="text-center">Seleccionar Curso y Asignatura</h1>
+
+                        <form action="#" method="post" id="seleccionarCursoForm">
+                            <div class="mb-3">
+                                <label for="curso" class="form-label">Selecciona un curso:</label>
+                                <select name="curso" id="curso" class="form-select">
+                                    <?php
+                                    while ($rowCurso = mysqli_fetch_assoc($resultCursos)) {
+                                        $idCurso = $rowCurso['idCurso'];
+                                        $nombreCurso = $rowCurso['nombre'];
+                                        echo "<option value='$idCurso'>$nombreCurso</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="asignatura" class="form-label">Selecciona una asignatura:</label>
+                                <select name="asignatura" id="asignatura" class="form-select">
+                                    <!-- Las opciones de asignatura se cargarán dinámicamente aquí -->
+                                </select>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" id="verCalificacionesBtn" class="btn btn-primary">Ver Calificaciones</button>
+                            </div>
+                        </form>
+
+                        <div id="calificacionesTable" class="mt-4">
+                            <!-- Aquí se mostrará la tabla de calificaciones -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <script>
     $(document).ready(function() {
         // Intercepta el cambio en la selección del curso

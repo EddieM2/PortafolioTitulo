@@ -6,13 +6,13 @@ $conexion = mysqli_connect(
     'localhost',
     'root',
     '',
-    'probando3'
+    'probando6'
 );
 
 $conexion2 = mysqli_connect(
     'localhost',
     'root',
     '',
-    'login_user'
+    'login_user2'
 );
 ?>

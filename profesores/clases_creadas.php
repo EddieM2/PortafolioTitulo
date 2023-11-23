@@ -10,11 +10,21 @@ include("../models/db.php");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"> <!-- Enlace a Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Enlace a Font Awesome -->
     <link rel="stylesheet" href='../src/css/profes.css'> <!-- Agrega el enlace a tu archivo CSS -->
+    <style>
+        .card {
+            max-height: 600px; /* Ajusta la altura máxima según tus necesidades */
+            overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+        }
+
+        .table-responsive {
+            overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si es necesario */
+        }
+    </style>
 </head>
 <body class="body">
     <div class="container">
-        <div class="custom-card"> <!-- Agregar la tarjeta personalizada -->
-            <div class="custom-card-body"> <!-- Cuerpo de la tarjeta -->
+        <div class="card"> <!-- Agregar la tarjeta personalizada -->
+            <div class="card-body"> <!-- Cuerpo de la tarjeta -->
                 <h1>Clases Creadas</h1>
                 <!-- Aquí se mostrarán las clases creadas -->
                 <?php

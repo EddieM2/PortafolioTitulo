@@ -123,10 +123,11 @@
     ?>
 
     <!-- Usamos Bootstrap para crear una tarjeta -->
+<div class="panel"> 
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h1>Conversación con <?php echo $apoderado_nombre; ?></h1>
+                <h1>Conversación con  <?php echo $apoderado_nombre; ?></h1>
             </div>
             <div class="card-body">
                 <h2 class="card-title">Profesor: <?php echo $profesor_nombre; ?></h2>
@@ -163,12 +164,12 @@
                     <label for="mensaje">Escribir Mensaje:</label>
                     <textarea id="mensaje" name="mensaje" rows="4" class="form-control"></textarea>
                     <br>
-                    <input type="submit" class="btn btn-primary" value="Enviar Mensaje">
+                    <input type="submit" class="btn btn-primary enviar-mensaje" value="Enviar Mensaje">
                 </form>
             </div>
         </div>
     </div>
-
+</div>
     <a href="asignaturas_curso.php">Volver a la Lista de Cursos y Asignaturas</a>
     <a href="logout.php">Cerrar Sesión</a>
 </body>

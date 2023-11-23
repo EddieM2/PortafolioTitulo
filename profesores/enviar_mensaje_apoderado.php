@@ -2,10 +2,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="stylesheet" href="../src/css/mensajes.css">
     <meta charset="UTF-8">
     <title>Enviar Nuevo Mensaje al Apoderado</title>
+    <style>
+        body {
+            background-color: #125E5E;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            margin-top: 5rem;
+        }
+
+        .card {
+            background-color: #fff;
+            color: #125E5E;
+            border: 2px solid #125E5E;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .btn-primary {
+            background-color: #125E5E;
+            border-color: #125E5E;
+        }
+
+        #calificacionesTable {
+            overflow-x: auto;
+        }
+    </style>
 </head>
 <body>
+<div class="panel"> 
     <h1>Enviar Nuevo Mensaje al Apoderado  </h1>
     
     <?php
@@ -76,8 +115,10 @@
         <textarea name="mensaje" id="mensaje" rows="4" cols="50" required></textarea><br>
         <input type="submit" value="Enviar Mensaje">
     </form>
+</div>
 
     <a href="ver_mensajes.php?idCurso=<?php echo $idCurso; ?>&idAsignatura=<?php echo $idAsignatura; ?>">Volver a Mensajes</a>
     <a href="logout.php">Cerrar Sesión</a>
+
 </body>
 </html>

@@ -67,6 +67,7 @@ $nombreAsignatura = $asignatura['nombre'];
     <link rel="stylesheet" href="../src/css/mensajes.css">
 </head>
 <body>
+<div class="panel"> 
     <h1>Enviar Nuevo Mensaje</h1>
     
     <h2>Curso: <?php echo $nombreCurso; ?></h2>
@@ -91,6 +92,7 @@ $nombreAsignatura = $asignatura['nombre'];
 
     <a href="ver_mensajes.php?idCurso=<?php echo $idCurso; ?>&idAsignatura=<?php echo $idAsignatura; ?>">Volver a Mensajes</a>
     <a href="logout.php">Cerrar Sesión</a>
+</div>    
 </body>
 </html>
 

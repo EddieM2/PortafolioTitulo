@@ -23,12 +23,9 @@ body {
     margin: 20px;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
-}
-
-h2 {
-    margin-top: 20px;
+    color: #125E5E; /* Ajuste de color para títulos */
 }
 
 ul {
@@ -44,8 +41,6 @@ strong {
     font-weight: bold;
 }
 
-/* ... Otros estilos ... */
-
 a {
     text-decoration: none;
     color: #fff;
@@ -53,18 +48,30 @@ a {
     padding: 5px 10px;
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.3s;
-    color: #fff;
-    display: inline-block; /* Hacer que los botones sean elementos en línea */
-    min-width: 150px; /* Ancho mínimo para botones */
-    text-align: center; /* Centrar el texto en el botón */
-    margin: 0 5px; /* Agregar un margen horizontal entre los botones */
-    height: 40px; /* Altura uniforme para los botones */
+    display: inline-block;
+    min-width: 150px;
+    text-align: center;
+    margin: 0 5px;
+    height: 40px;
 }
-
-/* ... Otros estilos ... */
-
 
 a:hover {
     background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+
+input[type="submit"].enviar-mensaje {
+    background-color: #28a745; /* Cambia el color de fondo del botón */
+    color: #fff; /* Cambia el color del texto del botón */
+    padding: 10px 20px; /* Ajusta el relleno del botón */
+    border: none; /* Elimina el borde del botón */
+    border-radius: 5px; /* Agrega bordes redondeados al botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+input[type="submit"].enviar-mensaje:hover {
+    background-color: #218838; /* Cambia el color de fondo al pasar el mouse */
     transform: scale(1.1);
 }
