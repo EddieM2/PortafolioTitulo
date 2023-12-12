@@ -1,15 +1,10 @@
-
 <?php include("../models/db.php") ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <?php
-
 // Verifica si el usuario ha iniciado sesión como administrador
 if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     $salud_rut = $_SESSION['rut'];
-
-
     $query = "SELECT nombre, apellidoP FROM salud_mental WHERE rut = '$salud_rut'";
     $result = mysqli_query($conexion, $query);
 
@@ -23,7 +18,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     <link rel="stylesheet" href="../src/css/ventanas/presentacion.css">
     <script src="../src/javas/alum.js"></script>
     <script src="../src/javas/hora.js"></script>
-
+    <meta charset="UTF-8">
     <div class="tarjeta-gris">
     <div class="tarjeta-bienvenida">
         <div class="imagen-usuario">
@@ -41,8 +36,6 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     </div>
         
     <div class="barra-alumnos">
-            <a href="pupilosApoderadoNotas.php"><button>Notas</button></a>
-            <a href="pupilosApoderadoAsistencia.php"><button>Asistencia</button></a>
             <a href="../segPsicologico/verFormularios.php"><button>Seguimiento psicológico</button></a>
         </div>
         <div id="calendar">

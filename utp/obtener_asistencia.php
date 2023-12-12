@@ -1,7 +1,7 @@
 <?php
 include("../models/db.php");
 
-// Consulta SQL para obtener el porcentaje de asistencia de todos los cursos
+// Consulta para obtener el porcentaje de asistencia de todos los cursos
 $queryAsistencia = "SELECT c.nombre AS curso, COUNT(a.idAsistencia) AS total_registros, 
                     SUM(a.presente) AS total_presentes
                     FROM curso c
@@ -18,8 +18,8 @@ if ($resultAsistencia) {
         $totalPresentes = $row['total_presentes'];
 
         if ($totalRegistros > 0) {
-            // Calcula el porcentaje de asistencias
-            $porcentajeAsistencia = ($totalPresentes / $totalRegistros) * 100;
+            // Calcula el porcentaje de asistencias y redondea a dos decimales
+            $porcentajeAsistencia = round(($totalPresentes / $totalRegistros) * 100, 2);
             echo "<p>Curso: $curso - Porcentaje de Asistencia: $porcentajeAsistencia%</p>";
         } else {
             echo "<p>Curso: $curso - Sin datos de asistencia</p>";

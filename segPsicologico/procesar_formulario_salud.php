@@ -1,34 +1,46 @@
 <?php
-// Incluye el archivo de conexión a la base de datos
 include("../models/db.php");
 
-// Recoge los valores del formulario
+// Obtiene los valores del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-     $rut_alumno = $_POST['rut_alumno'];
-     $tristeza = $_POST['tristeza'];
-     $autolesiones = $_POST['autolesiones'];
-     $cambios_sueño = $_POST['cambios-sueño'];
-     $concentracion = $_POST['concentración'];
-     $apoyo_amigos = $_POST['apoyo-amigos'];
-     $conflictos = $_POST['conflictos'];
-     $consumo_sustancias = $_POST['consumo-sustancias'];
-     $autoestima = $_POST['autoestima'];
-     $comentarios = $_POST['comentarios'];
-     $explicacion = $_POST['explicacion'];
+    $rut_alumno = $_POST['rut_alumno'];
+    $tristeza = $_POST['tristeza'];
+    $autolesiones = $_POST['autolesiones'];
+    $cambios_sueno = $_POST['cambios-sueño'];
+    $concentracion = $_POST['concentración'];
+    $apoyo_amigos = $_POST['apoyo-amigos'];
+    $conflictos = $_POST['conflictos'];
+    $consumo_sustancias = $_POST['consumo-sustancias'];
+    $autoestima = $_POST['autoestima'];
+    $comentarios = $_POST['comentarios'];
+    $explicacion = $_POST['explicacion'];
 
-    // Prepara la consulta SQL con los valores recogidos
-    $sql = "INSERT INTO respuestas_salud (rut_alumno, tristeza, autolesiones, cambios_sueño, concentracion, apoyo_amigos, conflictos, consumo_sustancias, autoestima, comentarios, explicacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conexion->prepare($sql);
+    // Escapar los valores para prevenir la inyección de SQL
+    $rut_alumno = mysqli_real_escape_string($conexion, $rut_alumno);
+    $tristeza = mysqli_real_escape_string($conexion, $tristeza);
+    $autolesiones = mysqli_real_escape_string($conexion, $autolesiones);
+    $cambios_sueno = mysqli_real_escape_string($conexion, $cambios_sueno);
+    $concentracion = mysqli_real_escape_string($conexion, $concentracion);
+    $apoyo_amigos = mysqli_real_escape_string($conexion, $apoyo_amigos);
+    $conflictos = mysqli_real_escape_string($conexion, $conflictos);
+    $consumo_sustancias = mysqli_real_escape_string($conexion, $consumo_sustancias);
+    $autoestima = mysqli_real_escape_string($conexion, $autoestima);
+    $comentarios = mysqli_real_escape_string($conexion, $comentarios);
+    $explicacion = mysqli_real_escape_string($conexion, $explicacion);
 
-    if ($stmt) {
-        // Asegúrate de que los valores 'si' y 'no' estén entre comillas simples en la consulta SQL
-        $stmt->execute([$rut_alumno, $tristeza, $autolesiones, $cambios_sueño, $concentracion, $apoyo_amigos, $conflictos, $consumo_sustancias, $autoestima, $comentarios, $explicacion]);
-        
+    // Prepara la consulta SQL con los valores recogidos, incluyendo la columna fecha
+    $sql = "INSERT INTO respuestas_salud (rut_alumno, tristeza, autolesiones, cambios_sueno, concentracion, apoyo_amigos, conflictos, consumo_sustancias, autoestima, explicacion, fecha) VALUES ('$rut_alumno', '$tristeza', '$autolesiones', '$cambios_sueno', '$concentracion', '$apoyo_amigos', '$conflictos', '$consumo_sustancias', '$autoestima', '$explicacion', NOW())";
+
+    // Establecer la codificación de caracteres
+    mysqli_set_charset($conexion, "utf8");
+
+    // Ejecutar la consulta y redirigir al usuario
+    if (mysqli_query($conexion, $sql)) {
         // Redirige al usuario a la página siguiente
-        header("Location: formSaludMental.php");
+        header("Location: segPsico.php?exito=true");
         exit;
     } else {
-        echo "Error al preparar la consulta.";
+        echo "Error al procesar el formulario: " . mysqli_error($conexion);
     }
 }
 ?>

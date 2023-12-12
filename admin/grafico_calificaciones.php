@@ -1,7 +1,9 @@
 
 
 <?php
+//conexion base de datos
 include("../models/db.php");
+//incluye el modelo
 include("grafico_model.php");
 ?>
 
@@ -16,6 +18,7 @@ include("grafico_model.php");
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="utf-8">
 </head>
 <body>
     <div class="container mt-5">
@@ -172,3 +175,4 @@ include("grafico_model.php");
     </script>
 </body>
 </html>
+

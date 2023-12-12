@@ -1,6 +1,6 @@
 .tarjeta-bienvenida {
     display: flex;
-    border: 0.5rem solid #ccc; /* Cambia el color del borde según tus preferencias */
+    border: 0.5rem solid #ccc; /* Cambia el color del borde  */
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -224,6 +224,6 @@ a {
 }
 #calendar-container {
     margin: 0 auto; /* Centra horizontalmente el contenedor */
-    width: 80%; /* Ajusta el ancho según tus preferencias */
+    width: 80%; /* Ajusta el ancho */
   }
   

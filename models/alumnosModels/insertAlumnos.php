@@ -34,7 +34,7 @@ if (mysqli_num_rows($resultVerificarAlumno) == 0 && mysqli_num_rows($resultVerif
 
     try {
         if (mysqli_query($conexion, $sqlInsertAlumno)) {
-            echo "Alumno agregado con éxito.";
+            header("Location: vistaAlumnos.php");
 
             // Obtener el ID del último alumno insertado
             $idAlumno = mysqli_insert_id($conexion);
@@ -43,10 +43,10 @@ if (mysqli_num_rows($resultVerificarAlumno) == 0 && mysqli_num_rows($resultVerif
             $sqlInsertInscripcion = "INSERT INTO inscripcion (idCurso, rutAlumno) VALUES ('$idCurso', '$rut')";
 
             if (mysqli_query($conexion, $sqlInsertInscripcion)) {
-                echo "Inscripción agregada con éxito.";
+                 header("Location: vistaAlumnos.php");
 
                 // Redirigir a la página deseada
-                header("Location: ../../alumnos/formAgregarAlumno.php");
+                header("Location: vistaAlumnos.php");
                 exit();
             } else {
                 echo "Error al agregar la inscripción: " . mysqli_error($conexion);
@@ -59,10 +59,12 @@ if (mysqli_num_rows($resultVerificarAlumno) == 0 && mysqli_num_rows($resultVerif
         header("Location: vistaAlumnos.php");
     }
 } else {
-    echo "El alumno ya existe en la base de datos o está inscrito en este curso.";
+    echo "El alumno ya existe en la base de datos o está inscrito en este curso
+    .";
 }
 
 // Cierra la conexión a la base de datos
 mysqli_close($conexion);
 ?>
+
 

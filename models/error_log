@@ -1,0 +1,133 @@
+[04-Nov-2023 13:26:34 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 9
+[04-Nov-2023 13:26:34 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 16
+[04-Nov-2023 13:26:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 13:26:57 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 9
+[04-Nov-2023 13:26:57 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 16
+[04-Nov-2023 13:26:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 13:28:49 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 9
+[04-Nov-2023 13:28:49 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 16
+[04-Nov-2023 13:28:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 13:30:13 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 9
+[04-Nov-2023 13:30:13 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 16
+[04-Nov-2023 13:30:13 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 13:30:24 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 9
+[04-Nov-2023 13:30:24 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 16
+[04-Nov-2023 13:30:24 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 13:30:26 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 9
+[04-Nov-2023 13:30:26 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 16
+[04-Nov-2023 13:30:26 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:02:46 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:02:46 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:03:44 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:03:44 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:05:45 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:05:45 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:05:52 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:05:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:06:23 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:06:23 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 5
+[04-Nov-2023 16:10:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:2) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 60
+[04-Nov-2023 16:13:25 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:2) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 43
+[04-Nov-2023 16:14:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:2) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 62
+[04-Nov-2023 16:14:43 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 3
+[04-Nov-2023 16:14:43 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:1) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 61
+[04-Nov-2023 16:14:55 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 3
+[04-Nov-2023 16:14:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:1) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 61
+[04-Nov-2023 16:15:14 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 3
+[04-Nov-2023 16:15:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:1) in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 62
+[04-Nov-2023 16:22:09 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 6
+[04-Nov-2023 16:22:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 6
+[04-Nov-2023 16:27:15 UTC] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'cpr96079_chrisq542'@'localhost' to database 'login_user' in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/db.php on line 13
+[04-Nov-2023 16:27:38 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 6
+[04-Nov-2023 16:27:38 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on bool in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php:6
+Stack trace:
+#0 {main}
+  thrown in /home2/cpr96079/public_html/proyectocolaborativo.cl/models/loginDB.php on line 6
+[24-Nov-2023 03:06:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:2) in /home2/cpr96079/public_html/models/loginDB.php on line 60
+[30-Nov-2023 17:09:23 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:12) in /home2/cpr96079/public_html/models/loginDB.php on line 125
+[30-Nov-2023 17:18:28 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:12) in /home2/cpr96079/public_html/models/loginDB.php on line 125
+[30-Nov-2023 17:21:49 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:22:24 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:22:32 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:22:37 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:22:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:28:09 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:28:33 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:28:46 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:28:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:29:26 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 126
+[30-Nov-2023 17:33:18 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 127
+[30-Nov-2023 17:36:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:16) in /home2/cpr96079/public_html/models/loginDB.php on line 129
+[30-Nov-2023 17:38:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:16) in /home2/cpr96079/public_html/models/loginDB.php on line 129
+[30-Nov-2023 17:38:39 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:9) in /home2/cpr96079/public_html/models/loginDB.php on line 129
+[30-Nov-2023 17:38:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:9) in /home2/cpr96079/public_html/models/loginDB.php on line 129
+[30-Nov-2023 17:42:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:9) in /home2/cpr96079/public_html/models/loginDB.php on line 129
+[30-Nov-2023 17:43:23 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:9) in /home2/cpr96079/public_html/models/loginDB.php on line 81
+[30-Nov-2023 17:44:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:9) in /home2/cpr96079/public_html/models/loginDB.php on line 81
+[30-Nov-2023 17:44:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:9) in /home2/cpr96079/public_html/models/loginDB.php on line 77
+[30-Nov-2023 17:49:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 79
+[30-Nov-2023 17:49:22 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 127
+[30-Nov-2023 17:52:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 127
+[30-Nov-2023 17:53:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 79
+[30-Nov-2023 17:53:16 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 79
+[30-Nov-2023 17:54:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 127
+[30-Nov-2023 17:56:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 127
+[30-Nov-2023 17:59:41 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 127
+[30-Nov-2023 18:00:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:13) in /home2/cpr96079/public_html/models/loginDB.php on line 79
+[30-Nov-2023 18:09:31 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 82
+[30-Nov-2023 18:10:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 80
+[30-Nov-2023 18:30:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:31:24 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:35:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:36:30 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:38:39 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:38:40 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:38:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:39:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:42:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:42:34 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:43:15 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 80
+[30-Nov-2023 18:44:16 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 80
+[30-Nov-2023 18:44:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:45:41 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:46:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:49:49 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:50:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:52:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128
+[30-Nov-2023 18:56:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/models/loginDB.php:14) in /home2/cpr96079/public_html/models/loginDB.php on line 128

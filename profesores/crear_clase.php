@@ -19,7 +19,7 @@ if (isset($_GET['idCurso'])) {
 
     if ($clase_existente) {
         // La clase ya existe, muestra un mensaje o redirige a la página de edición de asistencia
-        // Puedes redirigir a la página de edición con los parámetros necesarios
+        //  redirigir a la página de edición con los parámetros necesarios
         header("Location: editar_asistencia.php?fecha=$fecha&idCurso=$idCurso");
      //  echo ' holas';
         exit();
@@ -36,8 +36,7 @@ if (isset($_GET['idCurso'])) {
         if ($result_insert_asistencia) {
             // La clase se ha creado y todos los alumnos se han marcado como ausentes
 
-            // Recupera la lista de alumnos para mostrarla
-
+        
 
             // Redirige a la página de lista de alumnos en ese curso
             header("Location: editar_asistencia.php?fecha=$fecha&idCurso=$idCurso");

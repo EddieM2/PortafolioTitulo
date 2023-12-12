@@ -1,9 +1,6 @@
 <?php
+//conexion a la base de datos
 include("../models/db.php");
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
 // Consulta para obtener los datos de los estudiantes que faltaron a clases
 $query = "SELECT a.rut AS alumno_rut, a.nombre AS alumno_nombre, a.apellidoP AS alumno_apellidoP, a.correo AS alumno_correo,
@@ -17,9 +14,16 @@ $query = "SELECT a.rut AS alumno_rut, a.nombre AS alumno_nombre, a.apellidoP AS 
 // Realiza la consulta a la base de datos
 $result = $conexion->query($query);
 
-// Configuración de PHPMailer para enviar correos
-require 'PHPMailer.php';
-require 'SMTP.php';
+// Configuración de SMTP
+$smtp_server = 'srv13.cpanelhost.cl';
+$smtp_port = 465; // Puerto SMTP
+$smtp_username = 'notificaciones@proyectocolaborativo.cl'; // Nombre de usuario del correo
+$smtp_password = 'b*pjG~=}tsF_'; // Contraseña del correo
+$smtp_timeout = 30; // Tiempo de espera (opcional)
+
+// Configura el servidor SMTP
+ini_set('SMTP', $smtp_server);
+ini_set('smtp_port', $smtp_port);
 
 while ($row = $result->fetch_assoc()) {
     $alumno_rut = $row['alumno_rut'];
@@ -39,38 +43,39 @@ while ($row = $result->fetch_assoc()) {
         // No se envió un correo en la misma fecha, puedes enviar el correo
         $mensaje = "Estimado apoderado $apoderado_nombre $apoderado_apellidoP,\n\nEl estudiante $alumno_nombre $alumno_apellidoP faltó a clases el $fecha_falta. Por favor, póngase en contacto con la institución educativa para discutir la asistencia de su hijo(a).";
 
-        $mail = new PHPMailer(true);
-        try {
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'marcelo26atenas@gmail.com'; 
-            $mail->Password = 'phvo osum kwpj bknx'; 
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+        // Configuración de SMTP
+        $smtp_server = 'srv13.cpanelhost.cl';
+        $smtp_port = 465; // Puerto SMTP
+        $smtp_username = 'notificaciones@proyectocolaborativo.cl'; // Nombre de usuario del correo
+        $smtp_password = 'b*pjG~=}tsF_'; // Contraseña del correo
+        $smtp_timeout = 30; // Tiempo de espera (opcional)
 
-            $mail->setFrom('marcelo26atenas@gmail.com', 'Escuela'); 
-            $mail->addAddress($apoderado_correo, 'Apoderado');
+        // Configura el servidor SMTP
+        ini_set('SMTP', $smtp_server);
+        ini_set('smtp_port', $smtp_port);
 
-            $mail->isHTML(false);
-            $mail->Subject = 'Informe de Falta de Asistencia';
-            $mail->Body = $mensaje;
+        // Configuración del correo
+        $asunto = 'Informe de Falta de Asistencia';
+        $headers = 'From: notificaciones@proyectocolaborativo.cl' . "\r\n" .
+                   'Reply-To: notificaciones@proyectocolaborativo.cl' . "\r\n";
 
-            $mail->send();
-            
-            // Registrar la fecha del último correo en la tabla fecha_ultimo_correo
-            $insertarFechaCorreo = "INSERT INTO fecha_ultimo_correo (rutEstudiante, fecha) VALUES ('$alumno_rut', '$fecha_falta')";
-            $conexion->query($insertarFechaCorreo);
-            
-            echo "Correo enviado al apoderado $apoderado_nombre $apoderado_apellidoP.<br>";
-        } catch (Exception $e) {
-            echo 'Error al enviar el correo: ' . $e->getMessage();
+        // Envía el correo utilizando la función mail() con la configuración de SMTP
+        if (mail($apoderado_correo, $asunto, $mensaje, $headers)) {
+            echo 'El correo ha sido enviado al apoderado correctamente.';
+        } else {
+            echo 'Error al enviar el correo.';
         }
+
+        // Registrar la fecha del último correo en la tabla fecha_ultimo_correo
+        $insertarFechaCorreo = "INSERT INTO fecha_ultimo_correo (rutEstudiante, fecha) VALUES ('$alumno_rut', '$fecha_falta')";
+        $conexion->query($insertarFechaCorreo);
+
+        echo "Correo enviado al apoderado $apoderado_nombre $apoderado_apellidoP.<br>";
     } else {
-        
-        echo "Correo ya enviado en la misma fecha al apoderado $apoderado_nombre $apoderado_apellidoP.<br>";
+        echo "El correo del apoderado está vacío o no es válido.";
     }
 }
 
 // Cierra la conexión a la base de datos
 $conexion->close();
+?>

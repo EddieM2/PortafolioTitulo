@@ -17,14 +17,31 @@ if (isset($_GET['fecha']) && isset($_GET['idCurso'])) {
         echo "<meta charset='UTF-8'>";
         echo "<title>Editar Asistencia</title>";
         echo "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css'>"; // Enlace a Bootstrap
-        echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>"; // Enlace a Font Awesome
-        echo "<link rel='stylesheet' href='../src/css/profes.css'>"; // Agrega el enlace a tu archivo CSS
+        echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>";
+        echo "<link rel='stylesheet' href='../src/css/profes.css'>";
+        echo "<style>";
+        echo ".body { padding-top: 20px; }"; // Ajuste de espacio en la parte superior del cuerpo
+        echo ".custom-card { overflow: auto; max-height: 80vh; }"; // Permitir scroll vertical y limitar la altura
+        echo ".table { width: 100%; max-width: 100%; }"; // Estilo para hacer scroll horizontal
+        echo "</style>";
         echo "</head>";
         echo "<body class='body'>";
 
         echo "<div class='container'>";
         echo "<div class='custom-card'>";
         echo "<div class='custom-card-body'>";
+
+        if (isset($_GET['resultado'])) {
+            $resultado = $_GET['resultado'];
+
+            // Muestra un mensaje basado en el resultado
+            if ($resultado === 'exito') {
+                echo "<p class='mensaje-exito'>La asistencia se guardó exitosamente.</p>";
+            } else {
+                echo "<p class='mensaje-error'>Hubo un error al guardar la asistencia.</p>";
+            }
+        }
+
         echo "<h1>Editar Asistencia</h1>";
         echo "<form method='post' action='procesar_asistencia.php'>";
         echo "<input type='hidden' name='fecha' value='$fecha'>";
@@ -65,7 +82,6 @@ if (isset($_GET['fecha']) && isset($_GET['idCurso'])) {
 
         echo "</tbody>";
         echo "</table>";
-
         echo "<button class='btn btn-primary' type='submit'><i class='fas fa-save'></i> Guardar Asistencia</button>";
         echo "</form>";
         echo "</div>";

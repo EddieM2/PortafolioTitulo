@@ -1,5 +1,4 @@
-<?php include("../db.php"); ?>
-
+ <?php include("../db.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,6 +18,7 @@
                 <form method="POST" action="">
                     <label for="select_curso">Seleccione un Curso:</label>
                     <select name="select_curso" onchange="this.form.submit()">
+                        <option value="" disabled selected>Seleccionar</option> <!-- Opción inicial deshabilitada y seleccionada -->
                         <?php
                         // Lista de cursos para el menú desplegable
                         $queryCursos = "SELECT idCurso, nombre FROM curso";
@@ -71,7 +71,7 @@
                             }
                             echo "</select>";
                             echo "</td>";
-                            // Agrega un campo oculto para la clave primaria (idAsignatura)
+                            // campo oculto para la clave primaria (idAsignatura)
                             echo "<input type='hidden' name='asignatura_id[]' value='" . $row['idAsignatura'] . "'>";
                             echo "<td><a href='editar_asignatura.php?id=" . $row['idAsignatura'] . "'>Editar</a></td>";
                             echo "</tr>";
@@ -124,3 +124,4 @@
     </div>
 </body>
 </html>
+

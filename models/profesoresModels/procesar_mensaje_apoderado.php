@@ -1,5 +1,4 @@
 <?php include("../db.php") ?>
-
 <?php
 session_start();
 
@@ -19,7 +18,7 @@ if (isset($_POST['rutAlumno'], $_POST['rut_Apoderado'], $_POST['idCurso'], $_POS
     exit();
 }
 
-// Conectar a la base de datos (ajusta la configuración de conexión según tu entorno)
+
 
 // Verificar si existe una conversación entre el profesor y el apoderado de este alumno
 $verificar_conversacion_query = "SELECT idConversacion FROM mensajes 
@@ -37,7 +36,7 @@ if ($row = mysqli_fetch_assoc($verificar_conversacion_result)) {
     // Si existe una conversación, redirigir a la página de ver conversación existente
     $idConversacionExistente = $row['idConversacion'];
     // Redirigir a la página de ver conversación existente con la URL completa
-    header("Location: ../../profesores/ver_conversacion_profesor.php?idConversacion=$idConversacionExistente&idCurso=$idCurso&idAsignatura=$idAsignatura&idEmisor=$rut_Apoderado");
+    header("Location: ../profesores/ver_conversacion_profesor.php?idConversacion=$idConversacionExistente&idCurso=$idCurso&idAsignatura=$idAsignatura&idEmisor=$rut_Apoderado");
     exit();
 } else {
     // Si no existe una conversación, crear una nueva conversación y luego redirigir
@@ -54,18 +53,18 @@ if ($row = mysqli_fetch_assoc($verificar_conversacion_result)) {
         
         if (mysqli_query($conexion, $insertar_mensaje_query)) {
             // Éxito al enviar el mensaje, redirigir a la página de ver conversación
-            header("Location: ../../portafolioTitulo3/profesores/ver_conversacion_profesor.php?idConversacion=$idConversacion&idCurso=$idCurso&idAsignatura=$idAsignatura&idEmisor=$rut_Apoderado");
+            header("Location: ../../profesores/ver_conversacion_profesor.php?idConversacion=$idConversacion&idCurso=$idCurso&idAsignatura=$idAsignatura&idEmisor=$rut_Apoderado");
             exit();
         } else {
-            // Error al enviar el mensaje, manejar de acuerdo a tus necesidades
+            // Error al enviar el mensaje
             echo "Error al enviar el mensaje: " . mysqli_error($conexion);
         }
     } else {
-        // Error al crear la conversación, manejar de acuerdo a tus necesidades
+        // Error al crear la conversación
         echo "Error al crear la conversación: " . mysqli_error($conexion);
     }
 }
 
 // Cerrar la conexión a la base de datos
-mysqli_close($conn);
+mysqli_close($conexion);
 ?>

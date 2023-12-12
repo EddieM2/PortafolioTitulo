@@ -71,7 +71,7 @@
 
             <!-- Formulario de contacto -->
 
-            <form id="contactForm" action="form-contacto.php" method="post">
+<form id="contactForm" action="form-contacto.php" method="post">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -101,11 +101,20 @@
     </footer>
 
     <!-- Script para el envío del formulario -->
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            this.submit();
-        });
-    </script>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        
+
+        // Muestra una alerta después de procesar el formulario
+        alert("Correo enviado con éxito");
+
+        // Restaurar la acción predeterminada del formulario
+        this.submit();
+    });
+</script>
+
 </body>
 </html>

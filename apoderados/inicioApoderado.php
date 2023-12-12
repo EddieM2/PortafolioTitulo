@@ -23,7 +23,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     <link rel="stylesheet" href="../src/css/ventanas/presentacion.css">
     <script src="../src/javas/alum.js"></script>
     <script src="../src/javas/hora.js"></script>
-
+<meta charset="UTF-8">
 
     <div class="tarjeta-gris">
     <div class="tarjeta-bienvenida">

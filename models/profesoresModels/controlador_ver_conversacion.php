@@ -12,12 +12,12 @@ if (isset($_POST['mensaje']) && isset($_POST['idConversacion']) && isset($_POST[
     $idAsignatura = $_POST['idAsignatura'];
     $idEmisor = $_POST['idEmisor'];
 } else {
-    // Si no se proporcionaron los parámetros requeridos, redirigir a la página anterior
+   
     
     exit();
 }
 
-// Conectar a la base de datos (ajusta la configuración de conexión según tu entorno)
+
 $conn = mysqli_connect('localhost', 'root', '', 'probando2');
 
 if (!$conn) {
@@ -34,9 +34,7 @@ if (!$resultado_insertar_mensaje) {
     die("Error al enviar el mensaje: " . mysqli_error($conn));
 }
 
-// Redirigir de vuelta a la página de ver_conversacion.php después de enviar el mensaje
 
-// Redirigir de vuelta a la página de ver_conversacion.php después de enviar el mensaje
 // Redirigir de vuelta a la página de ver_conversacion.php después de enviar el mensaje
 header("Location: ../../profesores/ver_conversacion_profesor.php?idConversacion=$idConversacion&idCurso=$idCurso&idAsignatura=$idAsignatura&idEmisor=$idEmisor");
 exit();

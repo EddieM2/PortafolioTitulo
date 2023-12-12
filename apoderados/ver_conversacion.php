@@ -1,3 +1,4 @@
+<?php include("../models/db.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,7 +12,6 @@
         <div class="custom-card">
             <div class="custom-card-body">
                 <?php
-                include("../models/db.php");
                 if (isset($_SESSION['rut'])) {
                     $apoderado_rut = $_SESSION['rut'];
 

@@ -46,10 +46,10 @@
 
                     <!-- Lugar para mostrar los gráficos -->
                     <div id="graficosContainer">
-                        <!-- Contenido de la tarjeta aquí -->
+                        <!-- Aqui si mostrara la targeta -->
                     </div>
 
-                    <!-- Elemento para mostrar el curso seleccionado -->
+                    <!-- Aqui se mostrara el curso seleccionado -->
                     <div id="cursoSeleccionado"></div>
                 </div>
             </div>

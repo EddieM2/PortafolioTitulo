@@ -11,7 +11,7 @@
 <div class="login-container">
   <div class="login-card">
     <h2>Iniciar sesión</h2>
-    <form action="models/loginDB.php" method="POST">
+    <form action="models/loginDB.php" method="POST" onsubmit="return validarLogin();">
       <div class="form-group">
         <label for="user">Usuario</label>
         <input type="text" name="user" class="form-control" id="user" placeholder="Usuario" autofocus>
@@ -22,9 +22,14 @@
       </div>
       <div class="form-group">
         <input type="submit" class="login-button" name="validate_user" value="Login">
+        <div class="form-group">
+                <a href="forgot_password.php" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
+            </div>
       </div>
     </form>
   </div>
 </div>
-<?php include("includes/footer.php") ?>
+<?php include("includes/footer_2.php") ?>
+
+
 </html>

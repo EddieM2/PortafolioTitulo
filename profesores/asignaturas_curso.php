@@ -1,23 +1,26 @@
-<?php include("../models/db.php") ?>
 <?php
+include("../models/db.php");
 
-
-// Verificar si el usuario ha iniciado sesión como profesor
+// Verificar la sesión y los parámetros de la URL
 //if (!isset($_SESSION['rut']) || $_SESSION['cargo_id'] != 2) {
-    // Si no ha iniciado sesión como profesor, redirigir a la página de inicio de sesión
-  //  header("Location: login.php");
-    //exit();
+  // header("Location: login.php");
+   // exit();
 //}
 
 // Obtener el RUT del profesor desde la sesión
 $rut_profesor = $_SESSION['rut'];
-$nombre_profesor = $_SESSION['user']; // Nombre del profesor
 
+// Obtener el nombre y apellido paterno del profesor mediante una consulta SQL
+$info_profesor_query = "SELECT nombre, apellidoP FROM profesor WHERE rut = '$rut_profesor'";
+$info_profesor_result = mysqli_query($conexion, $info_profesor_query);
 
-
-if (!$conexion) {
-    die("Error de conexión: " . mysqli_connect_error());
+if (!$info_profesor_result) {
+    die("Error al obtener la información del profesor: " . mysqli_error($conexion));
 }
+
+$profesor = mysqli_fetch_assoc($info_profesor_result);
+$nombre_profesor = $profesor['nombre'];
+$apellido_paterno_profesor = $profesor['apellidoP'];
 
 // Consultar los cursos del profesor
 $cursos_query = "SELECT DISTINCT c.idCurso, c.nombre AS nombre_curso
@@ -32,10 +35,6 @@ if (!$cursos_result) {
 }
 
 ?>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<!DOCTYPE html>
-<link rel="stylesheet" href="../src/css/mensajes.css">
 
 <!DOCTYPE html>
 <html lang="es">
@@ -46,7 +45,7 @@ if (!$cursos_result) {
 </head>
 <body>
     <div class="panel">
-        <h1>Bienvenido, <?php echo $nombre_profesor; ?> (Profesor)</h1>
+        <h1>Bienvenido, <?php echo $nombre_profesor . ' ' . $apellido_paterno_profesor; ?> (Profesor)</h1>
         
         <div class="panel-body">
             <h2>Cursos y Asignaturas:</h2>
@@ -110,3 +109,6 @@ if (!$cursos_result) {
 // Cerrar la conexión a la base de datos
 mysqli_close($conexion);
 ?>
+
+
+

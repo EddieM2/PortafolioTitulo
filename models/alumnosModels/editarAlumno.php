@@ -1,6 +1,6 @@
-<?php include("../db.php") ?>
-
 <?php
+include("../db.php");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos enviados por el formulario
     $rut = $_POST["rut"];
@@ -14,24 +14,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = $_POST["telefono"];
     $genero = $_POST["genero"];
     $estadoAcademico = $_POST["estadoAcademico"];
-
-    if (!$conexion) {
-        die("Error de conexión: " . mysqli_connect_error());
-    }
+    $rutApoderado = $_POST["rutApoderado"];
 
     // Verificar la conexión
     if ($conexion->connect_error) {
         die("Error de conexión: " . $conexion->connect_error);
     }
 
-    // Consulta SQL para actualizar los datos del alumno
-    $sql = "UPDATE alumno SET correo = '$correo', nombre = '$nombre', apellidoM = '$apellidoM', apellidoP = '$apellidoP', idCargo = '$idCargo', fechaNacimiento = '$fechaNacimiento', direccion = '$direccion', telefono = '$telefono', genero = '$genero', estadoAcademico = '$estadoAcademico' WHERE rut = '$rut'";
+    // Consulta SQL para actualizar los datos del alumno utilizando sentencias preparadas
+    $sql = "UPDATE alumno SET correo = ?, nombre = ?, apellidoM = ?, apellidoP = ?, idCargo = ?, fechaNacimiento = ?, direccion = ?, telefono = ?, genero = ?, estadoAcademico = ?, rutApoderado = ? WHERE rut = ?";
+    
+    $stmt = $conexion->prepare($sql);
 
-    if ($conexion->query($sql) === TRUE) {
-        echo "Los cambios se han guardado correctamente.";
+    // Vincular parámetros
+    $stmt->bind_param("ssssisssisss", $correo, $nombre, $apellidoM, $apellidoP, $idCargo, $fechaNacimiento, $direccion, $telefono, $genero, $estadoAcademico, $rutApoderado, $rut);
+
+    // Ejecutar la consulta
+    if ($stmt->execute()) {
+        // Redirigir a la vista de alumnos después de guardar los cambios
+        header("Location: ../../models/alumnosModels/vistaAlumnos.php");
+        exit(); // detiene la ejecucion del script
     } else {
-        echo "Error al guardar los cambios: " . $conexion->error;
+        echo "Error al guardar los cambios: " . $stmt->error;
     }
+
+    // Cierra la declaración
+    $stmt->close();
 
     // Cierra la conexión a la base de datos
     $conexion->close();

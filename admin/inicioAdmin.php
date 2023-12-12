@@ -20,10 +20,12 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         $apellido_paterno = $user_info['apellidoP'];
 
         $saludo = "Bienvenido, $nombre $apellido_paterno";
-?>
+?><head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="../src/css/ventanas/presentacion.css">
     <script src="../src/javas/alum.js"></script>
     <script src="../src/javas/hora.js"></script>
+    </head>
 
     <div class="tarjeta-gris">
     <div class="tarjeta-bienvenida">

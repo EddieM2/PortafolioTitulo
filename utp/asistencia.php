@@ -23,7 +23,7 @@ if (!$resultCursos) {
 <h1>Porcentaje de Asistencia por Curso</h1>
 
 <div id="asistenciaResult">
-    <!-- Aquí se mostrará el resultado del porcentaje de asistencia -->
+    <!-- se mostrará el resultado del porcentaje de asistencia en esta parte -->
 </div>
 
 <script>

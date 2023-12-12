@@ -53,7 +53,7 @@ if ($apoderado_row = mysqli_fetch_assoc($apoderado_result)) {
         exit();
     }
 } else {
-    // No se pudo obtener el RUT del apoderado
+    // error al obtener el rut del apoderado
    
     echo ("No se pudo obtener el RUT del apoderado");
 }

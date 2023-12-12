@@ -22,7 +22,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         $saludo = "Bienvenido, $nombre $apellido_paterno";
 ?>
     <link rel="stylesheet" href="../src/css/ventanas/presentacion.css">
-
+<meta charset="UTF-8">
     <div class="tarjeta-gris">
     <div class="tarjeta-bienvenida">
         <div class="imagen-usuario">
@@ -41,7 +41,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
         
         <div class="barra-alumnos">
             <a href="seleccionar_curso.php"><button>Ver Notas</button></a>
-            <a href="asistencia.php"><button>Administrar Asistencia</button></a>
+            <a href="asistencia.php"><button>Ver Asistencia</button></a>
             
             
         </div>

@@ -1,28 +1,24 @@
 <?php
-// Incluye el archivo de configuración de la base de datos
+// Incluye el archivo de configuracion de la base de datos
 include("../models/db.php");
 
-// Realiza la consulta SQL para recuperar los formularios y respuestas
+// consulta para traer los formularios y respuestas
 $sql = "SELECT * FROM respuestas_salud";
 $result = mysqli_query($conexion, $sql);
 
 if (!$result) {
     die("Error en la consulta: " . mysqli_error($conexion));
 }
-
-// HTML para mostrar los formularios y respuestas en una tabla
 ?>
-
 <!DOCTYPE html>
 <html>
-
-<head>
+<head><meta charset="gb18030">
     <title>Ver Formularios</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../src/css/profes.css">
 </head>
-
 <body>
+    
     <div class="container mt-5">
         <div class="custom-card">
             <div class="custom-card-body">
@@ -41,14 +37,13 @@ if (!$result) {
                             <th>Autoestima</th>
                             <th>Explicación</th>
                         </tr>
-
                         <?php
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row['rut_alumno']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['tristeza']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['autolesiones']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['cambios_sueño']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['cambios_sueno']) ."</td>";
                             echo "<td>" . htmlspecialchars($row['concentracion']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['apoyo_amigos']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['conflictos']) . "</td>";

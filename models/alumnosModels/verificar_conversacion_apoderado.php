@@ -55,7 +55,5 @@ if ($apoderado_row = mysqli_fetch_assoc($apoderado_result)) {
         exit();
     }
 } else {
-    // No se pudo obtener el RUT del apoderado
-    // Maneja este caso de acuerdo a tus necesidades, como mostrar un mensaje de error o redirigir a una página específica.
 }
 ?>

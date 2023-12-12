@@ -5,7 +5,6 @@
 if (isset($_GET['rut'])) {
     $rut = $_GET['rut'];
 
-    // Validar el formato del RUT (opcional)
  
 
     if (!$conexion) {

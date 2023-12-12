@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Itera a través de las calificaciones y las guarda en la base de datos
         foreach ($calificaciones as $rut_alumno => $notas) {
-            // Asegúrate de validar y sanitizar los datos antes de ejecutar la consulta en un entorno de producción
+            //sanitiza los datos
             $nota1 = isset($notas['calificacion1']) ? floatval($notas['calificacion1']) : 0.0;
             $nota2 = isset($notas['calificacion2']) ? floatval($notas['calificacion2']) : 0.0;
             $nota3 = isset($notas['calificacion3']) ? floatval($notas['calificacion3']) : 0.0;

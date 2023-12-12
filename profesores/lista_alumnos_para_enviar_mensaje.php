@@ -1,6 +1,5 @@
-<?php include("../models/db.php") ?>
 <?php
-
+include("../models/db.php");
 
 // Obtener el RUT del profesor desde la sesión
 $rut_profesor = $_SESSION['rut'];
@@ -14,8 +13,6 @@ if (isset($_GET['idCurso']) && isset($_GET['idAsignatura'])) {
     header("Location: cursos_asignaturas.php");
     exit();
 }
-
-
 
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
@@ -65,6 +62,10 @@ $nombreAsignatura = $asignatura['nombre'];
     <meta charset="UTF-8">
     <title>Enviar Nuevo Mensaje</title>
     <link rel="stylesheet" href="../src/css/mensajes.css">
+    <style>
+        body { padding-top: 20px; }
+        .panel { overflow: auto; max-height: 80vh; }
+    </style>
 </head>
 <body>
 <div class="panel"> 

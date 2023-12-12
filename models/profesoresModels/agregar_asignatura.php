@@ -4,7 +4,7 @@ include("../db.php");
 if (isset($_POST['agregar_asignatura'])) {
     $nombreAsignatura = $_POST['nueva_asignatura'];
     $rutProfesor = $_POST['nuevo_profesor'];
-    $idCurso = $_POST['nuevo_curso']; // Nuevo campo para el curso
+    $idCurso = $_POST['nuevo_curso']; 
 
     // Recupera el valor máximo actual de idAsignatura
     $queryMaxId = "SELECT MAX(idAsignatura) AS max_id FROM asignatura";
@@ -28,9 +28,9 @@ if (isset($_POST['agregar_asignatura'])) {
     if ($result) {
         // Éxito: la asignatura se ha agregado correctamente
         header("Location: administrarCursosAsignaturas.php");
-        exit; // Asegurarse de que el script se detenga después de la redirección
+        exit; // detiene el script luego de la redirrecion
     } else {
-        // Error: no se pudo agregar la asignatura
+        // controlar el error
         echo "Error al agregar la asignatura: " . mysqli_error($conexion);
     }
 }

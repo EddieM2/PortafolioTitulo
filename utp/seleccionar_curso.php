@@ -1,5 +1,5 @@
 <?php
-// Conexión a la base de datos
+// Conexion a la base de datos
 include("../models/db.php");
 
 // Consulta SQL para obtener la lista de cursos
@@ -14,8 +14,8 @@ if (!$resultCursos) {
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
+<head><meta charset="gb18030">
+    
     <title>Seleccionar Curso y Asignatura</title>
     <link rel="stylesheet" href="../src/css/graficos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
@@ -84,17 +84,15 @@ if (!$resultCursos) {
                             <div class="mb-3">
                                 <label for="asignatura" class="form-label">Selecciona una asignatura:</label>
                                 <select name="asignatura" id="asignatura" class="form-select">
-                                    <!-- Las opciones de asignatura se cargarán dinámicamente aquí -->
                                 </select>
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" id="verCalificacionesBtn" class="btn btn-primary">Ver Calificaciones</button>
+                                <button type="submit" id="verCalificacionesBtn" class="btn btn-primary">Ver Notas</button>
                             </div>
                         </form>
 
                         <div id="calificacionesTable" class="mt-4">
-                            <!-- Aquí se mostrará la tabla de calificaciones -->
                         </div>
                     </div>
                 </div>

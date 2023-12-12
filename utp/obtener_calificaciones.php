@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultCalificaciones = mysqli_query($conexion, $queryCalificaciones);
 
     if ($resultCalificaciones) {
-        // Crear una tabla HTML para mostrar las calificaciones
+        // Crea una tabla para mostrar las calificaciones
         echo "<h2>Calificaciones del Curso y Asignatura Seleccionados</h2>";
         echo "<table border='1'>";
         echo "<tr>";

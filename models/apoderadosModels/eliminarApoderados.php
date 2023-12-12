@@ -1,14 +1,11 @@
 <?php include("../db.php") ?>
-
 <?php
 // Verificar si se proporcionó un RUT de apoderado válido en la URL
 if (isset($_GET['rut'])) {
     $rut = $_GET['rut'];
-
     if (!$conexion) {
         die("Error de conexión: " . mysqli_connect_error());
     }
-
     // Consulta para eliminar al apoderado
     $deleteQuery = "DELETE FROM apoderado WHERE rut = '$rut'";
 

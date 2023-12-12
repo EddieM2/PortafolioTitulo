@@ -1,37 +1,40 @@
 <?php include("db.php") ?>
-
 <?php
 //session_start();
 $login_user = $conexion2->query("SELECT DATABASE()")->fetch_row()[0];  // Obtiene el nombre de la base de datos de la conexión $conexion2
 $probando2 = $conexion->query("SELECT DATABASE()")->fetch_row()[0];  // Obtiene el nombre de la base de datos de la conexión $conexion2
-
-
-
 if (isset($_POST['validate_user'])) {
     $user = $_POST['user'];
     $pass = $_POST['pass'];
+//echo "Contraseña original: $pass";
+ // Hashear la contraseña ingresada
+ //comentar para entrar sin hash
+    $hashed_pass = substr(hash('sha256', $pass), 0, 12);
 
-    $query = "SELECT l.*, p.nombre AS nombre_profesor FROM $login_user.login AS l
-    LEFT JOIN $probando2.profesor AS p ON l.user = p.rut
-    WHERE user='$user' and pass='$pass'";
+//echo "Usuario: $user, Hash: $hashed_pass";
 
+  //$query = "SELECT l.*, p.nombre AS nombre_profesor FROM $login_user.login AS l LEFT JOIN $probando2.profesor AS p ON l.user = p.rut
+   //WHERE user='$user' and pass='$hashed_pass'"; 
+
+//entrar sin hash
+ $query = "SELECT l.*, p.nombre AS nombre_profesor FROM $login_user.login AS l LEFT JOIN $probando2.profesor AS p ON l.user = p.rut
+    WHERE user='$user' and pass='$hashed_pass'"; 
 
     $result = mysqli_query($conexion2, $query);
 
     if (!$result) {
         die("Query failed: " . mysqli_error($conexion2, $conexion));
     }
-
     $filas = mysqli_fetch_array($result);
-
-    if ($filas) {
+if ($filas) {
+ //   if ($filas) {
         if ($filas['cargo_id'] == 1) { // Administrador
             // Guarda la información del administrador en la sesión
             $_SESSION['user_id'] = $filas['idUser'];
-            $_SESSION['user'] = $filas['nombre_profesor']; // Cambia esto al nombre del administrador si es apropiado
+            $_SESSION['user'] = $filas['nombre_profesor']; 
 
             // Consulta adicional para obtener el RUT del administrador
-            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$hashed_pass'";
             $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $admin_rut = $rut_row['rut'];
@@ -48,7 +51,7 @@ if (isset($_POST['validate_user'])) {
             $_SESSION['user'] = $filas['nombre_profesor'];
 
             // Consulta adicional para obtener el RUT del profesor
-            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$hashed_pass'";
             $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $user_rut = $rut_row['rut'];
@@ -65,7 +68,7 @@ if (isset($_POST['validate_user'])) {
             $_SESSION['user'] = $filas['nombre_profesor']; // Cambia esto al nombre del alumno si es apropiado
     
             // Consulta adicional para obtener el RUT del alumno
-            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$hashed_pass'";
             $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $alumno_rut = $rut_row['rut'];
@@ -77,7 +80,7 @@ if (isset($_POST['validate_user'])) {
             header("Location: ../alumnos/inicioAlum.php");
             exit();
         } else if ($filas['cargo_id'] == 4) { // Apoderado
-            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$hashed_pass'";
             $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $apoderado_rut = $rut_row['rut'];
@@ -87,7 +90,7 @@ if (isset($_POST['validate_user'])) {
             header("Location: ../apoderados/inicioApoderado.php");
             exit();
         } else if ($filas['cargo_id'] == 5) { // salud mental
-            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$hashed_pass'";
             $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $salud_rut = $rut_row['rut'];
@@ -97,7 +100,7 @@ if (isset($_POST['validate_user'])) {
             header("Location: ../salud_mental/inicioSalud.php");
             exit();
         } else if ($filas['cargo_id'] == 6) { // salud mental
-            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$hashed_pass'";
             $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $utp_rut = $rut_row['rut'];
@@ -107,7 +110,7 @@ if (isset($_POST['validate_user'])) {
             header("Location: ../utp/inicioUtp.php");
             exit();
         } else if ($filas['cargo_id'] == 7) { // denuncia
-            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$pass'";
+            $rut_query = "SELECT rut FROM login WHERE user='$user' and pass='$hashed_pass'";
             $rut_result = mysqli_query($conexion2, $rut_query);
             $rut_row = mysqli_fetch_array($rut_result);
             $denuncia_rut = $rut_row['rut'];

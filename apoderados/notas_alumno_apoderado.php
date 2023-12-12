@@ -1,13 +1,11 @@
 <?php
 include("../models/db.php");
 
-// Asegúrate de que se haya iniciado la sesión del alumno
-//if (isset($_SESSION['rut'])) {
 // Rut del alumno seleccionado 
 $rut_pupilo = $_POST['rut_pupilo'];
 
-// Realiza una consulta para obtener las calificaciones del alumno junto con el nombre de la asignatura
-$query = "SELECT cal.idCalificacion, cal.fecha, asi.nombre AS nombre_asignatura, cal.calificacion1, cal.calificacion2, cal.calificacion3, cal.calificacion4
+// Consulta para obtener las calificaciones del alumno junto con el nombre de la asignatura
+$query = "SELECT cal.idCalificacion, cal.fecha, asi.nombre AS nombre_asignatura, cal.calificacion1, cal.calificacion2, cal.calificacion3, cal.calificacion4, cal.promedio
           FROM calificaciones AS cal
           INNER JOIN asignatura AS asi ON cal.idAsignatura = asi.idAsignatura
           WHERE cal.idAlumno = '$rut_pupilo'";
@@ -17,10 +15,6 @@ $result = mysqli_query($conexion, $query);
 if (!$result) {
     die("Error en la consulta: " . mysqli_error($conexion));
 }
-//} else {
-//    header("Location: ../login.php"); // Redirige si no ha iniciado sesión
-//    exit();
-//}
 ?>
 
 <!DOCTYPE html>
@@ -34,58 +28,45 @@ if (!$result) {
 </head>
 <body>
     <div class="container mt-5">
-        <div class="custom-card">
-            <div class="custom-card-body">
-                <h1 class="card-title">Calificaciones del Alumno</h1>
+        <div class="accordion" id="accordionAsignaturas">
 
-                <div class= "table-responsive">
+            <?php
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<div class="accordion-item">';
+                    echo '<h2 class="accordion-header" id="headingAsignatura' . $row['idCalificacion'] . '">';
+                    echo '<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAsignatura' . $row['idCalificacion'] . '" aria-expanded="true" aria-controls="collapseAsignatura' . $row['idCalificacion'] . '">';
+                    echo $row['nombre_asignatura'];
+                    echo '</button>';
+                    echo '</h2>';
+                    echo '<div id="collapseAsignatura' . $row['idCalificacion'] . '" class="accordion-collapse collapse" aria-labelledby="headingAsignatura' . $row['idCalificacion'] . '" data-bs-parent="#accordionAsignaturas">';
+                    echo '<div class="accordion-body">';
+                    //echo '<p>Fecha: ' . $row['fecha'] . '</p>';
+                    echo '<p>Calificación 1: ' . $row['calificacion1'] . '</p>';
+                    echo '<p>Calificación 2: ' . $row['calificacion2'] . '</p>';
+                    echo '<p>Calificación 3: ' . $row['calificacion3'] . '</p>';
+                    echo '<p>Calificación 4: ' . $row['calificacion4'] . '</p>';
 
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Asignatura</th>
-                                <th>Fecha</th>
-                                <th>Calificación 1</th>
-                                <th>Calificación 2</th>
-                                <th>Calificación 3</th>
-                                <th>Calificación 4</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo '<tr>';
-                                    echo '<td>' . $row['nombre_asignatura'] . '</td>';
-                                    echo '<td>' . $row['fecha'] . '</td>';
-                                    echo '<td>' . $row['calificacion1'] . '</td>';
-                                    echo '<td>' . $row['calificacion2'] . '</td>';
-                                    echo '<td>' . $row['calificacion3'] . '</td>';
-                                    echo '<td>' . $row['calificacion4'] . '</td>';
-                                    echo '</tr>';
-                                }
-                            } else {
-                                echo '<tr><td colspan="6">No hay calificaciones registradas.</td></tr>';
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                    // Mostrar el promedio solo si es superior a 0
+                    if ($row['promedio'] > 0) {
+                        echo '<p>Promedio: ' . $row['promedio'] . '</p>';
+                    }
 
-                    
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p>No hay calificaciones registradas.</p>';
+            }
+            ?>
+
         </div>
         <button class="btn-back" onclick="window.history.back();"><i class="fas fa-arrow-left"></i> Volver Atrás</button>
     </div>
 
-    <script>
-        // JavaScript para manejar el despliegue de las calificaciones al hacer clic
-        const asignaturas = document.querySelectorAll('.asignatura');
-
-        asignaturas.forEach(asignatura => {
-            asignatura.addEventListener('click', () => {
-                const calificaciones = asignatura.querySelector('.calificaciones');
-                calificaciones.style.display = (calificaciones.style.display === 'block') ? 'none' : 'block';
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+

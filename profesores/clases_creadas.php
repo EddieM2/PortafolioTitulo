@@ -14,7 +14,7 @@ if (isset($_GET['idCurso'])) {
     }
 } else {
     // Si no se recibió el idCurso, redirigir a la página anterior
-    header("Location: pagina_anterior.php"); // Reemplaza 'pagina_anterior.php' con el nombre de tu página anterior
+    header("Location: editar_asistencia.php"); 
     exit();
 }
 ?>
@@ -26,15 +26,15 @@ if (isset($_GET['idCurso'])) {
     <title>Clases Creadas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"> <!-- Enlace a Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Enlace a Font Awesome -->
-    <link rel="stylesheet" href='../src/css/profes.css'> <!-- Agrega el enlace a tu archivo CSS -->
+    <link rel="stylesheet" href='../src/css/profes.css'> 
     <style>
         .card {
-            max-height: 600px; /* Ajusta la altura máxima según tus necesidades */
-            overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+            max-height: 600px; 
+            overflow-y: auto; 
         }
 
         .table-responsive {
-            overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si es necesario */
+            overflow-x: auto; 
         }
     </style>
 </head>

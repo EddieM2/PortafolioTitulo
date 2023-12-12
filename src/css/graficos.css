@@ -103,8 +103,8 @@ button#generar-grafico, button#descargarGrafico {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    padding: 10px 20px; /* Ajusta el espaciado interno según tus preferencias */
-    font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
+    padding: 10px 20px; /* Ajusta el espaciado interno */
+    font-size: 16px; /* Ajusta el tamaño de fuente  */
 }
 
 /* Estilo para el botón "Descargar Gráfico" */
@@ -114,7 +114,7 @@ button#generar-grafico, button#descargarGrafico {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    padding: 10px 20px; /* Ajusta el espaciado interno según tus preferencias */
-    font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
+    padding: 10px 20px; /* Ajusta el espaciado interno */
+    font-size: 16px; /* Ajusta el tamaño de fuente  */
 }
 

@@ -19,8 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['fecha'], $_POST['idCu
         }
     }
 
-    // Redirige de vuelta a la página de "Clases Creadas" u otra página según tus necesidades
-    header("Location: clases_creadas.php");
+    // Redirige de vuelta a la página de "Clases Creadas"
+    header("Location: editar_asistencia.php?fecha=$fecha&idCurso=$idCurso&resultado=exito");
+
     exit();
 } else {
     echo "Faltan parámetros en la solicitud o no se ha enviado la asistencia.";

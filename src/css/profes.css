@@ -79,39 +79,39 @@ body {
     padding: 5px 10px;
     border: none; /* Eliminamos el borde para un aspecto más limpio */
     border-radius: 5px;
-    transition: background-color 0.3s, transform 0.1s; /* Reducimos la duración de la transformación para una animación más sutil */
+    transition: background-color 0.3s, transform 0.1s; /* Reducimos la duración de la transformación */
     display: inline-block;
     min-width: 150px;
     text-align: center;
     margin: 0 5px;
     height: 40px;
-    cursor: pointer; /* Cambiamos el cursor al pasar sobre el botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
 }
 
 .btn-logout:hover {
     background-color: #FF3333; /* Un tono más claro de rojo al pasar el mouse */
-    transform: scale(1.05); /* Hacemos que el botón se agrande ligeramente */
+    transform: scale(1.05); /* Hace que el botón se agrande ligeramente */
 }
 /* Estilo para el botón de volver atrás */
 .btn-back {
     text-decoration: none;
     color: #fff;
-    background-color: #007bff; /* Azul, puedes cambiar el color si lo deseas */
+    background-color: #007bff; /* Azul*/
     padding: 5px 10px;
-    border: none; /* Eliminamos el borde para un aspecto más limpio */
+    border: none; /* Eliminamos el borde */
     border-radius: 5px;
-    transition: background-color 0.3s, transform 0.1s; /* Reducimos la duración de la transformación para una animación más sutil */
+    transition: background-color 0.3s, transform 0.1s; /* Reducimos la duración de la transformación  */
     display: inline-block;
     min-width: 150px;
     text-align: center;
     margin: 0 5px;
     height: 40px;
-    cursor: pointer; /* Cambiamos el cursor al pasar sobre el botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
 }
 
 .btn-back:hover {
     background-color: #0056b3; /* Un tono más claro de azul al pasar el mouse */
-    transform: scale(1.05); /* Hacemos que el botón se agrande ligeramente */
+    transform: scale(1.05); /* Hace que el botón se agrande ligeramente */
 }
 
 /* Estilo para la tarjeta "card2" */
@@ -131,7 +131,7 @@ body {
 /* Añadir estilos adicionales según sea necesario para "card2" */
 
 /* Estilo para la tarjeta personalizada */
-/* Estilo para la tarjeta personalizada */
+
 .custom-card {
     background-color: #ffffff;
     color: #125E5E; 
@@ -149,7 +149,7 @@ body {
 
 /* Estilo para el cuerpo de la tarjeta personalizada */
 .custom-card-body {
-    /* Agrega estilos según tus necesidades para el cuerpo de la tarjeta */
+    /* Agrega estilos para el cuerpo de la tarjeta */
     padding: 1rem; /* Añadir espaciado alrededor del contenido */
     text-align: center; /* Centrar el contenido en la tarjeta */
     max-width: 100%; /* Ocupa el 90% del ancho de la tarjeta */
@@ -189,16 +189,16 @@ body {
     .custom-card table td:nth-child(6),
     .custom-card table td:nth-child(7),
     .custom-card table td:nth-child(8) {
-        width: 10%; /* Ajusta el ancho de las columnas de notas según tus necesidades */
+        width: 10%; /* Ajusta el ancho de las columnas de notas  */
     }
 }
 
 .card {
-    max-height: 600px; /* Ajusta la altura máxima según tus necesidades */
-    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+    max-height: 600px; /* Ajusta la altura máxima  */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical  */
 }
 
 .table-responsive {
-    overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si es necesario */
+    overflow-x: auto; /* Agrega una barra de desplazamiento horizontal  */
 }
 

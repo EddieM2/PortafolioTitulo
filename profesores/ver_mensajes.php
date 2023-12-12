@@ -1,38 +1,37 @@
-<?php include("../models/db.php"); ?>
 <?php
+include("../models/db.php");
 
-
-// Verificar si el usuario ha iniciado sesión como profesor
-// if (!isset($_SESSION['rut']) || $_SESSION['cargo_id'] != 2) {
-//     // Si no ha iniciado sesión como profesor, redirigir a la página de inicio de sesión
-//     header("Location: login.php");
-//     exit();
-// }
-
-// Obtener el RUT del profesor desde la sesión
+// Obtiene el RUT del profesor desde la sesión
 $rut_profesor = $_SESSION['rut'];
-$nombre_profesor = $_SESSION['user']; // Nombre del profesor
 
-// Obtener los parámetros de la URL (idCurso e idAsignatura)
-if (isset($_GET['idCurso']) && isset($_GET['idAsignatura'])) {
-    $idCurso = $_GET['idCurso'];
-    $idAsignatura = $_GET['idAsignatura'];
-} else {
-    // Si no se proporcionaron los parámetros requeridos, redirigir a la página anterior
-    header("Location: cursos_asignaturas.php");
-    exit();
+// Obtiene el nombre y apellido paterno del profesor mediante una consulta 
+$info_profesor_query = "SELECT nombre, apellidoP FROM profesor WHERE rut = '$rut_profesor'";
+$info_profesor_result = mysqli_query($conexion, $info_profesor_query);
+
+if (!$info_profesor_result) {
+    die("Error al obtener la información del profesor: " . mysqli_error($conexion));
 }
 
+$profesor = mysqli_fetch_assoc($info_profesor_result);
+$nombre_profesor = $profesor['nombre'];
+$apellido_paterno_profesor = $profesor['apellidoP'];
 
+// Obtener los parámetros de la URL (idCurso e idAsignatura)
+$idCurso = $_GET['idCurso'];
+$idAsignatura = $_GET['idAsignatura'];
+
+// Verificar la conexión a la base de datos
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
 // Consultar solo el último mensaje de cada conversación relacionado con el curso y la asignatura
-$mensajes_query = "SELECT m1.mensaje, m1.fechaenvio, m1.idConversacion, m1.idEmisor 
+$mensajes_query = "SELECT m1.mensaje, m1.fechaenvio, m1.idConversacion, m1.idEmisor, a.nombre AS nombre_apoderado, a.apellidoP AS apellido_apoderado
                   FROM mensajes m1
                   LEFT JOIN mensajes m2 
                   ON (m1.idConversacion = m2.idConversacion AND m1.fechaenvio < m2.fechaenvio)
+                  LEFT JOIN apoderado a
+                  ON (m1.idEmisor = a.rut OR m1.idReceptor = a.rut)
                   WHERE m2.idConversacion IS NULL
                   AND m1.idCurso = $idCurso
                   AND m1.idAsignatura = $idAsignatura";
@@ -55,7 +54,7 @@ if (!$mensajes_result) {
 </head>
 <body>
     <div class="panel">
-        <h1>Bienvenido, <?php echo $nombre_profesor; ?> (Profesor)</h1>
+        <h1>Bienvenido, <?php echo $nombre_profesor . ' ' . $apellido_paterno_profesor; ?> (Profesor)</h1>
         
         <div class="panel-body">
             <h2>Curso y Asignatura:</h2>
@@ -65,7 +64,7 @@ if (!$mensajes_result) {
             $asignatura_result = mysqli_query($conexion, $asignatura_query);
 
             if (!$asignatura_result) {
-                die("Error al obtener el nombre de la asignatura: " . mysqli_error($conn));
+                die("Error al obtener el nombre de la asignatura: " . mysqli_error($conexion));
             }
 
             $asignatura = mysqli_fetch_assoc($asignatura_result);
@@ -89,36 +88,42 @@ if (!$mensajes_result) {
 
             <h2>Mensajes:</h2>
 
-            <!-- Mostrar indicación visual de mensajes no leídos -->
-            <?php
-            $mensajes_no_leidos_query = "SELECT COUNT(*) AS cantidad
-                                    FROM mensajes
-                                    WHERE idCurso = $idCurso
-                                    AND idAsignatura = $idAsignatura
-                                    AND leido = 0"; // Contar mensajes no leídos
-
-            $mensajes_no_leidos_result = mysqli_query($conexion, $mensajes_no_leidos_query);
-
-            if (!$mensajes_no_leidos_result) {
-                die("Error al contar mensajes no leídos: " . mysqli_error($conexion));
-            }
-
-            $mensajes_no_leídos = mysqli_fetch_assoc($mensajes_no_leidos_result);
-
-            if ($mensajes_no_leídos['cantidad'] > 0) {
-                echo "<p>Tienes " . $mensajes_no_leídos['cantidad'] . " mensajes no leídos.</p>";
-            }
-            ?>
-
             <ul>
                 <?php
                 while ($mensaje = mysqli_fetch_assoc($mensajes_result)) {
                     echo "<li>";
                     echo "<strong>Fecha de Envío:</strong> " . htmlspecialchars($mensaje['fechaenvio']) . "<br>";
                     echo "<strong>Mensaje:</strong> " . htmlspecialchars($mensaje['mensaje']);
+                    echo "<br>";
+                    if ($mensaje['nombre_apoderado'] && $mensaje['apellido_apoderado']) {
+                        echo "<strong>Apoderado:</strong> " . $mensaje['nombre_apoderado'] . ' ' . $mensaje['apellido_apoderado'];
+                    }
 
                     // Agregar enlace para ver todos los mensajes de la conversación
-                    echo " <a href='ver_conversacion_profesor.php?idConversacion=" . $mensaje['idConversacion'] . "&idCurso=" . $idCurso . "&idAsignatura=" . $idAsignatura . "&idEmisor=" . $mensaje['idEmisor'] . "'>Ver Conversación</a>";
+                    echo " <a href='ver_conversacion_profesor.php?idConversacion=" . $mensaje['idConversacion'] . "&idCurso=" . $idCurso . "&idAsignatura=" . $idAsignatura . "&idEmisor=" . $mensaje['idEmisor'] . "'>Ver Conversación";
+
+                    // Mostrar la cantidad de mensajes no leídos por el profesor
+                    $mensajes_no_leidos_profesor_query = "SELECT COUNT(*) AS cantidad
+                                                        FROM mensajes
+                                                        WHERE idConversacion = " . $mensaje['idConversacion'] . "
+                                                        AND idCurso = $idCurso
+                                                        AND idAsignatura = $idAsignatura
+                                                        AND idEmisor != '$rut_profesor' -- Excluir mensajes enviados por el profesor
+                                                        AND leido = 0"; // Contar mensajes no leídos por el profesor
+
+                    $mensajes_no_leidos_profesor_result = mysqli_query($conexion, $mensajes_no_leidos_profesor_query);
+
+                    if (!$mensajes_no_leidos_profesor_result) {
+                        die("Error al contar mensajes no leídos por el profesor: " . mysqli_error($conexion));
+                    }
+
+                    $mensajes_no_leídos_profesor = mysqli_fetch_assoc($mensajes_no_leidos_profesor_result);
+
+                    if ($mensajes_no_leídos_profesor['cantidad'] > 0) {
+                        echo " (" . $mensajes_no_leídos_profesor['cantidad'] . " no leídos por el profesor)";
+                    }
+
+                    echo "</a>";
 
                     echo "</li>";
                 }
@@ -138,3 +143,8 @@ if (!$mensajes_result) {
 // Cerrar la conexión a la base de datos
 mysqli_close($conexion);
 ?>
+
+
+
+
+

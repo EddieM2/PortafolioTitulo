@@ -1,5 +1,7 @@
 <?php
+//inclusion del modelo
 include("grafico_model.php");
+//conexion a la base de datos
 include("../models/db.php");
 
 if (!$conexion) {

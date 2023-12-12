@@ -16,7 +16,7 @@ if (isset($_SESSION['rut'])) {
             $nombreApoderado = $filaApoderado['nombre'];
             $apellidoPaterno = $filaApoderado['apellidoP'];
 
-            // Cerrar la etiqueta PHP para comenzar la estructura HTML
+           
             ?>
 
             <!DOCTYPE html>

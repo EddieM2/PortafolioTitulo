@@ -1,4 +1,5 @@
 <?php
+//conexion base de datos
 include("db.php");
 
 class GraficoModel {

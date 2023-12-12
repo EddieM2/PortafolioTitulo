@@ -1,5 +1,4 @@
 <?php include("../models/db.php") ?>
-
 <?php
 if (isset($_GET['rut'])) {
     $rut = $_GET['rut'];
@@ -7,7 +6,6 @@ if (isset($_GET['rut'])) {
     if (!$conexion) {
         die("Error de conexión: " . mysqli_connect_error());
     }
-
     $query = "SELECT * FROM apoderado WHERE rut = '$rut'";
     $result = mysqli_query($conexion, $query);
 
@@ -23,7 +21,6 @@ if (isset($_GET['rut'])) {
             $telefono = $_POST['telefono'];
             $idCargo = $_POST['idCargo'];
             $direccion = mysqli_real_escape_string($conexion, $_POST['direccion']);
-
             $updateQuery = "UPDATE apoderado SET
                 nombre = '$nombre',
                 apellidoP = '$apellidoP',
@@ -58,6 +55,7 @@ if (isset($_GET['rut'])) {
     <title>Editar Apoderado</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../src/css/profes.css">
+    <meta charset="UTF-8">
 </head>
 <body>
     <div class="container mt-5">
@@ -83,8 +81,7 @@ if (isset($_GET['rut'])) {
                     <label for="telefono">Teléfono:</label>
                     <input type="tel" name="telefono" value="<?php echo htmlspecialchars($row['telefono']); ?>" class="form-control"><br>
 
-                    <label for="idCargo">Cargo:</label>
-                    <input type="number" name="idCargo" value="<?php echo $row['idCargo']; ?>" class="form-control" required><br>
+                   <input type="hidden" name="idCargo" value="4">
 
                     <label for="direccion">Dirección:</label>
                     <input type="text" name="direccion" value="<?php echo htmlspecialchars($row['direccion']); ?>" class="form-control" required><br>
@@ -96,3 +93,4 @@ if (isset($_GET['rut'])) {
     </div>
 </body>
 </html>
+

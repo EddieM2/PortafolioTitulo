@@ -1,5 +1,4 @@
 <?php include("../db.php") ?>
-
 <?php
 // Verificar si se proporcionó un parámetro "rut" en la URL
 if (isset($_GET["rut"])) {
@@ -19,8 +18,7 @@ if (isset($_GET["rut"])) {
     $sql = "DELETE FROM alumno WHERE rut = '$rut'";
 
     if ($conexion->query($sql) === TRUE) {
-        
-        echo "Alumno eliminado correctamente.";
+        header("Location: ../../models/alumnosModels/vistaAlumnos.php");
     } else {
         
         echo "Error al eliminar el alumno: " . $conexion->error;

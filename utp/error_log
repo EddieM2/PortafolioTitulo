@@ -1,0 +1,8 @@
+[25-Nov-2023 02:22:06 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home2/cpr96079/public_html/models/db.php on line 3
+[25-Nov-2023 02:22:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/includes/header.php:1) in /home2/cpr96079/public_html/utp/inicioUtp.php on line 53
+[25-Nov-2023 02:23:23 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home2/cpr96079/public_html/models/db.php on line 3
+[25-Nov-2023 02:23:23 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/includes/header.php:1) in /home2/cpr96079/public_html/utp/inicioUtp.php on line 50
+[08-Dec-2023 21:18:23 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/utp/inicioUtp.php:2) in /home2/cpr96079/public_html/utp/inicioUtp.php on line 88
+[08-Dec-2023 21:18:29 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/utp/inicioUtp.php:2) in /home2/cpr96079/public_html/utp/inicioUtp.php on line 88
+[08-Dec-2023 21:18:32 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/utp/inicioUtp.php:2) in /home2/cpr96079/public_html/utp/inicioUtp.php on line 88
+[09-Dec-2023 00:19:28 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/cpr96079/public_html/utp/inicioUtp.php:2) in /home2/cpr96079/public_html/utp/inicioUtp.php on line 88

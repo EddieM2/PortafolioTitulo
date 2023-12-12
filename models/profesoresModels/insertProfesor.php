@@ -5,6 +5,7 @@
     <title>Agregar Profesor</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../src/css/profes.css">
+    <meta charset="utf-8">
     <style>
         body {
             padding-top: 100px; /* Agrega un espacio en la parte superior del cuerpo de la página */
@@ -15,7 +16,6 @@
             margin: 0 auto; /* Centra la tarjeta horizontalmente */
         }
     </style>
-</head>
 </head>
 <body>
     <div class="container mt-5">
@@ -35,19 +35,39 @@
                     $genero = $_POST['genero'];
                     $idCargo = $_POST['idCargo'];
                     $idCurso = $_POST['curso'];
-                    $idAsignatura = $_POST['asignatura'];
 
                     // Insertar el nuevo profesor en la tabla profesor
-                    $query = "INSERT INTO profesor (rut, nombre, apellidoP, apellidoM, correo, fechaNacimiento, telefono, genero, idCargo, idCurso, idAsignatura) 
-                              VALUES ('$rut', '$nombre', '$apellidoP', '$apellidoM', '$correo', '$fechaNacimiento', '$telefono', '$genero', '$idCargo', '$idCurso', '$idAsignatura')";
-                    $result = mysqli_query($conexion, $query);
+                    $queryProfesor = "INSERT INTO profesor (rut, nombre, apellidoP, apellidoM, correo, fechaNacimiento, telefono, genero, idCargo) 
+                              VALUES ('$rut', '$nombre', '$apellidoP', '$apellidoM', '$correo', '$fechaNacimiento', '$telefono', '$genero', '$idCargo')";
+                    $resultProfesor = mysqli_query($conexion, $queryProfesor);
 
-                    if ($result) {
+                    if ($resultProfesor) {
                         // Éxito: el profesor se ha agregado correctamente
-                        echo "<p>Profesor agregado con éxito.</p>";
 
-                        // Redirigir al usuario a la página "lista_profesores"
-                        echo "<a class='btn btn-primary' href='lista_profesores.php'>Volver a la lista de profesores</a>";
+                        // Obtener el ID del profesor recién insertado
+                        $idProfesor = mysqli_insert_id($conexion);
+
+                        // Obtener el máximo ID de la tabla asignatura y sumar 1
+                        $queryMaxId = "SELECT MAX(idAsignatura) AS maxId FROM asignatura";
+                        $resultMaxId = mysqli_query($conexion, $queryMaxId);
+                        $rowMaxId = mysqli_fetch_assoc($resultMaxId);
+                        $maxId = $rowMaxId['maxId'];
+                        $newIdAsignatura = $maxId + 1;
+
+                        // Insertar la asignatura del profesor en la tabla asignatura
+                        $queryAsignatura = "INSERT INTO asignatura (idAsignatura, idCurso, rutProfesor) 
+                                  VALUES ('$newIdAsignatura', '$idCurso', '$rut')";
+                        $resultAsignatura = mysqli_query($conexion, $queryAsignatura);
+
+                        if ($resultAsignatura) {
+                            echo "<p>Profesor y asignatura agregados con éxito.</p>";
+
+                            // Redirigir al usuario a la página "lista_profesores"
+                            echo "<a class='btn btn-primary' href='lista_profesores.php'>Volver a la lista de profesores</a>";
+                        } else {
+                            // Error: no se pudo agregar la asignatura del profesor
+                            echo "<p>Error al agregar la asignatura del profesor: " . mysqli_error($conexion) . "</p>";
+                        }
                     } else {
                         // Error: no se pudo agregar el profesor
                         echo "<p>Error al agregar el profesor: " . mysqli_error($conexion) . "</p>";
@@ -95,15 +115,7 @@
                         <input type="text" name="genero" class="form-control" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="idCargo" class="form-label">Cargo:</label>
-                        <select name="idCargo" class="form-select" required>
-                            <option value="1">Administrador</option>
-                            <option value="2">Profesor</option>
-                            <option value="3">Alumno</option>
-                            <option value="4">Apoderado</option>
-                        </select>
-                    </div>
+                   <input type="hidden" name="idCargo" value="2">
 
                     <div class="mb-3">
                         <label for="curso" class="form-label">Curso:</label>
@@ -122,23 +134,6 @@
                         </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="asignatura" class="form-label">Asignatura:</label>
-                        <select name="asignatura" class="form-select" required>
-                            <option value="">Seleccione una asignatura</option>
-                            <?php
-                            $queryAsignaturas = "SELECT idAsignatura, nombre FROM asignatura";
-                            $resultAsignaturas = mysqli_query($conexion, $queryAsignaturas);
-
-                            if ($resultAsignaturas) {
-                                while ($rowAsignatura = mysqli_fetch_assoc($resultAsignaturas)) {
-                                    echo "<option value='" . $rowAsignatura['idAsignatura'] . "'>" . $rowAsignatura['nombre'] . "</option>";
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
-
                     <button type="submit" name="agregar_profesor" class="btn btn-primary">Agregar Profesor</button>
                 </form>
             </div>
@@ -146,3 +141,7 @@
     </div>
 </body>
 </html>
+
+
+
+

@@ -5,7 +5,7 @@ include("../models/db.php");
 if (isset($_SESSION['rut'])) {
     $apoderado_rut = $_SESSION['rut'];
 
-    // Consulta para obtener el nombre y apellido paterno del apoderado
+    // Consulta que obtiene el nombre y apellido paterno del apoderado
     $consultaApoderado = "SELECT nombre, apellidoP FROM apoderado WHERE rut = '$apoderado_rut'";
     $resultadoApoderado = mysqli_query($conexion, $consultaApoderado);
 
@@ -47,7 +47,7 @@ if (isset($_SESSION['rut'])) {
                     echo "                    <input type='radio' name='rut_pupilo' value='$rutPupilo'>";
                     echo "                    <label>Rut: $rutPupilo, Nombre: $nombrePupilo, Apellido Paterno: $apellidoPaternoPupilo, Apellido Materno: $apellidoMaternoPupilo</label>";
                 }
-
+                
                 echo '                    <button type="submit" class="btn btn-primary">Seleccionar</button>';
                 echo '                </form>';
             } else {

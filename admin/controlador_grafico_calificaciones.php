@@ -1,4 +1,5 @@
 <?php
+//incluye el modelo
 include("modelo_grafico_calificaciones.php");
 
 // Obtener cursos desde la base de datos

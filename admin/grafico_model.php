@@ -1,4 +1,5 @@
 <?php
+//conexion a la base de datos
 include("../models/db.php");
 
 class GraficoModel {
@@ -7,7 +8,7 @@ class GraficoModel {
     public function __construct($db) {
         $this->conexion = $db;
     }
-
+//obtiene los promedios del curso seleccionado
     public function obtenerPromedioCalificaciones($idCurso, $idAsignatura) {
         $consulta = "SELECT AVG(calificacion1) AS promedio1, AVG(calificacion2) AS promedio2, AVG(calificacion3) AS promedio3, AVG(calificacion4) AS promedio4
                      FROM calificaciones

@@ -4,7 +4,7 @@
 if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     $alumno_rut = $_SESSION['rut'];
 } else {
-    // Maneja la falta de rut de la sesión como consideres necesario
+
 }
 ?>
 
@@ -16,6 +16,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     <link rel="stylesheet" href="../src/css/profes.css">
 </head>
 <body>
+    <meta charset="utf-8">
     <div class="container mt-5">
         <div class="custom-card">
             <div class="custom-card-body">
@@ -86,18 +87,20 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     <div class="pregunta">
         <label for="consumo-sustancias">¿Has consumido alcohol, tabaco, marihuana u otras drogas?</label>
     </div>
-    <div class="respuestas">
-        <input type="radio" name="consumo-sustancias" value="si" required> Sí
-        <input type="radio" name="consumo-sustancias" value="no"> No
+<div class="form-group">
+    <div class="pregunta">
+        <label for="autoestima">¿Cómo te sientes contigo mismo?</label>
+        
     </div>
+    <input type="text" name="autoestima" required>
 </div>
 
 <div class="form-group">
     <div class="pregunta">
-        <label for="autoestima">¿Cómo te sientes contigo mismo?</label>
+        <label for="explicacion">Explica tu situación</label>
     </div>
     <div class="respuestas">
-        <input type="text" name="autoestima" required>
+        <input type="text" name="explicacion" required>
     </div>
 </div>
 
@@ -111,3 +114,7 @@ if (isset($_SESSION['rut']) && $_SESSION['rut'] != '') {
     </div>
 </body>
 </html>
+
+
+
+
