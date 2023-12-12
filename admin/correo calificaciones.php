@@ -32,10 +32,10 @@ function enviarNotificacion($conexion, $rutEstudiante, $rutApoderado, $nombreEst
                 'Reply-To: notificaciones@proyectocolaborativo.cl' . "\r\n";
 
             // Configuración de SMTP
-            $smtp_server = 'srv13.cpanelhost.cl';
-            $smtp_port = 465; // Puerto SMTP
+            $smtp_server = 's';
+            $smtp_port = ; // Puerto SMTP
             $smtp_username = 'notificaciones@proyectocolaborativo.cl'; // Nombre de usuario del correo
-            $smtp_password = 'b*pjG~=}tsF_'; // Contraseña del correo
+            $smtp_password = ''; // Contraseña del correo
             $smtp_timeout = 30; // Tiempo de espera (opcional)
 
             // Configura el servidor SMTP

@@ -15,10 +15,10 @@ $query = "SELECT a.rut AS alumno_rut, a.nombre AS alumno_nombre, a.apellidoP AS 
 $result = $conexion->query($query);
 
 // Configuración de SMTP
-$smtp_server = 'srv13.cpanelhost.cl';
-$smtp_port = 465; // Puerto SMTP
+$smtp_server = '';
+$smtp_port = ; // Puerto SMTP
 $smtp_username = 'notificaciones@proyectocolaborativo.cl'; // Nombre de usuario del correo
-$smtp_password = 'b*pjG~=}tsF_'; // Contraseña del correo
+$smtp_password = ''; // Contraseña del correo
 $smtp_timeout = 30; // Tiempo de espera (opcional)
 
 // Configura el servidor SMTP
